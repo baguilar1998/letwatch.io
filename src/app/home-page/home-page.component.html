@@ -1,1 +1,25 @@
-<img id="logo" src="../../assets/logo_2.png"/>
+<!--Logo-->
+<div id="banner">
+  <img id="logo" src="../../assets/logo_2.png"/>
+</div>
+<!--Home Page-->
+<div id="home" *ngIf="componentState=='home'">
+  <div class="avatar">
+    <a (click)="previousColor()" href="javascript:void(0)" class="previous">&#8249;</a>
+    <i [ngStyle]="styles" class="fa fa-user fa-3x" id="icon" aria-hidden="true"></i>
+    <a (click)="nextColor()" href="javascript:void(0)" class="next">&#8250;</a>
+  </div>
+  <div id="nickname">
+    <input type="text" placeholder="Nickname"/><br>
+    <button (click)="changeState('createroom')">Create A Room</button>
+    <button (click)="changeState('joinroom')">Join A Room</button>
+  </div>
+</div>
+<!-- Create A Room Page-->
+<div id="joinroom" *ngIf="componentState=='joinroom'">
+  <app-join-room></app-join-room>
+</div>
+<!-- Join A Room Page-->
+<div id="createroom" *ngIf="componentState=='createroom'">
+  <app-create-room></app-create-room>
+</div>
