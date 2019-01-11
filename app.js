@@ -17,6 +17,11 @@ app.use((req, res, next) =>{
   next();
 });
 
+//Route imports
+const roomRoute = require('./routes/room');
+
+//Express Routes for REST API
+app.use('/api/room',roomRoute);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

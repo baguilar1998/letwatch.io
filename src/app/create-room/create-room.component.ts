@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import {Room} from './create-room-model';
+import { RoomService } from '../services/room.service';
 
 
 
@@ -11,6 +12,7 @@ import {Room} from './create-room-model';
 export class CreateRoomComponent implements OnInit {
 
   @Output() currentState = new EventEmitter<string>();
+  roomKey;
 
   form = new Room(1, 1, '', '', '', 1);
 
@@ -20,7 +22,17 @@ export class CreateRoomComponent implements OnInit {
     this.submitted = true;
   }
 
+
+  constructor(private roomService: RoomService) {
+  }
+
+  /**
+   * Generates a new code everytime the user clicks
+   * on create a room
+   */
   ngOnInit() {
+    this.roomService.generateInvitationCode();
+    this.roomKey = this.roomService.getCode();
   }
 
   /**

@@ -32,6 +32,11 @@
       [class.is-invalid]="password.invalid && password.touched">
     </div>
 
+    <!--Displays invitation code-->
+    <div class="form-group">
+      <input type="text" value="{{roomKey}}">
+    </div>
+
     <button (click)="goBack('home')">Back</button>
     <button type="submit" class="btn-success">Submit</button>
   </form>
