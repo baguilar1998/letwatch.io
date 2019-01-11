@@ -18,6 +18,8 @@
       pattern="^^[A-Za-z]{4,15}[0-9]{0,5}"
       [(ngModel)]="form.roomName" 
       name="roomName">
+
+      <p class="dis-none" [class.dis-vis]="roomName.valid || roomName.untouched">Room Name is required</p>
     </div>
 
     <div class="form-group">
