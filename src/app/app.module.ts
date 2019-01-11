@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
@@ -18,7 +19,8 @@ import { CreateRoomComponent } from './create-room/create-room.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    CommonModule
+    CommonModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

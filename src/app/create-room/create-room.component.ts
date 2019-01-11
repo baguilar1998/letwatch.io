@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Room} from './create-room-model';
+import { Output } from '@angular/core/src/metadata/directives';
 
 @Component({
   selector: 'app-create-room',
@@ -7,7 +9,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateRoomComponent implements OnInit {
 
-  constructor() { }
+  form = new Room(1,1,"", "", "",1);
+
+  submitted = false;
+
+  onSubmit(){
+    this.submitted = true;
+  }
+
+  isValidPassword(val){
+    return val.matches("^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?]).*$");
+  }
 
   ngOnInit() {
   }

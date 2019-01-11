@@ -15,11 +15,11 @@
     <button (click)="changeState('joinroom')">Join A Room</button>
   </div>
 </div>
-<!-- Create A Room Page-->
+<!-- Join A Room Page-->
 <div id="joinroom" *ngIf="componentState=='joinroom'">
   <app-join-room></app-join-room>
 </div>
-<!-- Join A Room Page-->
+<!-- Create A Room Page-->
 <div id="createroom" *ngIf="componentState=='createroom'">
   <app-create-room></app-create-room>
 </div>

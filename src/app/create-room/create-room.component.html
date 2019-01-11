@@ -1,3 +1,52 @@
-<p>
-  create-room works!
-</p>
+<div>
+  <form #createRoomForm="ngForm">
+ 
+    <h2> Create A Room </h2>
+
+    <input type="hidden" name="playlistId" required [(ngModel)]="form.playlistId" > 
+    <input type="hidden" name="userId" required [(ngModel)]="form.userId" > 
+ 
+    <div class="form-group">
+      <label for="hostName">Nickname</label>
+      <input 
+      type="text" 
+      #hostName="ngModel" 
+      required 
+      id="hostName" 
+      [(ngModel)]="form.hostName"
+      [class.is-invalid]="hostName.invalid && hostName.touched" 
+      name="hostName">
+    </div>
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input 
+      type="text" 
+      id="password"
+      #password="ngModel"  
+      [(ngModel)]="form.password" 
+      name="password"
+      pattern="^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?]).*$"
+      [class.is-invalid]="password.invalid && password.touched">
+    </div>
+
+    <div class="form-group">
+      <label for="roomName">Room Name</label>
+      <input 
+      type="text" 
+      id="roomName"
+      required
+      #roomName="ngModel"
+      [class.is-invalid]="roomName.invalid && roomName.touched"
+      pattern="^^[A-Za-z]{4,15}[0-9]{0,5}"
+      [(ngModel)]="form.roomName" 
+      name="roomName">
+    </div>
+ 
+    <button type="submit" class="btn-success">Submit</button>
+  </form>
+</div>
+
+<div>
+  {{form | json }}
+</div>
