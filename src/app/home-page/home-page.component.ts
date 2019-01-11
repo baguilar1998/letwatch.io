@@ -22,10 +22,18 @@ export class HomePageComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Keeps track of what component that is currently
+   * displaying
+   * @param state the next component to display
+   */
   changeState(state: string) {
     this.componentState = state;
   }
 
+  /**
+   * Changes the avatar's color to its previous color
+   */
   previousColor() {
     this.index--;
     if (this.index === -1) {
@@ -34,6 +42,9 @@ export class HomePageComponent implements OnInit {
     this.styles['color'] = this.colors[this.index];
   }
 
+  /**
+   * Changes the avatar's color to the next available color
+   */
   nextColor() {
     this.index++;
     if (this.index === 5) {
