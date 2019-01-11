@@ -6,11 +6,11 @@
 <div id="home" *ngIf="componentState=='home'">
   <div class="avatar">
     <a (click)="previousColor()" href="javascript:void(0)" class="previous">&#8249;</a>
-    <i [ngStyle]="styles" class="fa fa-user fa-3x" id="icon" aria-hidden="true"></i>
+    <i [ngStyle]="styles" class="fa fa-user fa-2x" id="icon" aria-hidden="true"></i>
     <a (click)="nextColor()" href="javascript:void(0)" class="next">&#8250;</a>
   </div>
   <div id="nickname">
-    <input type="text" placeholder="Nickname"/><br>
+    <input [(ngModel)]="nickname" type="text" placeholder="Nickname"/><br>
     <button (click)="changeState('createroom')">Create A Room</button>
     <button (click)="changeState('joinroom')">Join A Room</button>
   </div>
