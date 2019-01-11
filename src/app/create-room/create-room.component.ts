@@ -17,10 +17,6 @@ export class CreateRoomComponent implements OnInit {
     this.submitted = true;
   }
 
-  isValidPassword(val){
-    return val.matches("^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?]).*$");
-  }
-
   ngOnInit() {
   }
 
