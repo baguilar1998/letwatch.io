@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import {Room} from './create-room-model';
-import { Output } from '@angular/core/src/metadata/directives';
+
+
 
 @Component({
   selector: 'app-create-room',
@@ -9,15 +10,26 @@ import { Output } from '@angular/core/src/metadata/directives';
 })
 export class CreateRoomComponent implements OnInit {
 
-  form = new Room(1,1,"", "", "",1);
+  @Output() currentState = new EventEmitter<string>();
+
+  form = new Room(1, 1, '', '', '', 1);
 
   submitted = false;
 
-  onSubmit(){
+  onSubmit() {
     this.submitted = true;
   }
 
   ngOnInit() {
+  }
+
+  /**
+   * Displays the home page component and disables
+   * the create a room component
+   * @param state the next component to display
+   */
+  goBack(state: string): void {
+    this.currentState.emit(state);
   }
 
 }

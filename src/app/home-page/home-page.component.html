@@ -17,9 +17,9 @@
 </div>
 <!-- Join A Room Page-->
 <div id="joinroom" *ngIf="componentState=='joinroom'">
-  <app-join-room></app-join-room>
+  <app-join-room (currentState)="changeState($event)"></app-join-room>
 </div>
 <!-- Create A Room Page-->
 <div id="createroom" *ngIf="componentState=='createroom'">
-  <app-create-room></app-create-room>
+  <app-create-room (currentState)="changeState($event)"></app-create-room>
 </div>
