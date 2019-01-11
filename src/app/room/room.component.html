@@ -1,0 +1,12 @@
+<!-- The Video Player -->
+<div id="player">
+  <iframe width="700" height="500" [src]="currentVideo | safe"
+  frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+  </iframe>
+  <button (click)="next()">Next Video</button>
+</div>
+
+<!-- Tab Component to display important information-->
+<div id="tab">
+
+</div>
