@@ -1,13 +1,17 @@
 <div>
-  <form #createRoomForm="ngForm">
+  <form #createRoomForm="ngForm" *ngIf="!submitted" (ngSubmit)="onSubmit()" novalidate>
 
     <h2> Create A Room </h2>
 
-    <input type="hidden" name="playlistId" required [(ngModel)]="form.playlistId" >
-    <input type="hidden" name="userId" required [(ngModel)]="form.userId" >
+    <div *ngIf="errorMsg">
+      {{error}}
+    </div>
+
+    <input type="hidden" name="playlistId" required [(ngModel)]="createRoomModel.playlistId" >
+    <input type="hidden" name="userId" required [(ngModel)]="createRoomModel.userId" >
 
 
-    <div class="form-group">
+    <div>
       <label for="roomName">Room Name</label>
       <input
       type="text"
@@ -16,27 +20,27 @@
       #roomName="ngModel"
       [class.is-invalid]="roomName.invalid && roomName.touched"
       pattern="^^[A-Za-z]{4,15}[0-9]{0,5}"
-      [(ngModel)]="form.roomName"
+      [(ngModel)]="createRoomModel.roomName"
       name="roomName">
 
-      <p class="dis-none" [class.dis-vis]="roomName.valid || roomName.untouched">Room Name is required</p>
+      <!-- <p class="dis-none" [class.dis-vis]="roomName.valid || roomName.untouched">Room Name is required</p> -->
     </div>
 
-    <div class="form-group">
+    <div >
       <label for="password">Password</label>
       <input
       type="text"
       id="password"
       #password="ngModel"
-      [(ngModel)]="form.password"
+      [(ngModel)]="createRoomModel.password"
       name="password"
       pattern="^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&?]).*$"
       [class.is-invalid]="password.invalid && password.touched">
     </div>
 
     <!--Displays invitation code-->
-    <div class="form-group">
-      <input type="text" value="{{roomKey}}">
+    <div>
+      <input type="hidden" value="{{roomKey}}">
     </div>
 
     <button (click)="goBack('home')">Back</button>
@@ -44,6 +48,11 @@
   </form>
 </div>
 
-<div>
-  {{form | json }}
+<!-- Once create room is successfully submitted, loads room -->
+<div id="room" *ngIf="submitted">
+    <div *ngIf="success">
+      {{success}}
+    </div>
+
+  <app-room></app-room>
 </div>

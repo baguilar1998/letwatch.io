@@ -27,4 +27,15 @@ router.get('/invitation', (req,res,next)=>{
   });
 });
 
+router.post('/create', (req,res, next) => {
+
+  
+  /* Catches error if generated, responds with err 400   */
+
+  /* Successfully submits create form data */
+
+  res.status(200).send({"response": "Room Successfully Created"});
+  console.log(req.body);
+});
+
 module.exports = router;

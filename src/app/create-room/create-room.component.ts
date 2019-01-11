@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import {Room} from './create-room-model';
 import { RoomService } from '../services/room.service';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -11,18 +12,18 @@ import { RoomService } from '../services/room.service';
 })
 export class CreateRoomComponent implements OnInit {
 
+
+
   @Output() currentState = new EventEmitter<string>();
   roomKey;
 
-  form = new Room(1, 1, '', '', '', 1);
+  createRoomModel = new Room(1, 1, 'fsef', '',10,  '', 1);
+  success =  ''
+  error =  ''
+  submitted =  false
+  
 
-  submitted = false;
-
-  onSubmit() {
-    this.submitted = true;
-  }
-
-
+  //Injects roomservice to be able to send data to express
   constructor(private roomService: RoomService) {
   }
 
@@ -33,6 +34,23 @@ export class CreateRoomComponent implements OnInit {
   ngOnInit() {
     this.roomService.generateInvitationCode();
     this.roomKey = this.roomService.getCode();
+  }
+
+
+
+  /*Connected to room service -> makes a call to createRoom 
+  (/services/room.services) method in roomService submits 
+  form data to express server */
+  onSubmit() {
+    this
+      .roomService
+      .createRoom(this.createRoomModel)
+      .subscribe(
+        data => {
+          this.submitted = true
+          this.success = data.response
+        },
+        error => this.error = error.statusText)
   }
 
   /**
