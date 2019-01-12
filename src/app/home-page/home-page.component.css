@@ -20,19 +20,42 @@
 
 #logo{
   display:block;
+  margin-top: 40px;
   margin-left:auto;
   margin-right:auto;
   width:320px;
   height: 70px;
 }
-
-#avatar a, i{
-  padding:5px;
+#nickname{
+  position: absolute;
+  margin-left:70px;
+  margin-top:10px;
 }
-
 #nickname button, input{
   margin:5px;
 }
+
+#nickname button{
+  margin-right:25px;
+}
+#nickname input{
+  text-align: center;
+  width:225px;
+  font-size: 13pt;
+  padding:10px;
+}
+
+.avatar{
+  display:flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar a, i{
+  padding:7px;
+}
+
+
 .avatar a {
   text-decoration: none;
   display: inline-block;
