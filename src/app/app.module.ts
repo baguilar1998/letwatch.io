@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { SafePipe } from './room/SafePipe';
 
@@ -13,6 +14,7 @@ import { CreateRoomComponent } from './create-room/create-room.component';
 import { RoomComponent } from './room/room.component';
 
 import { RoomService } from './services/room.service';
+import { CreateRoomFormComponent } from 'src/app/create-room/form/createRoom-form.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,7 @@ import { RoomService } from './services/room.service';
     HomePageComponent,
     JoinRoomComponent,
     CreateRoomComponent,
+    CreateRoomFormComponent,
     RoomComponent,
     SafePipe
   ],
@@ -28,7 +31,8 @@ import { RoomService } from './services/room.service';
     AppRoutingModule,
     CommonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
   ],
   providers: [RoomService],
   bootstrap: [AppComponent]

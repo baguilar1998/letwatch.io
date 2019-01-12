@@ -2,11 +2,11 @@
     border-color: red;
 }
 
-.dis-none{
+/* .dis-none{
     display: none;
-}
+} */
 
-.dis-vis {
+.error-msg {
   color: red;
-  display: inline;
+  display: none;
 }

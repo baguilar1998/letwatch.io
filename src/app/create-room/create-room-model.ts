@@ -4,7 +4,6 @@ export class Room {
     public playlistId: number,
     public nickName: string,
     public roomName: string,
-    public macCapacity : 10,
     public password?: string,
     public userId?: number,
 

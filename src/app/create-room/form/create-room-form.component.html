@@ -1,0 +1,43 @@
+<div>
+    <div *ngIf="!success">
+        <h2> Create A Room </h2>
+        <form (ngSubmit)="onSubmit(createRoomForm)" [formGroup]="createRoomForm">
+
+            <input type="hidden" formControlName="id">
+            <input type="hidden" formControlName="playlistId">
+            <input type="hidden" formControlName="userId">
+
+
+            <input type="text" placeholder="Nickname" formControlName="nickName">
+
+
+            <br>
+            <input type="text" placeholder="Room Name" formControlName="roomName">
+
+                <small *ngIf="roomName.touched && roomNameErrors!=null" >
+                    {{roomNameErrors.message}}
+                </small>
+
+                <small *ngIf="!roomName">{{roomNameErrors.message}}</small>
+
+            <br>
+            <input type="password" placeholder="Password" formControlName="password">
+            <br>
+
+            <input type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+
+            <button [disabled]="createRoomForm.invalid" type="submit">Submit </button>
+
+        </form>
+    </div>
+
+    <div *ngIf="success">
+        <h2>Successfully Created Room</h2>
+        <app-room></app-room>
+    </div>
+
+    <div *ngIf="error">
+        Error creating room. Please try again
+    </div>
+
+</div>
