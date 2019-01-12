@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import {Room} from '../create-room-model';
@@ -13,6 +13,7 @@ import {RoomService } from '../../services/room.service';
 
 export class CreateRoomFormComponent implements OnInit {
 
+    @Output() currentState = new EventEmitter<string>();
     success = '';
     error = '';
     submitted = false;
@@ -72,4 +73,14 @@ export class CreateRoomFormComponent implements OnInit {
             }
         );
     }
+
+    /**
+     * Displays the home page component and disables
+     * the create a room component
+     * @param state the next component to display
+     */
+    goBack(): void {
+      this.currentState.next('home');
+    }
+
 }

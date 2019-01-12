@@ -26,7 +26,7 @@
 
             <input type="password" placeholder="Confirm Password" formControlName="confirmPassword"><br>
 
-            <button type="button">Back</button>
+            <button (click)="goBack()" type="button">Back</button>
             <button [disabled]="createRoomForm.invalid" type="submit">Submit </button>
 
         </form>
