@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
+  nickname: string;
   componentState: string;
   colors: string [];
   index: number;
@@ -14,7 +15,7 @@ export class HomePageComponent implements OnInit {
 
   constructor() {
     this.componentState = 'home';
-    this.colors = ['black', 'blue', 'red', 'yellow', 'green'];
+    this.colors = ['black', 'blue', 'red', 'yellow', 'green', 'orange', 'purple'];
     this.index = 0;
     this.styles = { color: this.colors[this.index] };
   }
@@ -37,7 +38,7 @@ export class HomePageComponent implements OnInit {
   previousColor() {
     this.index--;
     if (this.index === -1) {
-      this.index = 4;
+      this.index = 6;
     }
     this.styles['color'] = this.colors[this.index];
   }
@@ -47,7 +48,7 @@ export class HomePageComponent implements OnInit {
    */
   nextColor() {
     this.index++;
-    if (this.index === 5) {
+    if (this.index === 7) {
       this.index = 0;
     }
     this.styles['color'] = this.colors[this.index];
