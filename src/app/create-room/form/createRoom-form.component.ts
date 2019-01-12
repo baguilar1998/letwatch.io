@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import {Room} from '../create-room-model';
 import {ValidateRoomName, ValidateRoomPassword} from './create-room-form.validators';
 import {RoomService } from '../../services/room.service';
@@ -11,14 +12,15 @@ import {RoomService } from '../../services/room.service';
 })
 
 export class CreateRoomFormComponent implements OnInit {
-    constructor(private fb: FormBuilder, private _createRoomForm: RoomService){}
 
+    success = '';
+    error = '';
+    submitted = false;
 
-    success = ''
-    error = ''
-    submitted = false
+    constructor(private fb: FormBuilder,
+      private _createRoomForm: RoomService,private router: Router) {}
 
-    ngOnInit(){
+    ngOnInit() {
 
     }
 
@@ -28,28 +30,29 @@ export class CreateRoomFormComponent implements OnInit {
       id: ['1'],
       playlistId: ['1'],
       nickName: ['Displays previous user',],
-      roomName: ['test', [ 
-                      Validators.minLength(3), 
-                      Validators.maxLength(15), 
+      roomName: ['test', [
+                      Validators.minLength(3),
+                      Validators.maxLength(15),
                       ValidateRoomName]],
-      password: ['hellot', [ 
+      password: ['hellot', [
                       Validators.minLength(5),
                       Validators.maxLength(15),
                       ValidateRoomPassword]],
       confirmPassword: ['hellot'],
       userId: ['1']
     });
-    
-    
-//-------------------GETTERS-------------------------//
 
-    //Used instead of createRoomForm.get('roomName')
-    //Simply call roomName.property to gain access
-    get roomName(){
+
+
+// -------------------GETTERS------------------------- //
+
+    // Used instead of createRoomForm.get('roomName')
+    // Simply call roomName.property to gain access
+    get roomName() {
         return this.createRoomForm.get('roomName');
     }
 
-    get roomNameErrors(){
+    get roomNameErrors() {
         return this.createRoomForm.get('roomName').errors;
     }
 
@@ -57,12 +60,16 @@ export class CreateRoomFormComponent implements OnInit {
 
     // Uses object destructering to grab values
     // Same as saying this.createRoomForm
-    onSubmit({value, valid}: {value: Room, valid: boolean}){
+    onSubmit({value, valid}: {value: Room, valid: boolean}) {
         this._createRoomForm.createRoom(value)
         .subscribe(
-            res => this.success = res,
-            err => this.error = err,
-        )
+            (res) => {
+              this.success = res;
+              this.router.navigate(['/room']);
+            },
+            (err) => {
+              this.error = err;
+            }
+        );
     }
-
 }

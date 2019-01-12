@@ -17,7 +17,7 @@ export class CreateRoomComponent implements OnInit {
   @Output() currentState = new EventEmitter<string>();
   roomKey;
 
-  //Injects roomservice to be able to send data to express
+  // Injects roomservice to be able to send data to express
   constructor(private roomService: RoomService, private fb: FormBuilder) {
   }
 
