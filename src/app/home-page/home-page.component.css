@@ -45,7 +45,7 @@
   padding:10px;
 }
 
-.avatar{
+.avatar, #createroom, #joinroom{
   display:flex;
   align-items: center;
   justify-content: center;

@@ -1,11 +1,23 @@
-<div id="header">
-  <h2>Enter An Invitation Code</h2>
-</div>
-<div id="body">
-  <input type="text"/>
-</div>
-<div id="buttons">
-  <button (click)="goBack('home')">Back</button>
-  <button>Join</button>
+<div class="container">
+
+  <!-- Header -->
+  <div id="header">
+    <h2>Enter An Invitation Code</h2>
+  </div>
+
+  <!--Enter an Invitation Code-->
+  <div id="body">
+
+    <!--User Input-->
+    <input type="text" placeholder="temp"/>
+
+    <!--Join/Back Buttons-->
+    <div id="buttons">
+      <button (click)="goBack('home')">Back</button>
+      <button>Join</button>
+    </div>
+
+  </div>
+
 </div>
 
