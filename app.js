@@ -3,7 +3,6 @@ const createError = require('http-errors');
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const MongoClient = require('mongodb').MongoClient;
 const path = require('path');
 
 
@@ -32,18 +31,12 @@ app.use('/api/room',roomRoute);
  * User-admin
  * password-MNP2Aal0wkOsPCol
  */
-const uri = "mongodb+srv://admin:MNP2Aal0wkOsPCol@cluster0-rkeb2.mongodb.net/test?retryWrites=true"
-const client = new MongoClient(uri,{ useNewUrlParser:true});
-client.connect(err=>{
-  console.log("connected to database");
-  client.close();
-});
-
-/**mongoose.connect(uri, { useNewUrlParser: true}).then(()=>{
-  console.log("connected to database");
+const uri = "mongodb+srv://admin:MNP2Aal0wkOsPCol@cluster0-rkeb2.mongodb.net/test?retryWrites=true";
+mongoose.connect(uri, { useNewUrlParser: true}).then(()=>{
+  console.log("connected to the database");
 }).catch(()=>{
   console.log("connection")
-})*/
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
