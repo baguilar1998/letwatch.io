@@ -18,11 +18,19 @@ export class RoomComponent implements OnInit {
   ngOnInit() {
   }
 
+  /**
+   * Moves to the next video if the minimum
+   * number of votes has been meet
+   */
   next(): void {
     this.embeddedCode = 'TYeul8ZaLrU';
     this.changeVideo();
   }
 
+  /**
+   * Helper function to set the new video
+   * to the video player
+   */
   changeVideo(): void {
     this.currentVideo = 'https://www.youtube.com/embed/' + this.embeddedCode + '?autoplay=1';
   }

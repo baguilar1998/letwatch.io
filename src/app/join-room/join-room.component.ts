@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-join-room',
@@ -8,10 +9,10 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class JoinRoomComponent implements OnInit {
 
   @Output() currentState = new EventEmitter<string>();
-  constructor() { }
 
-  ngOnInit() {
-  }
+  constructor(private router: Router) { }
+
+  ngOnInit() {}
 
   /**
    * Displays the home page component and disables
@@ -20,6 +21,14 @@ export class JoinRoomComponent implements OnInit {
    */
   goBack(state: string): void {
     this.currentState.emit(state);
+  }
+
+  /**
+   * Allows the user to go into
+   * an available room
+   */
+  join(): void {
+    this.router.navigate(['/room']);
   }
 
 }

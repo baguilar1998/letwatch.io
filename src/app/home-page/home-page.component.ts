@@ -20,8 +20,7 @@ export class HomePageComponent implements OnInit {
     this.styles = { color: this.colors[this.index] };
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   /**
    * Keeps track of what component that is currently
