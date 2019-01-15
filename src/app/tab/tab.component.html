@@ -1,0 +1,36 @@
+<div class="container">
+  <!--Tab Buttons-->
+  <div class="tab-buttons">
+      <!--List Of Buttons-->
+      <ul class="button-list">
+        <li class="list-item">
+          <button (click)="changeContent('chat')">Chat</button>
+        </li>
+        <li class="list-item">
+          <button (click)="changeContent('queue')">Video Queue</button>
+        </li>
+        <li class="list-item">
+          <button (click)="changeContent('users')">Users</button>
+        </li>
+      </ul>
+    </div>
+
+    <!--Tab Content-->
+    <div class="tab-content">
+      <!--Current Users Content-->
+      <div id="current-users" *ngIf="currentContent == 'users'">
+        <app-current-users></app-current-users>
+      </div>
+
+      <!--Video Queue Content-->
+      <div id="video-queue" *ngIf="currentContent == 'queue'">
+        <app-video-queue></app-video-queue>
+      </div>
+
+      <!--Chat Content-->
+      <div id="chat" *ngIf="currentContent == 'chat'">
+        <app-chat></app-chat>
+      </div>
+
+    </div>
+</div>

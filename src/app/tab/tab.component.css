@@ -1,0 +1,25 @@
+.container{
+  background-color:red;
+  width:450px;
+  height:700px;
+}
+
+.tab-buttons{
+  background-color:white;
+  width:450;
+  height:200;
+}
+
+.button-list{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.list-item button{
+  float:right;
+  height:50px;
+  width:80px;
+  margin-left:2px;
+}
