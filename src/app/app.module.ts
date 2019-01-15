@@ -15,6 +15,10 @@ import { RoomComponent } from './room/room.component';
 
 import { RoomService } from './services/room.service';
 import { CreateRoomFormComponent } from 'src/app/create-room/form/createRoom-form.component';
+import { TabComponent } from './tab/tab.component';
+import { VideoQueueComponent } from './tab/video-queue/video-queue.component';
+import { ChatComponent } from './tab/chat/chat.component';
+import { CurrentUsersComponent } from './tab/current-users/current-users.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { CreateRoomFormComponent } from 'src/app/create-room/form/createRoom-for
     CreateRoomComponent,
     CreateRoomFormComponent,
     RoomComponent,
-    SafePipe
+    SafePipe,
+    TabComponent,
+    VideoQueueComponent,
+    ChatComponent,
+    CurrentUsersComponent
   ],
   imports: [
     BrowserModule,

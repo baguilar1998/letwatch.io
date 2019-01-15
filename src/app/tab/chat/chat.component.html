@@ -1,0 +1,17 @@
+<div class="container">
+
+  <!--Displays List of Messages-->
+  <div class="messages" *ngFor="let m of messages">
+    <div class="message-item">
+      <i [style.color] = "m.user.avatarColor" class="fa fa-user" id="icon" aria-hidden="true"></i>
+      <label>{{m.user.nickname}}: </label>
+      <label>{{m.message}}</label>
+    </div>
+  </div>
+
+  <!--Send Message-->
+  <div class="user-input">
+    <input id="user-message" (keyup.enter)="sendMessage($event)" type="text" placeholder="Enter a message"/>
+  </div>
+
+</div>
