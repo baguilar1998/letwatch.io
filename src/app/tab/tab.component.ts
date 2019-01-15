@@ -8,12 +8,19 @@ import { Component, OnInit } from '@angular/core';
 export class TabComponent implements OnInit {
 
   currentContent: string;
+
   constructor() { }
 
   ngOnInit() {
     this.currentContent = 'chat';
   }
 
+  /**
+   * Changes the tab content depending on what
+   * button the user clicks
+   * @param content tab-content that the user
+   * wants to see
+   */
   changeContent(content: string): void {
     this.currentContent = content;
   }
