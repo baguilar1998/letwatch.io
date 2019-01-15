@@ -27,6 +27,7 @@ export class CreateRoomFormComponent implements OnInit {
 
     // Uses reactive forms and groups all the form controllers into one
     // Custom form validation with ValidateCreateForm
+    //First index is default data, 2nd is for validations
     createRoomForm = this.fb.group({
       id: ['1'],
       playlistId: ['1'],
