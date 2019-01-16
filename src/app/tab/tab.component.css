@@ -1,12 +1,12 @@
 .container{
   background-color:red;
-  width:450px;
-  height:700px;
+  width:400px;
+  height:600px;
 }
 
 .tab-buttons{
   background-color:blue;
-  width:450;
+  width:400;
   height:200;
 }
 

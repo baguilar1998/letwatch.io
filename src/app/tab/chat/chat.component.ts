@@ -42,6 +42,10 @@ export class ChatComponent implements OnInit {
    * typed in
    */
   sendMessage(response): void {
+    // When the user has no input, but clicks enter
+    if (response.target.value === '') {
+      return;
+    }
     const newMessage: Message = {
      user: {
         nickname: 'Brian',
