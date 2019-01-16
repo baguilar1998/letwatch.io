@@ -2,8 +2,10 @@
 const createError = require('http-errors');
 const express = require('express');
 const bodyParser = require('body-parser');
+const MongoClient = require('mongodb').MongoClient;
 const mongoose = require('mongoose');
 const path = require('path');
+const router = express.Router();
 
 
 var app = express();
@@ -19,24 +21,34 @@ app.use((req, res, next) =>{
 });
 
 //Route imports
-const roomRoute = require('./routes/room');
+const roomRoute = require('./server/routes/room');
+const userRoutes = require('./server/routes/users');
 
 
 //Express Routes for REST API
 app.use('/api/room',roomRoute);
+app.use('/api', userRoutes);
 
 
 /**
  * Database setup
- * User-admin
+* User - letswatchdevteam@gmail.com
  * password-MNP2Aal0wkOsPCol
  */
-const uri = "mongodb+srv://admin:MNP2Aal0wkOsPCol@cluster0-rkeb2.mongodb.net/test?retryWrites=true";
+
+
+
+const uri = "mongodb://admin:KvhvUh34!@ds157544.mlab.com:57544/letswatch";
 mongoose.connect(uri, { useNewUrlParser: true}).then(()=>{
-  console.log("connected to the database");
+   console.log("connected");
 }).catch(()=>{
-  console.log("connection")
+  console.log("error occured");
 });
+
+router.get('/', function(req, res){
+  res.send("working");
+})
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -50,6 +62,7 @@ app.use(function(err, req, res, next) {
   res.locals.error = req.app.get('env') === 'development' ? err : {};
 
   // render the error page
+  // res.sendStatus(err.status)
   res.status(err.status || 500);
   res.send(err.status);
 });
