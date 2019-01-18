@@ -11,14 +11,17 @@ import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { JoinRoomComponent } from './join-room/join-room.component';
 import { CreateRoomComponent } from './create-room/create-room.component';
-import { RoomComponent } from './room/room.component';
-
-import { RoomService } from './services/room.service';
 import { CreateRoomFormComponent } from 'src/app/create-room/form/createRoom-form.component';
 import { TabComponent } from './tab/tab.component';
 import { VideoQueueComponent } from './tab/video-queue/video-queue.component';
 import { ChatComponent } from './tab/chat/chat.component';
 import { CurrentUsersComponent } from './tab/current-users/current-users.component';
+import { RoomComponent } from './room/room.component';
+
+import { RoomService } from './services/room.service';
+import { UserService } from './services/user.service';
+
+
 
 @NgModule({
   declarations: [
@@ -42,7 +45,7 @@ import { CurrentUsersComponent } from './tab/current-users/current-users.compone
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [RoomService],
+  providers: [RoomService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

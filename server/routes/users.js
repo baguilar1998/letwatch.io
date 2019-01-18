@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const User = require('../models/User'); 
+const User = require('../models/User');
 
 
 //Retrieve all users
@@ -56,7 +56,7 @@ router.post("/user", (req, res) => {
 //If new is true, you get the new modified user back
 //If false, you get the old user back
 router.put("/user/:id", (req,res) => {
-    
+
     User.findByIdAndUpdate(req.params.id, {
         $set: {
             nickName: req.body.nickName,

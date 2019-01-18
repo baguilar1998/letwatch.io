@@ -1,8 +1,7 @@
-<div>
+<div class="container">
     <div *ngIf="!success">
-        <h2> Create A Room </h2>
         <form (ngSubmit)="onSubmit(createRoomForm)" [formGroup]="createRoomForm">
-
+          <h2> Create A Room </h2>
             <input type="hidden" formControlName="id">
             <input type="hidden" formControlName="playlistId">
             <input type="hidden" formControlName="userId">

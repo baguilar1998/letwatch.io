@@ -12,7 +12,7 @@ export class TabComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    this.currentContent = 'chat';
+    this.currentContent = 'users';
   }
 
   /**

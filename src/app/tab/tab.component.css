@@ -1,11 +1,10 @@
 .container{
-  background-color:red;
+  background-color: white;
   width:400px;
   height:600px;
 }
 
 .tab-buttons{
-  background-color:blue;
   width:400;
   height:200;
 }

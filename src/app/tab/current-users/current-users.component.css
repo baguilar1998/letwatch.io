@@ -1,3 +1,13 @@
-.user-list{
-  list-style-type: none;
+.container{
+  width:400px;
+  height:50px;
+  display:flex;
+}
+
+.container #user-icon{
+  margin-left:20px;
+}
+.container #user-nickname{
+  margin-top:4px;
+  margin-left:3px;
 }
