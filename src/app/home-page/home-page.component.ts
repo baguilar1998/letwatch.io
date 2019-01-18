@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-home-page',
@@ -13,7 +14,7 @@ export class HomePageComponent implements OnInit {
   index: number;
   styles;
 
-  constructor() {
+  constructor(private userService: UserService) {
     this.componentState = 'home';
     this.colors = ['black', 'blue', 'red', 'yellow', 'green', 'orange', 'purple'];
     this.index = 0;
@@ -28,6 +29,12 @@ export class HomePageComponent implements OnInit {
    * @param state the next component to display
    */
   changeState(state: string) {
+    if (!this.userService.isUserCreated) {
+      this.userService.createUser(this.nickname, this.colors[this.index]);
+      this.userService.isUserCreated = true;
+    } else if (this.componentState ===  'home') {
+      this.userService.updateUser(this.nickname, this.colors[this.index]);
+    }
     this.componentState = state;
   }
 

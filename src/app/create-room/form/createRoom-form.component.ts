@@ -19,7 +19,7 @@ export class CreateRoomFormComponent implements OnInit {
     submitted = false;
 
     constructor(private fb: FormBuilder,
-      private _createRoomForm: RoomService,private router: Router) {}
+      private _createRoomForm: RoomService, private router: Router) {}
 
     ngOnInit() {
 
@@ -27,7 +27,7 @@ export class CreateRoomFormComponent implements OnInit {
 
     // Uses reactive forms and groups all the form controllers into one
     // Custom form validation with ValidateCreateForm
-    //First index is default data, 2nd is for validations
+    // First index is default data, 2nd is for validations
     createRoomForm = this.fb.group({
       id: ['1'],
       playlistId: ['1'],
@@ -63,13 +63,17 @@ export class CreateRoomFormComponent implements OnInit {
     // Uses object destructering to grab values
     // Same as saying this.createRoomForm
     onSubmit({value, valid}: {value: Room, valid: boolean}) {
+      console.log(value);
         this._createRoomForm.createRoom(value)
         .subscribe(
             (res) => {
+              console.log(res);
               this.success = res;
+              // CALL TO THE BACKEND TO CREATE THE ROOM
               this.router.navigate(['/room']);
             },
             (err) => {
+              console.log(err);
               this.error = err;
             }
         );
