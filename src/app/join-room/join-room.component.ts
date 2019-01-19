@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-join-room',
@@ -10,7 +11,7 @@ export class JoinRoomComponent implements OnInit {
 
   @Output() currentState = new EventEmitter<string>();
 
-  constructor(private router: Router) { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {}
 
@@ -28,7 +29,12 @@ export class JoinRoomComponent implements OnInit {
    * an available room
    */
   join(): void {
-    this.router.navigate(['/room']);
+    try {
+      this.userService.addUser();
+      this.router.navigate(['/room']);
+    } catch (err) {
+      console.log('An error has occured');
+    }
   }
 
 }

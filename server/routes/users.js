@@ -37,16 +37,21 @@ router.post("/user", (req, res) => {
 
     console.log("Creating new user");
 
+    /**
+     * Storing the posted data in a User
+     * model
+     */
     let newUser = new User();
-    newUser.nickName = req.body.nickName;
+    newUser.nickName = req.body.nickname;
     newUser.avatarColor = req.body.avatarColor;
 
+    // Storing user into the database
     newUser.save((err, addedUser) => {
         if(err){
             res.send("Error saving user");
         } else {
             res.send(addedUser);
-            res.redirect('/');
+            // res.redirect('/');
         }
     });
 });
