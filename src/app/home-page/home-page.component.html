@@ -16,9 +16,13 @@
       <a (click)="nextColor()" href="javascript:void(0)" class="next">&#8250;</a>
     </div>
 
+    <div id="prompt" *ngIf="!isValid">
+      Nickname is required!
+    </div>
+
     <!--Enter A Nickname and Options-->
     <div id="nickname">
-      <input [(ngModel)]="nickname" type="text" placeholder="Nickname"/><br>
+      <input [(ngModel)]="nickname" required type="text" placeholder="Nickname"/><br>
       <button class="home-button" (click)="changeState('createroom')">Create A Room</button>
       <button class="home-button" (click)="changeState('joinroom')">Join A Room</button>
     </div>

@@ -12,6 +12,7 @@ export class HomePageComponent implements OnInit {
   componentState: string;
   colors: string [];
   index: number;
+  isValid: boolean;
   styles;
 
   constructor(private userService: UserService) {
@@ -19,6 +20,7 @@ export class HomePageComponent implements OnInit {
     this.colors = ['black', 'blue', 'red', 'yellow', 'green', 'orange', 'purple'];
     this.index = 0;
     this.styles = { color: this.colors[this.index] };
+    this.isValid = true;
   }
 
   ngOnInit() {}
@@ -29,12 +31,28 @@ export class HomePageComponent implements OnInit {
    * @param state the next component to display
    */
   changeState(state: string) {
+    /**
+     * Doesn't allow the user to bypass to
+     * the next state without a nickname
+     */
+    if (this.nickname === undefined || this.nickname === '') {
+      this.isValid = false;
+      return;
+    } else {
+      this.isValid = true;
+    }
+
+    /**
+     * Creates/Updates User
+     */
     if (!this.userService.isUserCreated) {
       this.userService.createUser(this.nickname, this.colors[this.index]);
       this.userService.isUserCreated = true;
     } else if (this.componentState ===  'home') {
       this.userService.updateUser(this.nickname, this.colors[this.index]);
     }
+
+    // Changes the component state
     this.componentState = state;
   }
 

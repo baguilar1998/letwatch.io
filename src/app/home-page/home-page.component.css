@@ -45,6 +45,12 @@
   padding:10px;
 }
 
+#prompt{
+  color:red;
+  font-weight: bold;
+  text-align: center;
+}
+
 .avatar, #createroom, #joinroom{
   display:flex;
   align-items: center;

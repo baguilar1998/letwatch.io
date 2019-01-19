@@ -9,11 +9,11 @@ var RoomSchema = new mongoose.Schema({
   },
   host: {
     type: Schema.Types.ObjectId,
-    ref: 'user',
+    ref: 'User',
   },
   users: [{
     type: Schema.Types.ObjectId,
-    red: 'user',
+    ref: 'User',
   }],
   invitationCode: {
     type: String,
@@ -38,7 +38,7 @@ var RoomSchema = new mongoose.Schema({
     required: true,
     min:1,
     max:8
-  }, 
+  },
   createdAt: {
     type: Date,
     expires: '8h',

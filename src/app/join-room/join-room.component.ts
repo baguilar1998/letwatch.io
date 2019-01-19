@@ -10,7 +10,7 @@ import { UserService } from '../services/user.service';
 export class JoinRoomComponent implements OnInit {
 
   @Output() currentState = new EventEmitter<string>();
-
+  invitationCode: string;
   constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit() {}
@@ -30,8 +30,9 @@ export class JoinRoomComponent implements OnInit {
    */
   join(): void {
     try {
+      // CREATE FUNCTION TO CHECK IF INVITATION KEY EXISTS
       this.userService.addUser();
-      this.router.navigate(['/room']);
+      this.router.navigate(['/room', 'test']);
     } catch (err) {
       console.log('An error has occured');
     }

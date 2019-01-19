@@ -9,7 +9,7 @@ const routes: Routes = [
   },
   // Temporary Route until further notice
   {
-    path: 'room',
+    path: 'room/:id',
     component: RoomComponent
   }
 ];

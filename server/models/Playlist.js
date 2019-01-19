@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 var PlaylistSchema = new mongoose.Schema({
   roomId:{
@@ -6,6 +7,10 @@ var PlaylistSchema = new mongoose.Schema({
     ref: 'Room',
     required: true
   },
+  videos: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Video'
+  }]
 });
 
 module.exports = mongoose.model("Playlist",PLaylistSchema);
