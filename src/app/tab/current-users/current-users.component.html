@@ -1,13 +1,12 @@
-<div class="container">
+<div class="container" *ngFor="let users of testUserList">
   <!--Current Users-->
-  <ul class="user-list" *ngFor="let users of testUserList">
-
-    <!--User Details (Nickname/Avatar Color)-->
-    <li>
-      <i [style.color] = "users.avatarColor" class="fa fa-user fa-2x" id="icon" aria-hidden="true"></i>
+  <div id="user-icon">
+    <i  [style.color] = "users.avatarColor" class="fa fa-user fa-2x"
+    id="icon" aria-hidden="true"></i>
+  </div>
+  <div id="user-nickname">
+    <strong>
       <label>{{users.nickname}}</label>
-    </li>
-
-  </ul>
-
+    </strong>
+  </div>
 </div>

@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
   styleUrls: ['./room.component.css']
 })
-export class RoomComponent implements OnInit {
+export class RoomComponent implements OnInit, OnDestroy {
 
   currentVideo: string;
   embeddedCode: string;
@@ -18,6 +18,9 @@ export class RoomComponent implements OnInit {
   ngOnInit() {
   }
 
+
+  ngOnDestroy() {
+  }
   /**
    * Moves to the next video if the minimum
    * number of votes has been meet

@@ -1,8 +1,7 @@
-<div>
+<div class="container">
     <div *ngIf="!success">
-        <h2> Create A Room </h2>
         <form (ngSubmit)="onSubmit(createRoomForm)" [formGroup]="createRoomForm">
-
+          <h2> Create A Room </h2>
             <input type="hidden" formControlName="id">
             <input type="hidden" formControlName="playlistId">
             <input type="hidden" formControlName="userId">
@@ -24,7 +23,9 @@
             <input type="password" placeholder="Password" formControlName="password">
             <br>
 
-            <input type="password" placeholder="Confirm Password" formControlName="confirmPassword"><br>
+            <input type="password" placeholder="Confirm Password" formControlName="confirmPassword">
+
+            <input type="text" placeholder="Room Name" [value]="invitationCode"/><br>
 
             <button (click)="goBack()" type="button">Back</button>
             <button [disabled]="createRoomForm.invalid" type="submit">Submit </button>

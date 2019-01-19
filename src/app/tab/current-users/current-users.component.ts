@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../tsmodels/user';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-current-users',
@@ -24,9 +25,8 @@ export class CurrentUsersComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
 }

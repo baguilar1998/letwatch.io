@@ -1,10 +1,4 @@
-<div>
-  <createRoom-form (currentState)="goBack($event)"></createRoom-form>
-
-</div>
-
-<!-- Once create room is successfully submitted, loads room -->
-<div id="room" *ngIf="submitted">
-
-  <app-room></app-room>
+<div class="container">
+  <app-createroom-form (currentState)="goBack($event)" [invitationCode]="invitationCode">
+  </app-createroom-form>
 </div>

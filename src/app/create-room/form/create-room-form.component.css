@@ -1,0 +1,29 @@
+.container{
+  width:400px;
+  height:400px;
+}
+
+.container input{
+  margin-top: 7px;
+  text-align: center;
+  width:225px;
+  font-size: 10pt;
+  padding:5px;
+}
+
+.container button {
+  margin-top: 7px;
+  margin-right: 20px;
+  padding: 8px 8px;
+  background-color: red;
+  color:white;
+  border: none;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.container button:hover{
+  background-color: rgb(180, 179, 179);
+  cursor: pointer;
+}

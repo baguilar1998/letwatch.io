@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import {Room} from '../create-room-model';
@@ -6,20 +6,21 @@ import {ValidateRoomName, ValidateRoomPassword} from './create-room-form.validat
 import {RoomService } from '../../services/room.service';
 
 @Component({
-    selector: 'createRoom-form',
+    selector: 'app-createroom-form',
     templateUrl : './create-room-form.component.html',
     styleUrls : ['./create-room-form.component.css']
 })
 
 export class CreateRoomFormComponent implements OnInit {
 
+    @Input('invitationCode') invitationCode: string;
     @Output() currentState = new EventEmitter<string>();
     success = '';
     error = '';
     submitted = false;
 
     constructor(private fb: FormBuilder,
-      private _createRoomForm: RoomService,private router: Router) {}
+      private _createRoomForm: RoomService, private router: Router) {}
 
     ngOnInit() {
 
@@ -27,7 +28,7 @@ export class CreateRoomFormComponent implements OnInit {
 
     // Uses reactive forms and groups all the form controllers into one
     // Custom form validation with ValidateCreateForm
-    //First index is default data, 2nd is for validations
+    // First index is default data, 2nd is for validations
     createRoomForm = this.fb.group({
       id: ['1'],
       playlistId: ['1'],
@@ -63,13 +64,17 @@ export class CreateRoomFormComponent implements OnInit {
     // Uses object destructering to grab values
     // Same as saying this.createRoomForm
     onSubmit({value, valid}: {value: Room, valid: boolean}) {
+      console.log(value);
         this._createRoomForm.createRoom(value)
         .subscribe(
             (res) => {
+              console.log(res);
               this.success = res;
+              // CALL TO THE BACKEND TO CREATE THE ROOM
               this.router.navigate(['/room']);
             },
             (err) => {
+              console.log(err);
               this.error = err;
             }
         );

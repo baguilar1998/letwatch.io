@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
-const User = require('../models/User'); 
+const User = require('../models/User');
 
 
 //Retrieve all users
@@ -37,16 +37,21 @@ router.post("/user", (req, res) => {
 
     console.log("Creating new user");
 
+    /**
+     * Storing the posted data in a User
+     * model
+     */
     let newUser = new User();
-    newUser.nickName = req.body.nickName;
+    newUser.nickName = req.body.nickname;
     newUser.avatarColor = req.body.avatarColor;
 
+    // Storing user into the database
     newUser.save((err, addedUser) => {
         if(err){
             res.send("Error saving user");
         } else {
             res.send(addedUser);
-            res.redirect('/');
+            // res.redirect('/');
         }
     });
 });
@@ -56,7 +61,7 @@ router.post("/user", (req, res) => {
 //If new is true, you get the new modified user back
 //If false, you get the old user back
 router.put("/user/:id", (req,res) => {
-    
+
     User.findByIdAndUpdate(req.params.id, {
         $set: {
             nickName: req.body.nickName,

@@ -64,9 +64,7 @@ router.post('/create', (req,res, next) => {
   Sends user to the room based off the invitation code
 */
 
-router.get("/room/:invitationCode", (req, res) => {
-
-  console.log("attempting to join");
+router.get("/:invitationCode", (req, res) => {
     Room.find({
       "invitationCode": req.params.invitationCode
     }, (err, room) => {
