@@ -42,7 +42,7 @@ export class UserService {
    * @param name the user's nickname
    * @param color the user's avatar color
    */
-  updateUser(name:string, color: string): void {
+  updateUser(name: string, color: string): void {
     this.user.nickname = name;
     this.user.avatarColor = color;
   }
@@ -64,6 +64,7 @@ export class UserService {
       console.log(res);
     });
   }
+
   /**
    * Debugging Function for database
    */

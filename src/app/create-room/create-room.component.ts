@@ -15,7 +15,7 @@ export class CreateRoomComponent implements OnInit {
 
 
   @Output() currentState = new EventEmitter<string>();
-  roomKey;
+  invitationCode;
 
   // Injects roomservice to be able to send data to express
   constructor(private roomService: RoomService, private fb: FormBuilder) {
@@ -26,8 +26,10 @@ export class CreateRoomComponent implements OnInit {
    * on create a room
    */
   ngOnInit() {
-    this.roomService.generateInvitationCode();
-    this.roomKey = this.roomService.getCode();
+    this.roomService.generateInvitationCode().subscribe((data) => {
+      this.invitationCode = data.invitation;
+      console.log(this.invitationCode);
+    });
   }
 
 

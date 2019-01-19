@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
 import {Room} from '../create-room-model';
@@ -6,13 +6,14 @@ import {ValidateRoomName, ValidateRoomPassword} from './create-room-form.validat
 import {RoomService } from '../../services/room.service';
 
 @Component({
-    selector: 'createRoom-form',
+    selector: 'app-createroom-form',
     templateUrl : './create-room-form.component.html',
     styleUrls : ['./create-room-form.component.css']
 })
 
 export class CreateRoomFormComponent implements OnInit {
 
+    @Input('invitationCode') invitationCode: string;
     @Output() currentState = new EventEmitter<string>();
     success = '';
     error = '';
