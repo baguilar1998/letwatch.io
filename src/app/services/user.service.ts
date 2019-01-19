@@ -55,6 +55,10 @@ export class UserService {
   }
 
 
+  /**
+   * Stores the user inside the database
+   * once they create or enter a room
+   */
   addUser(): void {
     this.http.post('//localhost:3000/api/user', this.user).subscribe((res) => {
       console.log(res);
