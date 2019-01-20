@@ -1,6 +1,8 @@
 <div class="container">
+{{title}}
   <!--Tab Buttons-->
   <div class="tab-buttons">
+      
       <!--List Of Buttons-->
       <ul class="button-list">
         <li class="list-item">
@@ -12,11 +14,24 @@
         <li class="list-item">
           <button (click)="changeContent('users')">Users</button>
         </li>
+        <li class="list-item">
+          <button (click)="changeContent('search')">Search</button>
+        </li>
       </ul>
     </div>
 
     <!--Tab Content-->
     <div class="tab-content">
+
+      <!--- Search Component -->
+      <div id="search-wrapper" *ngIf="currentContent == 'search'">
+        <app-search
+        [videosFound]="videosFound"
+        (addVideoToQueue)="videoToQueue($event)"
+        (searchHandler)="sendResultToRoom($event)"
+        > </app-search>
+      </div>
+
       <!--Current Users Content-->
       <div id="current-users" *ngIf="currentContent == 'users'">
         <app-current-users></app-current-users>
@@ -24,7 +39,9 @@
 
       <!--Video Queue Content-->
       <div id="video-queue" *ngIf="currentContent == 'queue'">
-        <app-video-queue></app-video-queue>
+        <app-video-queue
+        [videosForQueue]="videosForQueue"
+        ></app-video-queue>
       </div>
 
       <!--Chat Content-->
