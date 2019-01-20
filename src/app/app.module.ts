@@ -20,6 +20,7 @@ import { RoomComponent } from './room/room.component';
 
 import { RoomService } from './services/room.service';
 import { UserService } from './services/user.service';
+import { SearchComponent } from './tab/search/search.component';
 
 
 
@@ -35,7 +36,8 @@ import { UserService } from './services/user.service';
     TabComponent,
     VideoQueueComponent,
     ChatComponent,
-    CurrentUsersComponent
+    CurrentUsersComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,

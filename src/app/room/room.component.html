@@ -14,7 +14,10 @@
 
     <!-- Tab Section (Chat/Users/Queue)-->
     <div class="tab-section">
-      <app-tab></app-tab>
+      <app-tab
+      (searchResult)="getSearchResult($event)"
+      [videosFound]="videosFound"
+      ></app-tab>
     </div>
 
 

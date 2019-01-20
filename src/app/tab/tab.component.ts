@@ -39,7 +39,7 @@ export class TabComponent implements OnInit {
   }
 
 
-  // Defined on tab.component that takes the event from the search
+  // Defined on tab.component that takes the event from the search component
   // and sends it to this component which then fires another event
   // and sends this to the room component
   sendResultToRoom(event){
