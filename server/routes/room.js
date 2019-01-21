@@ -64,7 +64,6 @@ router.post('/create', (req,res, next) => {
 /*
   Sends user to the room based off the invitation code
 */
-
 router.get("/:invitationCode", (req, res) => {
     Room.find({
       "invitationCode": req.params.invitationCode
@@ -77,6 +76,27 @@ router.get("/:invitationCode", (req, res) => {
         // res.redirect(`/room/${room.invitationCode}`);
       }
     });
+});
+
+/**
+ * Gets all the current users that are in the room
+ */
+router.post("/currentUsers", (req,res,next)=>{
+  Room.findOne({"invitationCode":req.body.invitationCode}).then(usersArr=>{
+    // If room doesn't exist, return an error
+    if(!usersArr){
+      res.status(400).json({message:"Room was not found"});
+    }
+
+    /**
+     * Returns all user ids that are in
+     * the current room
+     */
+    res.status(200).json({
+      usersArray: usersArr.users
+    });
+
+  })
 });
 
 
