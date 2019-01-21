@@ -63,8 +63,10 @@ export class UserService {
   addUser(): void {
     this.http.post<any>('//localhost:3000/api/user', this.user).subscribe((res) => {
       // console.log(res);
-      this.user._id = res._id;
-      console.log(this.user);
+      if (res.hasOwnProperty('_id')) {
+        this.user._id = res._id;
+      }
+      console.log(res);
     });
   }
 

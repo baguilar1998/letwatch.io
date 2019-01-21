@@ -36,6 +36,9 @@ router.get('/user/:id', (req, res) => {
 router.post("/user", (req, res) => {
 
     console.log("Creating new user");
+    /*if(req.body._id != null){
+      res.status(201).send("User already exists");
+    }*/
 
     /**
      * Storing the posted data in a User
