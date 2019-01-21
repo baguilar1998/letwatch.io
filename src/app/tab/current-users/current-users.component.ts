@@ -14,11 +14,13 @@ export class CurrentUsersComponent implements OnInit {
    */
   testUserList: User [] = [
     {
+      _id: '',
       nickname: 'Brian',
       avatarColor: 'green',
       isHost: false
     },
     {
+      _id: '',
       nickname: 'Mike',
       avatarColor: 'blue',
       isHost: false

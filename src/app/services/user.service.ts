@@ -30,6 +30,7 @@ export class UserService {
    */
   createUser(name: string, color: string): void {
     this.user = {
+      _id: '',
       nickname: name,
       avatarColor: color,
       isHost: false
@@ -60,8 +61,10 @@ export class UserService {
    * once they create or enter a room
    */
   addUser(): void {
-    this.http.post('//localhost:3000/api/user', this.user).subscribe((res) => {
-      console.log(res);
+    this.http.post<any>('//localhost:3000/api/user', this.user).subscribe((res) => {
+      // console.log(res);
+      this.user._id = res._id;
+      console.log(this.user);
     });
   }
 

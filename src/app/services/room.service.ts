@@ -30,8 +30,8 @@ export class RoomService {
 
   // Post request to express server -> submits new form data for create room
   // attached to onSubmit method (create-room/create-room.component.ts)
-  createRoom(room: Room) {
-    return this.http.post<any>(this._createUrl, room)
+  createRoom(room: Room): Observable<any> {
+    return this.http.post<any>('//localhost:3000/api/room/create', room)
     .pipe(catchError(this.errorHandler));
   }
 

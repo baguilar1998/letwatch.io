@@ -34,15 +34,14 @@ Using the invitation code as the url params
 */
 
 router.post('/create', (req,res, next) => {
-
-  console.log("Creating Room");
   console.log(req.body);
+  /*console.log("Creating Room");
   let newRoom = new Room();
 
-  //let { name, host, invitationCode, password, maxCapacity, createdAt} = req.body;
+  // let { name, host, invitationCode, password, maxCapacity, createdAt} = req.body;
 
   newRoom.name = req.body.roomName;
-  newRoom.host = req.body.host;
+  // newRoom.host = req.body.host;
   newRoom.users = req.body.currentUsers;
   newRoom.invitationCode = invitationCode;
   newRoom.password = req.body.password;
@@ -51,13 +50,17 @@ router.post('/create', (req,res, next) => {
   console.log(newRoom);
   newRoom.save((err, createdRoom) => {
     if(err){
+      console.log("eer");
       res.send("Error Creating Room");
     } else {
       res.send(createdRoom);
       console.log("Succesfully Created Room");
       // res.redirect(`/room/${createdRoom.invitationCode}`);
     }
-  });
+  });*/
+
+
+
 });
 
 

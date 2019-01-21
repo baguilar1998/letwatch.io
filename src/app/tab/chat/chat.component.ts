@@ -14,6 +14,7 @@ export class ChatComponent implements OnInit {
   messages: Message [] = [
     {
       user: {
+        _id: '',
         nickname: 'Brian',
         avatarColor: 'green',
         isHost: false
@@ -22,6 +23,7 @@ export class ChatComponent implements OnInit {
     },
     {
       user: {
+        _id: '',
         nickname: 'Mike',
         avatarColor: 'blue',
         isHost: false
@@ -48,6 +50,7 @@ export class ChatComponent implements OnInit {
     }
     const newMessage: Message = {
      user: {
+       _id: '',
         nickname: 'Brian',
         avatarColor: 'green',
         isHost: false
