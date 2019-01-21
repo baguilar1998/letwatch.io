@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const randomCode = require('random-key');
 const Room = require('../models/Room');
+const User = require('../models/User');
 
 
 router.get('/invitation', (req,res,next)=>{
@@ -34,33 +35,27 @@ Using the invitation code as the url params
 */
 
 router.post('/create', (req,res, next) => {
-  console.log(req.body);
-  /*console.log("Creating Room");
-  let newRoom = new Room();
 
-  // let { name, host, invitationCode, password, maxCapacity, createdAt} = req.body;
+  console.log("Creating Room");
 
-  newRoom.name = req.body.roomName;
-  // newRoom.host = req.body.host;
-  newRoom.users = req.body.currentUsers;
-  newRoom.invitationCode = invitationCode;
-  newRoom.password = req.body.password;
-  newRoom.maxCapacity = req.body.maxCapacity;
+  let newRoom = new Room({
+    name : req.body.roomName,
+    host : req.body.host,
+    users : req.body.currentUsers,
+    invitationCode : req.body.invitationCode,
+    password : req.body.password,
+    maxCapacity : req.body.maxCapacity
+  });
 
-  console.log(newRoom);
   newRoom.save((err, createdRoom) => {
     if(err){
-      console.log("eer");
+      console.log("Room was not created");
       res.send("Error Creating Room");
     } else {
-      res.send(createdRoom);
       console.log("Succesfully Created Room");
-      // res.redirect(`/room/${createdRoom.invitationCode}`);
+      res.send(createdRoom);
     }
-  });*/
-
-
-
+  });
 });
 
 
