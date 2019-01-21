@@ -11,15 +11,27 @@ import { throwError, Observable } from 'rxjs';
 })
 export class RoomService {
 
-  private currentInvitationCode;
-  private currentUsers: User[];
-  private _createUrl = '//localhost:3000/api/room/create';
-
-  private YOUTUBEURL = "https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=AIzaSyAZORwaeof7pQ07NRVo3tEnejFQTuuwqGY";
+  private roomData: Room;
+  private YOUTUBEURL = 'https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=AIzaSyAZORwaeof7pQ07NRVo3tEnejFQTuuwqGY';
 
 
   constructor(private http: HttpClient, private userService: UserService) { }
 
+  /**
+   * @returns the current room
+   */
+  getRoom(): Room {
+    return this.roomData;
+  }
+
+  /**
+   * sets the current room that the user
+   * is in
+   * @param room the current room data
+   */
+  setRoom(room: Room): void {
+    this.roomData = room;
+  }
   /**
    * Generates an invitation code from
    * the backend
@@ -35,6 +47,10 @@ export class RoomService {
     .pipe(catchError(this.errorHandler));
   }
 
+  /**
+   * Allows the user to join an available room
+   * @param key an invitation code
+   */
   joinRoom(key: string): Observable<any> {
     return this.http.get<any>('//localhost:3000/api/room/' + key);
   }

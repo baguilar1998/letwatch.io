@@ -47,6 +47,8 @@ router.post('/create', (req,res, next) => {
     maxCapacity : req.body.maxCapacity
   });
 
+  newRoom.users.push(newRoom.host);
+
   newRoom.save((err, createdRoom) => {
     if(err){
       console.log("Room was not created");

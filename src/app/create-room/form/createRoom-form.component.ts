@@ -88,8 +88,8 @@ export class CreateRoomFormComponent implements OnInit {
         this._createRoomForm.createRoom(newRoom)
         .subscribe(
             (res) => {
-              console.log(res);
               this.success = res;
+              this._createRoomForm.setRoom(newRoom);
               this.router.navigate(['/room', this.invitationCode]);
             },
             (err) => {
