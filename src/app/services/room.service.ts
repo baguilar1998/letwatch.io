@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { UserService } from './user.service';
 import { HttpClient, HttpErrorResponse } from '../../../node_modules/@angular/common/http';
 import { User } from '../tsmodels/user';
-import { Room } from '../create-room/create-room-model';
+import { Room } from '../tsmodels/room';
 import { catchError } from 'rxjs/operators';
 import { throwError, Observable } from 'rxjs';
 
@@ -13,7 +13,7 @@ export class RoomService {
 
   private currentInvitationCode;
   private currentUsers: User[];
-  private _createUrl = 'http://localhost:3000/api/room/create';
+  private _createUrl = '//localhost:3000/api/room/create';
 
   private YOUTUBEURL = "https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=AIzaSyAZORwaeof7pQ07NRVo3tEnejFQTuuwqGY";
 
@@ -45,11 +45,11 @@ export class RoomService {
   }
 
 
-  //CALLS YOUTUBE API
-  //Can dynamically pass in the data coming in
-  //
-  getYoutubeVideos(data){
-    let youtubeSearchUrl = `https://www.googleapis.com/youtube/v3/search?q=${data}&key=AIzaSyAZORwaeof7pQ07NRVo3tEnejFQTuuwqGY&part=snippet&maxResults=50`;
+  // CALLS YOUTUBE API
+  // Can dynamically pass in the data coming in
+  getYoutubeVideos(data) {
+    const youtubeSearchUrl = `https://www.googleapis.com/youtube/v3/search?q=$
+    {data}&key=AIzaSyAZORwaeof7pQ07NRVo3tEnejFQTuuwqGY&part=snippet&maxResults=50`;
     return this.http.get<any>(youtubeSearchUrl);
   }
 }

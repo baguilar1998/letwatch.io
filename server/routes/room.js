@@ -36,18 +36,19 @@ Using the invitation code as the url params
 router.post('/create', (req,res, next) => {
 
   console.log("Creating Room");
-
+  console.log(req.body);
   let newRoom = new Room();
 
-  let { name, host, invitationCode, password, maxCapacity, createdAt} = req.body;
+  //let { name, host, invitationCode, password, maxCapacity, createdAt} = req.body;
 
-  newRoom.name = name;
-  newRoom.host = host;
+  newRoom.name = req.body.roomName;
+  newRoom.host = req.body.host;
+  newRoom.users = req.body.currentUsers;
   newRoom.invitationCode = invitationCode;
-  newRoom.password = password;
-  newRoom.maxCapacity = maxCapacity;
-  newRoom.createdAt = createdAt;
+  newRoom.password = req.body.password;
+  newRoom.maxCapacity = req.body.maxCapacity;
 
+  console.log(newRoom);
   newRoom.save((err, createdRoom) => {
     if(err){
       res.send("Error Creating Room");

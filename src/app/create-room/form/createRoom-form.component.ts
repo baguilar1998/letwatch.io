@@ -1,9 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import { Router } from '@angular/router';
-import {Room} from '../create-room-model';
+import {Room} from '../../tsmodels/room';
 import {ValidateRoomName, ValidateRoomPassword} from './create-room-form.validators';
 import {RoomService } from '../../services/room.service';
+import { UserService } from '../../services/user.service';
 
 @Component({
     selector: 'app-createroom-form',
@@ -15,36 +16,38 @@ export class CreateRoomFormComponent implements OnInit {
 
     @Input('invitationCode') invitationCode: string;
     @Output() currentState = new EventEmitter<string>();
+    numberOfUsers: number[];
+    createRoomForm;
     success = '';
     error = '';
     submitted = false;
 
     constructor(private fb: FormBuilder,
-      private _createRoomForm: RoomService, private router: Router) {}
+      private userService: UserService,
+      private _createRoomForm: RoomService,
+      private router: Router) {}
 
     ngOnInit() {
-
+      // Uses reactive forms and groups all the form controllers into one
+      // Custom form validation with ValidateCreateForm
+      // First index is default data, 2nd is for validations
+      this.createRoomForm = this.fb.group({
+        id: ['1'],
+        playlistId: ['1'],
+        nickName: ['Displays previous user'],
+        roomName: ['test', [
+                        Validators.minLength(3),
+                        Validators.maxLength(15),
+                        ValidateRoomName]],
+        password: ['hellot', [
+                        Validators.minLength(5),
+                        Validators.maxLength(15),
+                        ValidateRoomPassword]],
+        confirmPassword: ['hellot'],
+        userId: ['1']
+       });
+      this.numberOfUsers = [2, 3, 4, 5, 6, 7, 8];
     }
-
-    // Uses reactive forms and groups all the form controllers into one
-    // Custom form validation with ValidateCreateForm
-    // First index is default data, 2nd is for validations
-    createRoomForm = this.fb.group({
-      id: ['1'],
-      playlistId: ['1'],
-      nickName: ['Displays previous user',],
-      roomName: ['test', [
-                      Validators.minLength(3),
-                      Validators.maxLength(15),
-                      ValidateRoomName]],
-      password: ['hellot', [
-                      Validators.minLength(5),
-                      Validators.maxLength(15),
-                      ValidateRoomPassword]],
-      confirmPassword: ['hellot'],
-      userId: ['1']
-    });
-
 
 
 // -------------------GETTERS------------------------- //
@@ -64,14 +67,23 @@ export class CreateRoomFormComponent implements OnInit {
     // Uses object destructering to grab values
     // Same as saying this.createRoomForm
     onSubmit({value, valid}: {value: Room, valid: boolean}) {
-      console.log(value);
-        this._createRoomForm.createRoom(value)
+        // Creating a room object to store in the database
+        const newRoom: Room = {
+          roomName: value.roomName,
+          host: this.userService.getCurrentUser(),
+          currentUsers: [],
+          invitationCode: this.invitationCode,
+          password: value.password,
+          maxCapacity: 2
+        };
+
+        // Storing the room object in the database
+        this._createRoomForm.createRoom(newRoom)
         .subscribe(
             (res) => {
               console.log(res);
               this.success = res;
-              // CALL TO THE BACKEND TO CREATE THE ROOM
-              this.router.navigate(['/room']);
+              this.router.navigate(['/room', this.invitationCode]);
             },
             (err) => {
               console.log(err);
