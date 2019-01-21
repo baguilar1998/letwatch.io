@@ -48,8 +48,8 @@ export class RoomService {
   // CALLS YOUTUBE API
   // Can dynamically pass in the data coming in
   getYoutubeVideos(data) {
-    const youtubeSearchUrl = `https://www.googleapis.com/youtube/v3/search?q=$
-    {data}&key=AIzaSyAZORwaeof7pQ07NRVo3tEnejFQTuuwqGY&part=snippet&maxResults=50`;
+    const youtubeSearchUrl = 'https://www.googleapis.com/youtube/v3/search?q=$' + data
+    + '&key=AIzaSyAZORwaeof7pQ07NRVo3tEnejFQTuuwqGY&part=snippet&maxResults=50';
     return this.http.get<any>(youtubeSearchUrl);
   }
 }
