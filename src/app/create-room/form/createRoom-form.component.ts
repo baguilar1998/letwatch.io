@@ -66,13 +66,14 @@ export class CreateRoomFormComponent implements OnInit {
 
     /* Uses object destructering to grab values
        Same as saying this.createRoomForm*/
-      async onSubmit({value, valid}: {value: Room, valid: boolean}) {
+      onSubmit({value, valid}: {value: Room, valid: boolean}) {
 
         // If this is a new user, add them to the database
         if (this.userService.getCurrentUser()._id === '') {
-            await this.userService.addUser();
+            this.userService.addUser();
             this.userService.getCurrentUser().isHost = true;
         }
+
 
         // Creating a room object to store in the database
         const newRoom: Room = {
@@ -84,12 +85,13 @@ export class CreateRoomFormComponent implements OnInit {
           maxCapacity: 2
         };
 
+        this._createRoomForm.setRoom(newRoom);
+
         // Storing the room object in the database
         this._createRoomForm.createRoom(newRoom)
         .subscribe(
             (res) => {
               this.success = res;
-              this._createRoomForm.setRoom(newRoom);
               this.router.navigate(['/room', this.invitationCode]);
             },
             (err) => {

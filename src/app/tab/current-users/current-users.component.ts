@@ -33,6 +33,9 @@ export class CurrentUsersComponent implements OnInit {
 
   ngOnInit() {
     // IMPLEMENT CODE TO DISPLAY USERS IN CURRENT ROOM
+    // this.roomService.getUsers().subscribe((data) => {
+      // console.log(data);
+    // });
   }
 
 }
