@@ -56,7 +56,7 @@ export class RoomService {
   }
 
   getUsers(): Observable<any> {
-    return this.http.post<{invitationCode: any}>('//localhost:3000/api/room/currentUsers', this.roomData.invitationCode);
+    return this.http.post<{invitationCode: any}>('//localhost:3000/api/room/currentUsers', {invitationCode: this.roomData.invitationCode});
   }
   // Sends error back to onSubmit
   errorHandler(error: HttpErrorResponse) {
