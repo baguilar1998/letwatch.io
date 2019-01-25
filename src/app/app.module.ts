@@ -4,7 +4,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CommonModule } from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SafePipe } from './room/SafePipe';
 
 import { AppComponent } from './app.component';
@@ -20,7 +20,12 @@ import { RoomComponent } from './room/room.component';
 
 import { RoomService } from './services/room.service';
 import { UserService } from './services/user.service';
+import { LoadingService } from './services/loading.service';
 import { SearchComponent } from './tab/search/search.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { LoadingComponent } from './loading/loading.component';
+
+import { LoadingInterceptor } from './services/loading.interceptor';
 
 
 
@@ -37,7 +42,9 @@ import { SearchComponent } from './tab/search/search.component';
     VideoQueueComponent,
     ChatComponent,
     CurrentUsersComponent,
-    SearchComponent
+    SearchComponent,
+    NotFoundComponent,
+    LoadingComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +54,16 @@ import { SearchComponent } from './tab/search/search.component';
     HttpClientModule,
     ReactiveFormsModule,
   ],
-  providers: [RoomService, UserService],
+  providers: [
+    RoomService,
+    UserService,
+    LoadingService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

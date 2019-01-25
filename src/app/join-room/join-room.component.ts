@@ -37,6 +37,7 @@ export class JoinRoomComponent implements OnInit {
       (res) => {
         console.log('Successful joining room');
         // SET THE ROOM DATA IN THE ROOM SERVICE
+        console.log(res);
         this.userService.addUser();
         this.router.navigate(['/room', 'test']);
       },

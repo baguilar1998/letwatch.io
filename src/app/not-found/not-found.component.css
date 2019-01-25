@@ -1,0 +1,35 @@
+.container{
+  width: 500px;
+  height:300px;
+  box-shadow: 0px 2px 3px 3px #888888;
+  position: fixed;
+  top:45%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  background-color: white;
+}
+.content {
+  display:flex;
+  justify-content: center;
+}
+.body{
+  margin-top:95px;
+  margin-left:20px;
+}
+h1{
+  font-size: 80pt;
+  color:red;
+}
+p{
+  font-weight:bold;
+}
+button{
+  background-color: red;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  padding: 8px 8px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+}

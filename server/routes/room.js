@@ -71,8 +71,11 @@ router.get("/:invitationCode", (req, res) => {
       if(err) {
         res.send("Error, Room does not exist");
       } else {
-        res.send(room);
+        if(room.length == 0){
+          // CODE TO SEND ERROR
+        }
         console.log("Successfully joined room");
+        res.send(room);
       }
     });
 });
