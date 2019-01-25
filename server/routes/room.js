@@ -65,18 +65,15 @@ router.post('/create', (req,res, next) => {
   Sends user to the room based off the invitation code
 */
 router.get("/:invitationCode", (req, res) => {
-    Room.find({
+    Room.findOne({
       "invitationCode": req.params.invitationCode
-    }, (err, room) => {
-      if(err) {
-        res.send("Error, Room does not exist");
-      } else {
-        if(room.length == 0){
-          // CODE TO SEND ERROR
+    }).then(room=>{
+        if(!room){
+          console.log("room was not found");
+          res.send("Error room was not found");
+        }else {
+          res.status(200).send(room);
         }
-        console.log("Successfully joined room");
-        res.send(room);
-      }
     });
 });
 

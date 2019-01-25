@@ -35,14 +35,13 @@ export class JoinRoomComponent implements OnInit {
   join(): void {
     this.roomService.joinRoom(this.invitationCode).subscribe(
       (res) => {
-        console.log('Successful joining room');
+        console.log('Successful! Joining room');
         // SET THE ROOM DATA IN THE ROOM SERVICE
-        console.log(res);
         this.userService.addUser();
         this.router.navigate(['/room', 'test']);
       },
       (err) => {
-        console.log(err);
+        console.log('Room does not exist');
       }
     );
   }
