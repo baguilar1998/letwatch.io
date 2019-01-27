@@ -6,7 +6,7 @@ import { Subject } from 'rxjs';
 export class LoadingService {
 
   private isLoading: boolean;
-  loadingStatus;
+  loadingStatus: Subject<any>;
 
   constructor() {
     this.isLoading = false;
@@ -17,7 +17,7 @@ export class LoadingService {
     * @returns the current loading status
     */
    get loading(): boolean {
-     return this.loading;
+     return this.isLoading;
    }
 
    /**
