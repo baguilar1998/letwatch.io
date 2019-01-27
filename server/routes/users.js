@@ -42,7 +42,7 @@ router.post("/user", (req, res) => {
      * model
      */
     let newUser = new User();
-    newUser.nickName = req.body.nickname;
+    newUser.nickname = req.body.nickname;
     newUser.avatarColor = req.body.avatarColor;
 
     // Storing user into the database

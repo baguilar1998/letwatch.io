@@ -36,7 +36,7 @@ export class JoinRoomComponent implements OnInit {
     this.roomService.joinRoom(this.invitationCode).subscribe(
       (res) => {
         console.log('Successful! Joining room');
-        // SET THE ROOM DATA IN THE ROOM SERVICE
+        this.roomService.setRoom(res);
         this.userService.addUser();
         this.router.navigate(['/room', 'test']);
       },
