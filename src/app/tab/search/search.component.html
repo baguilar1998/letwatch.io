@@ -1,22 +1,62 @@
-<div>
-  <div [className]="search-form-wrapper">
-      <input type="text" #searchTag>
-      <button (click)="searchHandler.emit({search:searchTag.value})" type="submit">Search</button>
+<div class="search__wrapper" >
+  <div class="search-form__wrapper">
+      <input
+      placeholder="Let's start searching..." 
+      class="search-form__input"
+      type="text" #searchTag>
+      <button 
+      class="search-form__button"
+      (click)="searchHandler.emit({search:searchTag.value})" 
+      type="submit">Search</button>
   </div>
 
 
   <!--- Videos found after searching -->
 
-  <ul>
-    <li *ngFor="let video of videosFound">
-    <input type="hidden"ng- value="{{video.id.videoId}}'">
-    <img [attr.src]="video.snippet.thumbnails.default.url" />
-    <h4>{{video.snippet.title}}</h4>
-    <p>{{video.snippet.description}}</p>
-    <button 
-    (click)="addVideoToQueue.emit({video: video})"> 
-    Add</button>
-    </li>
-  </ul>
+  <div class="video-search__container" >
+    <li
+    class="video-search__item"
+    *ngFor="let video of videosFound; let i = index"
+    [attr.data-index]="i"
+    (mouseenter)="mouseEnter('enteringSearchItem', i)"
+    (mouseleave)="mouseLeave('leavingSearchItem')"  
+    >
+      <div
+      [ngClass]="(i != listItemId)? 'video-sarch__details-hide video-search__details' : 'video-search__details'"
+      >
+        <input type="hidden"ng- value="{{video.id.videoId}}'">
+        <img [attr.src]="video.snippet.thumbnails.default.url" />
+        <p
+        class="video-search__title"
+        >{{video.snippet.title}}</p>
+      </div>
 
+      <div
+      [attr.data-index]="i"
+      *ngIf="i == listItemId"
+      class="video-search__controls"
+      >
+        <div
+        class="video-search__btn-container">
+          <img
+          src="../../../assets/room/video-search/playlist.svg"
+          class="video-search__btn" 
+          (click)="addVideoToQueue.emit({video: video})" />
+        </div>
+        <div
+        class="video-search__btn-container">
+          <img
+          (click)="onClick()" 
+          class="video-search__btn"
+          src="../../../assets/room/video-search/bin.svg" />
+        </div>
+        <div
+        class="video-search__btn-container">
+          <img 
+          class="video-search__btn"
+          src="../../../assets/room/video-search/more.svg" />
+        </div>
+      </div>
+    </li>
+  </div>
 </div>

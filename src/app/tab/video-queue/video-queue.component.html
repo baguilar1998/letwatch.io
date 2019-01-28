@@ -1,5 +1,7 @@
-<ul>
-  <li *ngFor="let video of videosForQueue; let i = index">
+<div class="video-queue__container" >
+  <li 
+  class="video-queue__item"
+  *ngFor="let video of videosForQueue; let i = index">
     <input type="hidden"ng- value="{{video.id.videoId}}'">
     <img [attr.src]="video.snippet.thumbnails.default.url" />
     <h4>{{video.snippet.title}}</h4>
@@ -8,5 +10,5 @@
       <br>
   </li>
   
-</ul>
+</div>
 

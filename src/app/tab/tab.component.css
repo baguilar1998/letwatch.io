@@ -2,7 +2,7 @@
   background-color: white;
   width:400px;
   height:600px;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .tab-buttons{

@@ -22,6 +22,14 @@ export class SearchComponent implements OnInit {
   @Output() addVideoToQueue = new EventEmitter();
 
 
+  @Input() currentVideosInQueue = [];
+
+
+  //Toggles the list item to display additional buttons
+  public isMouseInSearchItem: boolean = false;
+  public listItemId: number  = -1;
+
+
   constructor() {
 
    }
@@ -40,5 +48,28 @@ export class SearchComponent implements OnInit {
   Buttons such as add to queue will be added to place the video in the video queue tab
   If added, add button will change to remove from queue if the video is already in the queue
   */
+
+
+  //Dynamically render the garbage bin if video
+  //Is inside the video queue
+
+
+  onClick(){
+    console.log(this.currentVideosInQueue.map((cVid) => cVid));
+  }
+
+
+  mouseEnter(val: string, id: number){
+    if(val == "enteringSearchItem"){
+      this.listItemId = id;
+      console.log(id);
+    }
+  }
+
+  mouseLeave(val : string) {
+    if(val == "leavingSearchItem"){
+      this.listItemId = -1;
+    }
+  }
 
 }

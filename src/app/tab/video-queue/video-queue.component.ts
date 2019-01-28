@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output } from '@angular/core';
+import { EventEmitter } from 'events';
 
 @Component({
   selector: 'app-video-queue',
@@ -8,8 +9,13 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class VideoQueueComponent implements OnInit {
 
+  
+  @Input() videosForQueue;
 
-  constructor() { }
+
+  constructor() {
+    console.log(this.videosForQueue)
+   }
 
   ngOnInit() {
   }

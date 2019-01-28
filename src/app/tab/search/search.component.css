@@ -1,0 +1,127 @@
+.search__wrapper{
+    overflow: auto;
+}
+
+
+
+.video-search__container{
+
+
+}
+
+
+
+/* -------------- VIDEO SEARCH INPUT------------ */
+
+
+.search-form__wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    height: 75px;
+}
+
+.search-form__input{
+    height: 20px;
+    padding: 10px;
+    font-size: 1.4rem;
+}
+
+.search-form__button{
+    width: 100px;
+    height: 43px;
+    font-size: 18px;
+}
+
+
+
+
+
+/* -------------- VIDEO DETAILS------------ */
+
+
+
+.video-search__item {
+    list-style: none;
+    margin: 3px auto;
+    display: flex;
+    position: relative;
+}
+
+
+
+.video-search__details{
+    display: flex;
+    transition: transform 1.2s;
+    width: 100%;
+}
+
+
+.video-search__details-hide{
+    background: rgba(255,255,255, .9);
+}
+
+
+
+
+/* -------------- VIDEO FADE WRAPPER------------ */
+
+
+
+
+
+
+
+/* --------------VIDEO CONTROLS------------------- */
+
+.video-search__controls {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    transition: ease-out .4s;
+}
+
+.video-search__controls:hover{
+    background: rgba(250, 250, 250, 0.9);
+}
+
+.video-search__controls-hide{
+    opacity: 0;
+}
+
+
+
+
+.video-search__title {
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    margin: 10px 10px;
+    width: 100%;
+
+}
+
+.video-search__btn-container{
+    transition: transform .7s;
+}
+
+.video-search__btn-container:hover{
+    transform: scale(1.5);
+}
+
+.video-search__btn {
+    width: 100%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+
+}
+
+
+
+
+
+/* ------------ CSS PROPERTY CLASSES ---------- */

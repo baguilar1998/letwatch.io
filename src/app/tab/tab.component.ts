@@ -17,7 +17,9 @@ export class TabComponent implements OnInit {
   //Sends to the search component
   @Input() videosFound;
 
+  //These videos are added in a queue like fashion - FIFO
   videosForQueue = [];
+
 
   constructor() { 
   }
@@ -49,8 +51,9 @@ export class TabComponent implements OnInit {
   //Adds video to videoForQueue if currently not in
   videoToQueue(event){
 
-    //Check to see if the videosForQueue already contains the video by matching the id
     let incomingVideo = event.video;
+
+    //Check to see if the videosForQueue already contains the video by matching the id
     let temp = [] = this.videosForQueue.filter((vid) => (vid.id.videoId == incomingVideo.id.videoId));
     
     //If the temp size is 0 it means no video match the id, therefore add it
