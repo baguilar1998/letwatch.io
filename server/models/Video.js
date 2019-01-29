@@ -1,11 +1,6 @@
 const mongoose = require('mongoose');
 
 var VideoSchema = new mongoose.Schema({
-  playlistId:{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Playlist',
-    required: true
-  },
   name: {
     type:String,
     default:String,
@@ -20,6 +15,11 @@ var VideoSchema = new mongoose.Schema({
     type: String,
     default: String,
     required: true
+  },
+  imageUrl: {
+    type:String,
+    default:String,
+    required:true
   }
 });
 

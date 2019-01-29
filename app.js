@@ -22,11 +22,13 @@ app.use((req, res, next) =>{
 //Route imports
 const roomRoute = require('./server/routes/room');
 const userRoutes = require('./server/routes/users');
+const playlistRoute = require('./server/routes/playlist');
 
 
 //Express Routes for REST API
 app.use('/api/room',roomRoute);
 app.use('/api', userRoutes);
+app.use('/api/playlist',playlistRoute);
 
 
 /**

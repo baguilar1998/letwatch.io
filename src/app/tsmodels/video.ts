@@ -1,5 +1,6 @@
 export class Video {
   imageUrl: string;
-  videoTitle: string;
-  videoDescription: string;
+  title: string;
+  creator: string;
+  description: string;
 }
