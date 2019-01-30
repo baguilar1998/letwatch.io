@@ -66,10 +66,6 @@ export class TabComponent implements OnInit {
     incomingVideo.id.videoId is the key/value associated to Youtube's API
     */
     const temp = [] = this.videosForQueue.filter((vid) => (vid.videoId == incomingVideo.id.videoId));
-
-    // const temp = [] = this.videosForQueue.filter((vid) => (vid.id.videoId === incomingVideo.id.videoId));
-    
-
     
 
     // If the temp size is 0 it means no video match the id, therefore add it
@@ -83,6 +79,12 @@ export class TabComponent implements OnInit {
       };
       this.videosForQueue.push(video);
     }
+  }
+
+
+  // Once user clicks on garbage can icon, updates the current videos
+  removeVideoInQueue(vidToRemove){
+    this.videosForQueue = this.videosForQueue.filter((vid) => vid.videoId != vidToRemove.id);
   }
 
 }

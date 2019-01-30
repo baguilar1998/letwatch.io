@@ -22,7 +22,11 @@ export class SearchComponent implements OnInit {
   @Output() addVideoToQueue = new EventEmitter();
 
 
-  @Input() currentVideosInQueue = [];
+  // Recieve the current videos in the videoQueue
+  @Input() videosForQueue = [];
+
+  // Send back the ID with the video to remove
+  @Output() removeVideoInQueue = new EventEmitter();
 
 
   //Toggles the list item to display additional buttons

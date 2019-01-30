@@ -46,6 +46,7 @@
         <div
         class="video-search__btn-container">
           <img
+          (click)="removeVideoInQueue.emit({id: video.id.videoId})"
           class="video-search__btn"
           src="../../../assets/room/video-search/bin.svg" />
         </div>

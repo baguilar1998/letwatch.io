@@ -27,6 +27,8 @@
       <div id="search-wrapper" *ngIf="currentContent == 'search'">
         <app-search
         [videosFound]="videosFound"
+        [videosForQueue]="videosForQueue"
+        (removeVideoInQueue)="removeVideoInQueue($event)"
         (addVideoToQueue)="videoToQueue($event)"
         (searchHandler)="sendResultToRoom($event)"
         > </app-search>
