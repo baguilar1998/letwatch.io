@@ -54,15 +54,9 @@ export class SearchComponent implements OnInit {
   //Is inside the video queue
 
 
-  onClick(){
-    console.log(this.currentVideosInQueue.map((cVid) => cVid));
-  }
-
-
   mouseEnter(val: string, id: number){
     if(val == "enteringSearchItem"){
       this.listItemId = id;
-      console.log(id);
     }
   }
 

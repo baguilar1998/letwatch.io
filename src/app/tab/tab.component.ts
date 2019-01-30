@@ -55,11 +55,25 @@ export class TabComponent implements OnInit {
     const incomingVideo = event.video;
     console.log(incomingVideo);
 
-    // Check to see if the videosForQueue already contains the video by matching the id
+    //Temporary fix for videos that render in and are channels
+    if(incomingVideo.id.channelId) return;
+
+    /* Check to see if the videosForQueue already contains the video by matching the id
+    * Of the incoming video. If a result occurs, that means we already have it. Else we return
+    * an empty array
+
+    vid.videoId is the key associated to the video object down below
+    incomingVideo.id.videoId is the key/value associated to Youtube's API
+    */
+    const temp = [] = this.videosForQueue.filter((vid) => (vid.videoId == incomingVideo.id.videoId));
+
     // const temp = [] = this.videosForQueue.filter((vid) => (vid.id.videoId === incomingVideo.id.videoId));
+    
+
+    
 
     // If the temp size is 0 it means no video match the id, therefore add it
-   // if (temp.length === 0) {
+   if (temp.length === 0) {
       const video: Video = {
         title: incomingVideo.snippet.title,
         creator: incomingVideo.snippet.channelTitle,
@@ -68,7 +82,7 @@ export class TabComponent implements OnInit {
         imageUrl: incomingVideo.snippet.thumbnails.default.url
       };
       this.videosForQueue.push(video);
-    // }
+    }
   }
 
 }
