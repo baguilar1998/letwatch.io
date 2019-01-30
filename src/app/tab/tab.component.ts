@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { Video } from '../tsmodels/video';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -13,15 +14,15 @@ export class TabComponent implements OnInit {
   // Defined on room.html file and sends the result to the room
   @Output() searchResult = new EventEmitter();
 
-  //Grabs the videos from the api call in Room component
-  //Sends to the search component
+  // Grabs the videos from the api call in Room component
+  // Sends to the search component
   @Input() videosFound;
 
-  //These videos are added in a queue like fashion - FIFO
+  // These videos are added in a queue like fashion - FIFO
   videosForQueue = [];
 
 
-  constructor() { 
+  constructor() {
   }
 
   ngOnInit() {
@@ -48,18 +49,26 @@ export class TabComponent implements OnInit {
     this.searchResult.emit(event.search);
   }
 
-  //Adds video to videoForQueue if currently not in
-  videoToQueue(event){
+  // Adds video to videoForQueue if currently not in
+  videoToQueue(event) {
 
-    let incomingVideo = event.video;
+    const incomingVideo = event.video;
+    console.log(incomingVideo);
 
-    //Check to see if the videosForQueue already contains the video by matching the id
-    let temp = [] = this.videosForQueue.filter((vid) => (vid.id.videoId == incomingVideo.id.videoId));
-    
-    //If the temp size is 0 it means no video match the id, therefore add it
-    if(temp.length == 0){
-      this.videosForQueue.push(incomingVideo);
-    }
+    // Check to see if the videosForQueue already contains the video by matching the id
+    // const temp = [] = this.videosForQueue.filter((vid) => (vid.id.videoId === incomingVideo.id.videoId));
+
+    // If the temp size is 0 it means no video match the id, therefore add it
+   // if (temp.length === 0) {
+      const video: Video = {
+        title: incomingVideo.snippet.title,
+        creator: incomingVideo.snippet.channelTitle,
+        description: incomingVideo.snippet.description,
+        videoId: incomingVideo.id.videoId,
+        imageUrl: incomingVideo.snippet.thumbnails.default.url
+      };
+      this.videosForQueue.push(video);
+    // }
   }
 
 }

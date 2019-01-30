@@ -1,14 +1,14 @@
 <div class="video-queue__container" >
-  <li 
+  <li
   class="video-queue__item"
   *ngFor="let video of videosForQueue; let i = index">
-    <input type="hidden"ng- value="{{video.id.videoId}}'">
-    <img [attr.src]="video.snippet.thumbnails.default.url" />
-    <h4>{{video.snippet.title}}</h4>
-    <p>{{video.snippet.description}}</p>
+    <input type="hidden"ng- value="{{video.videoId}}'">
+    <img [attr.src]="video.imageUrl" />
+    <h4>{{video.title}}</h4>
+    <p>{{video.description}}</p>
       <br>
       <br>
   </li>
-  
+
 </div>
 

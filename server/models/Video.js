@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 var VideoSchema = new mongoose.Schema({
-  name: {
+  title: {
     type:String,
     default:String,
     required:true
@@ -19,6 +19,11 @@ var VideoSchema = new mongoose.Schema({
   imageUrl: {
     type:String,
     default:String,
+    required:true
+  },
+  videoId: {
+    type:String,
+    default: String,
     required:true
   }
 });

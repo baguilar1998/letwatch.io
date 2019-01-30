@@ -1,6 +1,7 @@
 export class Video {
-  imageUrl: string;
-  title: string;
-  creator: string;
-  description: string;
+  title: any;
+  creator: any;
+  description: any;
+  videoId: any;
+  imageUrl: any;
 }

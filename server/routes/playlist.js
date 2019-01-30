@@ -5,14 +5,6 @@ const Room = require('../models/Room');
 const Video = require('../models/Video');
 
 router.post('/addVideo', (req,res,next)=>{
-  /**
-   * Send a javascript object to the backend
-   * that contains the following
-   * {
-   *  video: Type Viedo
-   *  roomId: Type string (either id or invitationkey)
-   * }
-   */
   // Create a new video object
   let video = new Video({
     name: req.body.video.title,
@@ -23,7 +15,7 @@ router.post('/addVideo', (req,res,next)=>{
 
   let currentPlaylist;
 
-  Playlist.findOne({roomId:req.body.roomId}).then(playlist =>{
+  /*Playlist.findOne({roomId:req.body.roomId}).then(playlist =>{
 
     if(!playlist){
       //ADD A NEW PLAYLIST TO THE DATABASE
@@ -31,7 +23,7 @@ router.post('/addVideo', (req,res,next)=>{
     currentPlaylist = playlist.videos;
     currentPlaylist.push(video);
     //UPDATE THE PLAYLIST IN THE DATABASE
-  });
+  });*/
 });
 
 router.post('/getVideos', (req,res,next)=>{
