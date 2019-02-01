@@ -10,6 +10,7 @@ import { Observable } from '../../../node_modules/rxjs';
 export class PlaylistService {
 
   currentPlaylist: Video [];
+  // NEED TO UPDATE A SUBJECT FOR THE UPDATING POSSIBLY
   constructor(private http: HttpClient,
   private roomService: RoomService) { }
 

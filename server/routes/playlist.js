@@ -52,7 +52,16 @@ router.post('/addVideo', (req,res,next)=>{
 });
 
 router.post('/getVideos', (req,res,next)=>{
-  let playlist = [];
+  Playlist.findOne({"roomId":req.body.roomId}).then(playlist=>{
+    if(!playlist){
+      //Don't send anything back but its not an error
+    }
+    res.status(201).send(playlist);
+  }).catch(err=>{
+    console.log("An error occured gathering all the videos");
+    console.log(err);
+    res.status(400).send("Error has occured");
+  });
 });
 
 
