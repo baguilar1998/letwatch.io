@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Video } from '../tsmodels/video';
 import { CommonModule } from '@angular/common';
+import { PlaylistService } from '../services/playlist.service';
 
 @Component({
   selector: 'app-tab',
@@ -22,7 +23,7 @@ export class TabComponent implements OnInit {
   videosForQueue = [];
 
 
-  constructor() {
+  constructor(private playlistService: PlaylistService) {
   }
 
   ngOnInit() {
@@ -66,7 +67,6 @@ export class TabComponent implements OnInit {
     incomingVideo.id.videoId is the key/value associated to Youtube's API
     */
     const temp = [] = this.videosForQueue.filter((vid) => (vid.videoId == incomingVideo.id.videoId));
-    
 
     // If the temp size is 0 it means no video match the id, therefore add it
    if (temp.length === 0) {
@@ -77,7 +77,15 @@ export class TabComponent implements OnInit {
         videoId: incomingVideo.id.videoId,
         imageUrl: incomingVideo.snippet.thumbnails.default.url
       };
-      this.videosForQueue.push(video);
+      this.playlistService.addVideo(video).subscribe(
+        (res) => {
+
+          this.videosForQueue.push(video);
+        },
+        (err) => {
+          window.alert('Error adding in a video');
+          console.log(err);
+        });
     }
   }
 

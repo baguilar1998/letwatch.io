@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Video } from '../tsmodels/video';
 import { HttpClient, HttpErrorResponse } from '../../../node_modules/@angular/common/http';
 import { RoomService } from './room.service';
+import { Observable } from '../../../node_modules/rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +18,11 @@ export class PlaylistService {
    * in the database
    * @param v the added video
    */
-  addVideo(v: Video) {
+  addVideo(v: Video): Observable<any> {
     const requiredInfo = {
       video: v,
-      // CHANGE TO ROOM ID LATER ON
-      roomId: this.roomService.getRoom().invitationCode
+      roomId: this.roomService.getRoom()._id
     };
-    this.http.post<any>('//localhost:3000/api/playlist/addVideo', requiredInfo);
+    return this.http.post<any>('//localhost:3000/api/playlist/addVideo', requiredInfo);
   }
 }
