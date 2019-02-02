@@ -3,14 +3,14 @@ const Schema = mongoose.Schema;
 
 var PlaylistSchema = new mongoose.Schema({
   roomId:{
-    type: mongoose.Schema.type.ObjectId,
+    type: Schema.Types.ObjectId,
     ref: 'Room',
     required: true
   },
-  videos: [{
-    type: Schema.Types.ObjectId,
-    ref: 'Video'
-  }]
+  videos: {
+    type:Array,
+    default: []
+  }
 });
 
-module.exports = mongoose.model("Playlist",PLaylistSchema);
+module.exports = mongoose.model("Playlist",PlaylistSchema);
