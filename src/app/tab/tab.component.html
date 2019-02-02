@@ -2,12 +2,12 @@
 
 
   <div
-  [ngClass]="(videoAdded)? 'video-status' : 'fade-down video-status'" 
+  [ngClass]="(videoAdded)? 'video-status' : 'fade-down video-status'"
   *ngIf="videoAdded">
     <span> Added to the queue </span>
   </div>
 
-  <div 
+  <div
   class="video-status"
   *ngIf="videoRemoved">
     <span> Removed from the queue </span>

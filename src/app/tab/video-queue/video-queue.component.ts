@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, Output, OnChanges } from '@angular/core';
+import { PlaylistService } from '../../services/playlist.service';
 import { EventEmitter } from 'events';
 
 @Component({
@@ -9,18 +10,15 @@ import { EventEmitter } from 'events';
 })
 export class VideoQueueComponent implements OnInit, OnChanges {
 
-
   @Input() videosForQueue = [];
 
-
-  constructor() {
-    console.log(this.videosForQueue);
-   }
+  constructor(private playlistService: PlaylistService) {}
 
   ngOnInit() {
+    this.playlistService.getPlaylist();
   }
 
   ngOnChanges() {
-    console.log(this.videosForQueue);
+    console.log(this.playlistService.currentPlaylist);
   }
 }

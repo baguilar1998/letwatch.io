@@ -1,7 +1,7 @@
 <div class="video-queue__container" >
   <li
   class="video-queue__item"
-  *ngFor="let video of videosForQueue; let i = index">
+  *ngFor="let video of playlistService.currentPlaylist; let i = index">
     <input type="hidden"ng- value="{{video.videoId}}'">
     <img [attr.src]="video.imageUrl" />
     <h4>{{video.title}}</h4>

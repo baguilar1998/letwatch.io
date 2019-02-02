@@ -10,12 +10,7 @@ router.post('/addVideo', (req,res,next)=>{
   console.log(req.body);
 
   // Create a new video object
-  let video = {
-    name: req.body.video.title,
-    description: req.body.video.description,
-    creator: req.body.video.creator,
-    imageUrl: req.body.video.imageUrl
-  };
+  let video = req.body.video;
 
 
   Playlist.findOne({"roomId":req.body.roomId}).then(playlist =>{
@@ -54,9 +49,15 @@ router.post('/addVideo', (req,res,next)=>{
 router.post('/getVideos', (req,res,next)=>{
   Playlist.findOne({"roomId":req.body.roomId}).then(playlist=>{
     if(!playlist){
-      //Don't send anything back but its not an error
+      res.status(201).json({
+        booleanValue:false,
+        currentPlaylist:[]
+      });
     }
-    res.status(201).send(playlist);
+    res.status(201).json({
+      booleanValue:true,
+      currentPlaylist:playlist
+    });
   }).catch(err=>{
     console.log("An error occured gathering all the videos");
     console.log(err);

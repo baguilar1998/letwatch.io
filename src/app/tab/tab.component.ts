@@ -22,7 +22,7 @@ export class TabComponent implements OnInit {
   // These videos are added in a queue like fashion - FIFO
   videosForQueue = [];
 
-  //Changes the status when the user adds/removes a video
+  // Changes the status when the user adds/removes a video
   videoAdded: boolean;
   videoRemoved: boolean;
 
@@ -49,7 +49,7 @@ export class TabComponent implements OnInit {
   // Defined on tab.component that takes the event from the search component
   // and sends it to this component which then fires another event
   // and sends this to the room component
-  sendResultToRoom(event){
+  sendResultToRoom(event) {
     this.searchResult.emit(event.search);
   }
 
@@ -59,8 +59,10 @@ export class TabComponent implements OnInit {
     const incomingVideo = event.video;
     console.log(incomingVideo);
 
-    //Temporary fix for videos that render in and are channels
-    if(incomingVideo.id.channelId) return;
+    // Temporary fix for videos that render in and are channels
+    if (incomingVideo.id.channelId) {
+      return;
+    }
 
     /* Check to see if the videosForQueue already contains the video by matching the id
     * Of the incoming video. If a result occurs, that means we already have it. Else we return
@@ -82,8 +84,8 @@ export class TabComponent implements OnInit {
       };
       this.playlistService.addVideo(video).subscribe(
         (res) => {
-          this.videosForQueue.push(video);
-          this.displayVideoStatus(true,false);
+          this.playlistService.currentPlaylist.push(video);
+          this.displayVideoStatus(true, false);
         },
         (err) => {
           window.alert('Error adding in a video');
@@ -94,7 +96,7 @@ export class TabComponent implements OnInit {
 
 
   // Once user clicks on garbage can icon, updates the current videos
-  removeVideoInQueue(vidToRemove){
+  removeVideoInQueue(vidToRemove) {
     this.videosForQueue = this.videosForQueue.filter((vid) => vid.videoId != vidToRemove.id);
     this.displayVideoStatus(false, true);
   }
