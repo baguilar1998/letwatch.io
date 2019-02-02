@@ -29,6 +29,18 @@ export class PlaylistService {
   }
 
   /**
+   * Deletes a video from the queue and from the database
+   * @param v the video that the user wants to remove
+   * from the queue
+   */
+  removeVideo(v: Video): Observable<any> {
+    const requiredInfo = {
+      video: v,
+      roomId: this.roomService.getRoom()._id
+    };
+    return this.http.post<any>('//localhost:3000/api/playlist/removeVideo', requiredInfo);
+  }
+  /**
    * Gets the current state of the playlist in the current room
    * If there isn't any playlist available, the playlist will be
    * initialized as an empty array. Code is executed at the beginning of
@@ -47,4 +59,5 @@ export class PlaylistService {
       }
     });
   }
+
 }

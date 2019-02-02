@@ -5,10 +5,10 @@ const Room = require('../models/Room');
 const Video = require('../models/Video');
 const Playlist = require('../models/Playlist');
 
+/**
+ * Adds a video to the playlist
+ */
 router.post('/addVideo', (req,res,next)=>{
-
-  console.log(req.body);
-
   // Create a new video object
   let video = req.body.video;
 
@@ -46,6 +46,9 @@ router.post('/addVideo', (req,res,next)=>{
   });
 });
 
+/**
+ * Retrives playlist data from a room
+ */
 router.post('/getVideos', (req,res,next)=>{
   Playlist.findOne({"roomId":req.body.roomId}).then(playlist=>{
     if(!playlist){
@@ -65,5 +68,13 @@ router.post('/getVideos', (req,res,next)=>{
   });
 });
 
+
+/**
+ * Removes a playlist from the database
+ * SET-UP changing http request later
+ */
+router.post('/removeVideo', (req,res,next)=>{
+
+});
 
 module.exports = router;
