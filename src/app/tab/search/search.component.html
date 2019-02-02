@@ -18,9 +18,10 @@
     class="video-search__item"
     *ngFor="let video of videosFound; let i = index"
     [attr.data-index]="i"
-    (mouseenter)="mouseEnter('enteringSearchItem', i)"
-    (mouseleave)="mouseLeave('leavingSearchItem')"  
+    (mouseenter)="mouseEnterDisplayButtons('enteringSearchItem', i)"
+    (mouseleave)="mouseLeaveHideButtons('leavingSearchItem')"  
     >
+
       <div
       [ngClass]="(i != listItemId)? 'video-sarch__details-hide video-search__details' : 'video-search__details'"
       >

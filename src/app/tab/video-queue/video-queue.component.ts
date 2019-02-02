@@ -10,7 +10,7 @@ import { EventEmitter } from 'events';
 export class VideoQueueComponent implements OnInit, OnChanges {
 
 
-  @Input() videosForQueue;
+  @Input() videosForQueue = [];
 
 
   constructor() {

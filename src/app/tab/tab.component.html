@@ -1,5 +1,18 @@
 <div class="container">
 
+
+  <div
+  [ngClass]="(videoAdded)? 'video-status' : 'fade-down video-status'" 
+  *ngIf="videoAdded">
+    <span> Added to the queue </span>
+  </div>
+
+  <div 
+  class="video-status"
+  *ngIf="videoRemoved">
+    <span> Removed from the queue </span>
+  </div>
+
   <!--Tab Buttons-->
   <div class="tab-buttons">
 

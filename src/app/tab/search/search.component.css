@@ -5,8 +5,7 @@
 
 
 .video-search__container{
-
-
+    position: relative;
 }
 
 
@@ -121,6 +120,28 @@
 }
 
 
+
+
+/* ------------ ADDED/REMOVE  ---------- */
+
+.video-added_success {
+    position: absolute;
+    width: 50px;
+    background-color: blue;
+    height: 50px;
+    
+}
+
+
+/* ------------ TOGGLE MORE ---------- */
+
+
+.more-container {
+    position: absolute;
+    top: 50px;
+    background-color: black;
+    width: 100%;
+}
 
 
 

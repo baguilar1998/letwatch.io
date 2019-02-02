@@ -34,6 +34,10 @@ export class SearchComponent implements OnInit {
   public listItemId: number  = -1;
 
 
+  //Displays above video queue tab if user added/removed from queue
+  @Output() videoStatus = new EventEmitter();
+
+
   constructor() {
 
    }
@@ -58,13 +62,13 @@ export class SearchComponent implements OnInit {
   //Is inside the video queue
 
 
-  mouseEnter(val: string, id: number){
+  mouseEnterDisplayButtons(val: string, id: number){
     if(val == "enteringSearchItem"){
       this.listItemId = id;
     }
   }
 
-  mouseLeave(val : string) {
+  mouseLeaveHideButtons(val : string) {
     if(val == "leavingSearchItem"){
       this.listItemId = -1;
     }

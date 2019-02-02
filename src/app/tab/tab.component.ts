@@ -22,6 +22,11 @@ export class TabComponent implements OnInit {
   videosForQueue = [];
 
 
+  //Changes the status when the user adds/removes a video
+  videoAdded: boolean;
+  videoRemoved: boolean;
+
+
   constructor() {
   }
 
@@ -78,6 +83,7 @@ export class TabComponent implements OnInit {
         imageUrl: incomingVideo.snippet.thumbnails.default.url
       };
       this.videosForQueue.push(video);
+      this.displayVideoStatus(true, false);
     }
   }
 
@@ -85,6 +91,24 @@ export class TabComponent implements OnInit {
   // Once user clicks on garbage can icon, updates the current videos
   removeVideoInQueue(vidToRemove){
     this.videosForQueue = this.videosForQueue.filter((vid) => vid.videoId != vidToRemove.id);
+    this.displayVideoStatus(false, true);
+  }
+
+
+  //Changes the display message of the added text
+  displayVideoStatus(isAdded: boolean, isRemoved: boolean, ){
+    this.videoRemoved = isRemoved;
+    this.videoAdded = isAdded;
+
+    if(isAdded){
+      setTimeout(() => {
+        this.videoAdded = false;
+      }, 700);
+    } else {
+      setTimeout(() => {
+        this.videoRemoved = false;
+      }, 700);
+    }
   }
 
 }

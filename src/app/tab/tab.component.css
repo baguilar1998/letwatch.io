@@ -23,3 +23,26 @@
   width:80px;
   margin-left:2px;
 }
+
+
+
+
+/* Video Status */
+
+.video-status {
+  position: absolute;
+  top: 30px;
+  animation: Slide_In .7s ease; 
+
+}
+
+
+@keyframes Slide_In{
+  0% {
+    transform: translateX(20px);
+  }
+
+  100% {
+    transform: translate(0px);
+  }
+}
