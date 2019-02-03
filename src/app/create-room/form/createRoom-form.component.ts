@@ -10,7 +10,7 @@ import { LoadingService } from '../../services/loading.service';
 @Component({
     selector: 'app-createroom-form',
     templateUrl : './create-room-form.component.html',
-    styleUrls : ['./create-room-form.component.css']
+    styleUrls : ['./create-room-form.component.scss']
 })
 
 export class CreateRoomFormComponent implements OnInit {

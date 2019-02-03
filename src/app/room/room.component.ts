@@ -5,7 +5,7 @@ import { RoomService } from '../services/room.service';
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
-  styleUrls: ['./room.component.css']
+  styleUrls: ['./room.component.scss']
 })
 export class RoomComponent implements OnInit, OnDestroy {
 

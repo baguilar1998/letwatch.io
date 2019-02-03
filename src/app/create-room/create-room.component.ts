@@ -8,7 +8,7 @@ import { LoadingService } from '../services/loading.service';
 @Component({
   selector: 'app-create-room',
   templateUrl: './create-room.component.html',
-  styleUrls: ['./create-room.component.css']
+  styleUrls: ['./create-room.component.scss']
 })
 export class CreateRoomComponent implements OnInit {
 

@@ -123,5 +123,10 @@
       }
     }
   },
-  "defaultProject": "letswatch"
+  "defaultProject": "letswatch",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

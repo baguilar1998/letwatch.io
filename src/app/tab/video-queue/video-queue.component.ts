@@ -5,7 +5,7 @@ import { EventEmitter } from 'events';
 @Component({
   selector: 'app-video-queue',
   templateUrl: './video-queue.component.html',
-  styleUrls: ['./video-queue.component.css'],
+  styleUrls: ['./video-queue.component.scss'],
   inputs: ['videosForQueue']
 })
 export class VideoQueueComponent implements OnInit, OnChanges {

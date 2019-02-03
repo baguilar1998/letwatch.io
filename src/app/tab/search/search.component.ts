@@ -3,14 +3,14 @@ import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css']
+  styleUrls: ['./search.component.scss']
 })
 export class SearchComponent implements OnInit {
 
 
 
   //Output to push data from grandchild (search comp) to child (tab comp)
-  //Placed on search component html to emit evvent 
+  //Placed on search component html to emit evvent
   @Output() searchHandler = new EventEmitter<string>();
 
 

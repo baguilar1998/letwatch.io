@@ -6,7 +6,7 @@ import { PlaylistService } from '../services/playlist.service';
 @Component({
   selector: 'app-tab',
   templateUrl: './tab.component.html',
-  styleUrls: ['./tab.component.css'],
+  styleUrls: ['./tab.component.scss'],
 })
 export class TabComponent implements OnInit {
 

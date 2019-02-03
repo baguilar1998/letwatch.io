@@ -6,7 +6,7 @@ import { RoomService } from '../../services/room.service';
 @Component({
   selector: 'app-current-users',
   templateUrl: './current-users.component.html',
-  styleUrls: ['./current-users.component.css']
+  styleUrls: ['./current-users.component.scss']
 })
 export class CurrentUsersComponent implements OnInit {
 
