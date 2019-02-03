@@ -1,5 +1,5 @@
 <!--Container for the landing-page-->
-<div id="container">
+<div id="container"  *ngIf="!this.loadingService.isLoading">
 
   <!--Logo-->
   <div id="banner">
@@ -40,7 +40,7 @@
   </div>
 
 </div>
-<div id="resources">
+<div id="resources" *ngIf="componentState=='home'">
   <div class="links">
     <ul id="horizontal-list">
       <li class="list-item">
@@ -58,3 +58,4 @@
     </ul>
   </div>
 </div>
+<app-loading></app-loading>

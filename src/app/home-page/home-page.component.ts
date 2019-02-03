@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-home-page',
@@ -15,7 +16,8 @@ export class HomePageComponent implements OnInit {
   isValid: boolean;
   styles;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService,
+  private loadingService: LoadingService) {
     this.componentState = 'home';
     this.colors = ['black', 'blue', 'red', 'yellow', 'green', 'orange', 'purple'];
     this.index = 0;

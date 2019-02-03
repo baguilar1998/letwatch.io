@@ -5,27 +5,12 @@ import { Subject } from 'rxjs';
 })
 export class LoadingService {
 
-  private isLoading: boolean;
+  isLoading: boolean;
   loadingStatus: Subject<any>;
 
   constructor() {
     this.isLoading = false;
     this.loadingStatus = new Subject();
-   }
-
-   /**
-    * @returns the current loading status
-    */
-   get loading(): boolean {
-     return this.isLoading;
-   }
-
-   /**
-    * @param value the current state of the
-    * loading page
-    */
-   set loading (value: boolean) {
-      this.isLoading = value;
    }
 
    /**
@@ -39,6 +24,6 @@ export class LoadingService {
     * Stops loading the page
     */
    stopLoading(): void {
-     this.loading = false;
+     this.isLoading = false;
    }
 }

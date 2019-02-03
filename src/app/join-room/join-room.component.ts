@@ -2,6 +2,7 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { RoomService } from '../services/room.service';
+import { LoadingService } from '../services/loading.service';
 
 @Component({
   selector: 'app-join-room',
@@ -15,7 +16,8 @@ export class JoinRoomComponent implements OnInit {
 
   constructor(private userService: UserService,
     private roomService: RoomService,
-    private router: Router) { }
+    private router: Router,
+    private loadingService: LoadingService ) { }
 
   ngOnInit() {}
 
@@ -33,17 +35,22 @@ export class JoinRoomComponent implements OnInit {
    * an available room
    */
   join(): void {
-    this.roomService.joinRoom(this.invitationCode).subscribe(
-      (res) => {
-        console.log('Successful! Joining room');
-        this.roomService.setRoom(res);
-        this.userService.addUser();
-        this.router.navigate(['/room', 'test']);
-      },
-      (err) => {
-        console.log('Room does not exist');
-      }
-    );
+    this.loadingService.startLoading();
+    setTimeout(() => {
+      this.roomService.joinRoom(this.invitationCode).subscribe(
+        (res) => {
+          console.log('Successful! Joining room');
+          this.loadingService.stopLoading();
+          this.roomService.setRoom(res);
+          this.userService.addUser();
+          this.router.navigate(['/room', 'test']);
+        },
+        (err) => {
+          console.log('Room does not exist');
+          this.loadingService.stopLoading();
+        }
+      );
+    }, 1000);
   }
 
 }

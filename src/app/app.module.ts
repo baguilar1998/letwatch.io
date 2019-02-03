@@ -25,7 +25,7 @@ import { SearchComponent } from './tab/search/search.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { LoadingComponent } from './loading/loading.component';
 
-import { LoadingInterceptor } from './services/loading.interceptor';
+
 import { ContactComponent } from './home-page/contact/contact.component';
 import { HelpComponent } from './home-page/help/help.component';
 
@@ -62,11 +62,6 @@ import { HelpComponent } from './home-page/help/help.component';
     RoomService,
     UserService,
     LoadingService,
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoadingInterceptor,
-      multi: true
-    }
   ],
   bootstrap: [AppComponent]
 })

@@ -5,6 +5,7 @@ import {Room} from '../../tsmodels/room';
 import {ValidateRoomName, ValidateRoomPassword} from './create-room-form.validators';
 import {RoomService } from '../../services/room.service';
 import { UserService } from '../../services/user.service';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
     selector: 'app-createroom-form',
@@ -24,6 +25,7 @@ export class CreateRoomFormComponent implements OnInit {
 
     constructor(private fb: FormBuilder,
       private userService: UserService,
+      private loadingService: LoadingService,
       private _createRoomForm: RoomService,
       private router: Router) {}
 
@@ -67,41 +69,46 @@ export class CreateRoomFormComponent implements OnInit {
     /* Uses object destructering to grab values
        Same as saying this.createRoomForm*/
       onSubmit({value, valid}: {value: Room, valid: boolean}) {
-
-        // If this is a new user, add them to the database
-        if (this.userService.getCurrentUser()._id === '') {
+        this.loadingService.startLoading();
+        setTimeout(() => {
+          // If this is a new user, add them to the database
+          if (this.userService.getCurrentUser()._id === '') {
             this.userService.addUser();
             this.userService.getCurrentUser().isHost = true;
-        }
+          }
 
 
-        // Creating a room object to store in the database
-        const newRoom: Room = {
-          _id: '',
-          roomName: value.roomName,
-          host: this.userService.getCurrentUser(),
-          currentUsers: [],
-          invitationCode: this.invitationCode,
-          password: value.password,
-          maxCapacity: 2
-        };
+          // Creating a room object to store in the database
+          const newRoom: Room = {
+            _id: '',
+            roomName: value.roomName,
+            host: this.userService.getCurrentUser(),
+            currentUsers: [],
+            invitationCode: this.invitationCode,
+            password: value.password,
+            maxCapacity: 2
+          };
 
-        this._createRoomForm.setRoom(newRoom);
+          this._createRoomForm.setRoom(newRoom);
 
-        // Storing the room object in the database
-        this._createRoomForm.createRoom(newRoom)
-        .subscribe(
-            (res) => {
-              this.success = res;
-              this._createRoomForm.getRoom()._id = res._id;
-              console.log(this._createRoomForm.getRoom());
-              this.router.navigate(['/room', this.invitationCode]);
-            },
-            (err) => {
-              console.log(err);
-              this.error = err;
-            }
-        );
+          // Storing the room object in the database
+          this._createRoomForm.createRoom(newRoom)
+          .subscribe(
+              (res) => {
+                this.loadingService.stopLoading();
+                this.success = res;
+                this._createRoomForm.getRoom()._id = res._id;
+                console.log(this._createRoomForm.getRoom());
+                this.router.navigate(['/room', this.invitationCode]);
+              },
+              (err) => {
+                console.log(err);
+                this.error = err;
+                this.loadingService.stopLoading();
+              }
+          );
+        }, 1000);
+
     }
 
     /**

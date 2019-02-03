@@ -1,6 +1,7 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import {Room} from './create-room-model';
 import { RoomService } from '../services/room.service';
+import { LoadingService } from '../services/loading.service';
 
 
 
@@ -17,7 +18,8 @@ export class CreateRoomComponent implements OnInit {
   invitationCode;
 
   // Injects roomservice to be able to send data to express
-  constructor(private roomService: RoomService) {
+  constructor(private roomService: RoomService,
+  private loadingService: LoadingService) {
   }
 
   /**
