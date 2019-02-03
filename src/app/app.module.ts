@@ -26,6 +26,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 import { LoadingComponent } from './loading/loading.component';
 
 import { LoadingInterceptor } from './services/loading.interceptor';
+import { ContactComponent } from './home-page/contact/contact.component';
+import { HelpComponent } from './home-page/help/help.component';
 
 
 
@@ -44,7 +46,9 @@ import { LoadingInterceptor } from './services/loading.interceptor';
     CurrentUsersComponent,
     SearchComponent,
     NotFoundComponent,
-    LoadingComponent
+    LoadingComponent,
+    ContactComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,

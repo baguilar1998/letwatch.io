@@ -23,12 +23,14 @@ app.use((req, res, next) =>{
 const roomRoute = require('./server/routes/room');
 const userRoutes = require('./server/routes/users');
 const playlistRoute = require('./server/routes/playlist');
+const emailRoute = require('./server/routes/email');
 
 
 //Express Routes for REST API
 app.use('/api/room',roomRoute);
 app.use('/api', userRoutes);
 app.use('/api/playlist',playlistRoute);
+app.use('/api/email',emailRoute);
 
 
 /**

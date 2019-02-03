@@ -8,7 +8,12 @@
   transform: translate(-50%,-50%);
   background-color: white;
 }
-
+#resources{
+  position: fixed;
+  top:68%;
+  left:49.5%;
+  transform: translate(-50%,-50%);
+}
 #home{
   position:absolute;
   top:55%;
@@ -97,4 +102,19 @@
 .home-button:hover{
   background-color: rgb(180, 179, 179);
   cursor: pointer;
+}
+#horizontal-list {
+  list-style: none;
+}
+.list-item {
+  display: inline;
+  margin:10px;
+}
+.list-item a{
+  color:red;
+  font-weight:bold;
+  text-decoration: none;
+}
+.list-item a:hover{
+  color:black;
 }
