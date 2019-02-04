@@ -38,7 +38,7 @@ export class PlaylistService {
       video: v,
       roomId: this.roomService.getRoom()._id
     };
-    return this.http.post<any>('//localhost:3000/api/playlist/removeVideo', requiredInfo);
+    return this.http.put<any>('//localhost:3000/api/playlist/removeVideo', requiredInfo);
   }
   /**
    * Gets the current state of the playlist in the current room

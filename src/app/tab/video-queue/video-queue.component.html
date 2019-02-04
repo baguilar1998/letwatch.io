@@ -1,14 +1,35 @@
 <div class="video-queue__container" >
   <li
   class="video-queue__item"
-  *ngFor="let video of playlistService.currentPlaylist; let i = index">
+  *ngFor="let video of playlistService.currentPlaylist; let i = index"
+  [attr.data-index]="i"
+  (mouseenter)="mouseEnterDisplayButtons('enteringSearchItem', i)"
+  (mouseleave)="mouseLeaveHideButtons('leavingSearchItem')" 
+  >
     <input type="hidden"ng- value="{{video.videoId}}'">
     <img [attr.src]="video.imageUrl" />
-    <h4>{{video.title}}</h4>
-    <p>{{video.description}}</p>
-      <br>
-      <br>
+    <p
+    class="video-queue__title"
+    >{{video.title}}</p>
+    <div
+    [attr.data-index]="i"
+    *ngIf="i == listItemId"
+    class="video-queue__controls"
+    >
+      <div
+      class="video-queue__btn-container">
+        <img
+        (click)="removeVideo(video)"
+        class="video-queue__btn"
+        src="../../../assets/room/video-search/bin.svg" />
+      </div>
+      <div
+      class="video-queue__btn-container">
+        <img 
+        class="video-queue__btn"
+        src="../../../assets/room/video-search/more.svg" />
+      </div>
+    </div>
   </li>
-
 </div>
 

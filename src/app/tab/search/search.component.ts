@@ -60,8 +60,6 @@ export class SearchComponent implements OnInit {
 
   //Dynamically render the garbage bin if video
   //Is inside the video queue
-
-
   mouseEnterDisplayButtons(val: string, id: number){
     if(val == "enteringSearchItem"){
       this.listItemId = id;
