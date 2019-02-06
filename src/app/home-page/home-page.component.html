@@ -1,46 +1,47 @@
-<div class="page">
-  <!--Container for the landing-page-->
-<div id="container"  *ngIf="!this.loadingService.isLoading">
+<!--Background of the page
+<div class="page"></div>-->
 
-    <!--Logo-->
-    <div id="banner">
-      <img id="logo" src="../../assets/logo_2.png"/>
+ <!--Container for the landing-page-->
+ <div id="container"  *ngIf="!this.loadingService.isLoading">
+
+  <!--Logo-->
+  <div id="banner">
+    <h1 id="logo">letswatch.io</h1>
+  </div>
+
+  <!--Home Page-->
+  <div id="home" *ngIf="componentState=='home'">
+
+    <!--Avatar-->
+    <div class="avatar">
+      <a (click)="previousColor()" href="javascript:void(0)" class="previous">&#8249;</a>
+      <i [ngStyle]="styles" class="fa fa-user fa-5x" id="icon" aria-hidden="true"></i>
+      <a (click)="nextColor()" href="javascript:void(0)" class="next">&#8250;</a>
     </div>
 
-    <!--Home Page-->
-    <div id="home" *ngIf="componentState=='home'">
-
-      <!--Avatar-->
-      <div class="avatar">
-        <a (click)="previousColor()" href="javascript:void(0)" class="previous">&#8249;</a>
-        <i [ngStyle]="styles" class="fa fa-user fa-5x" id="icon" aria-hidden="true"></i>
-        <a (click)="nextColor()" href="javascript:void(0)" class="next">&#8250;</a>
-      </div>
-
-      <div id="prompt" *ngIf="!isValid">
-        Nickname is required!
-      </div>
-
-      <!--Enter A Nickname and Options-->
-      <div id="nickname">
-        <input [(ngModel)]="nickname" class="nickname-field" required type="text" placeholder="Nickname"/><br>
-        <button class="home-button" (click)="changeState('createroom')">Create a Room</button>
-        <button class="home-button" (click)="changeState('joinroom')">Join a Room</button>
-      </div>
-
+    <div id="prompt" *ngIf="!isValid">
+      Nickname is required!
     </div>
 
-    <!-- Join A Room Page-->
-    <div id="joinroom" *ngIf="componentState=='joinroom'">
-      <app-join-room (currentState)="changeState($event)"></app-join-room>
-    </div>
-
-    <!-- Create A Room Page-->
-    <div id="createroom" *ngIf="componentState=='createroom'">
-      <app-create-room (currentState)="changeState($event)"></app-create-room>
+    <!--Enter A Nickname and Options-->
+    <div id="nickname">
+      <input [(ngModel)]="nickname" class="nickname-field" required type="text" placeholder="Nickname"/><br>
+      <button class="home-button" (click)="changeState('createroom')">Create a Room</button>
+      <button class="home-button" (click)="changeState('joinroom')">Join a Room</button>
     </div>
 
   </div>
+
+  <!-- Join A Room Page-->
+  <div id="joinroom" *ngIf="componentState=='joinroom'">
+    <app-join-room (currentState)="changeState($event)"></app-join-room>
+  </div>
+
+  <!-- Create A Room Page-->
+  <div id="createroom" *ngIf="componentState=='createroom'">
+    <app-create-room (currentState)="changeState($event)"></app-create-room>
+  </div>
+
   <div id="resources" *ngIf="componentState=='home'">
     <div class="links">
       <ul id="horizontal-list">
@@ -62,3 +63,4 @@
   <app-loading></app-loading>
 
 </div>
+

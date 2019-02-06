@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+html{
+  background: url('./assets/houndstooth-pattern.png');
+}
 body{
-  font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Saraburn', sans-serif;
 }
 
 
