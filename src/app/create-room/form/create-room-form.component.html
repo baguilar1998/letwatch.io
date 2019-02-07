@@ -1,7 +1,8 @@
 <div class="container">
     <div *ngIf="!success">
+        <h2> Create A Room </h2>
         <form (ngSubmit)="onSubmit(createRoomForm)" [formGroup]="createRoomForm">
-          <h2> Create A Room </h2>
+
             <!--<input type="hidden" formControlName="id">
             <input type="hidden" formControlName="playlistId">
             <input type="hidden" formControlName="userId">-->
@@ -9,6 +10,7 @@
 
 
             <!--Room Name-->
+            <label>Room Name </label>
             <input type="text" placeholder="Room Name" formControlName="roomName">
 
                 <small *ngIf="roomName.touched && roomNameErrors!=null" >
@@ -19,9 +21,11 @@
 
             <br>
             <!--Password-->
+            <label>Password </label>
             <input type="password" placeholder="Password" formControlName="password">
             <br>
 
+            <label>Confirm Password </label>
             <input type="password" placeholder="Confirm Password" formControlName="confirmPassword"><br>
 
             <!--Max Capacity-->
@@ -31,6 +35,7 @@
             </select><br>
 
             <!--Invitation Code-->
+            <label>Invitation Key </label>
             <input type="text" placeholder="Room Name" [value]="invitationCode"/><br>
 
             <button (click)="goBack()" type="button">Back</button>
