@@ -28,6 +28,7 @@ import { LoadingComponent } from './loading/loading.component';
 
 import { ContactComponent } from './home-page/contact/contact.component';
 import { HelpComponent } from './home-page/help/help.component';
+import { CreditsComponent } from './home-page/credits/credits.component';
 
 
 
@@ -48,7 +49,8 @@ import { HelpComponent } from './home-page/help/help.component';
     NotFoundComponent,
     LoadingComponent,
     ContactComponent,
-    HelpComponent
+    HelpComponent,
+    CreditsComponent
   ],
   imports: [
     BrowserModule,

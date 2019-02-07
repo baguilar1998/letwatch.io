@@ -16,7 +16,7 @@
   max-width: 800px;
   margin: auto;
   background: #fff;
-  box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
+  box-shadow: 0px 14px 50px rgba(34, 35, 58, 0.2);
   padding: 25px;
   border-radius: 20px;
   height: 400px;
@@ -71,6 +71,10 @@ Input field and button positioning
   margin-left:60px;
   margin-top:15px;
 }
+#nickname button{
+  margin-top:15px;
+  margin-right:22px;
+}
 /*
 -------------------------------------------
 Message when user does not enter a nickname
@@ -112,6 +116,15 @@ Buttons
 }
 
 /*
+------------------
+Icon Styles
+------------------
+*/
+.avatar img{
+  width:100px;
+  height:100px;
+}
+/*
 -------------------
 Nickname Input Field
 -------------------
@@ -126,7 +139,8 @@ Nickname Input Field
     outline:none;
     padding: 6px;
 		color: black;
-		font: inherit;
+    font: inherit;
+    transition: .3s;
 		box-shadow: 0 6px 10px 0 rgba(0, 0, 0 , .1);
     -webkit-background-clip: padding-box; /* for Safari */
     background-clip: padding-box;
@@ -146,8 +160,8 @@ Resources List
   list-style: none;
 }
 #resources{
-  top:10%;
-  left:2.5%;
+  top:45%;
+  left:3%;
   position: relative;
   width:500px;
   margin:auto;
@@ -159,9 +173,10 @@ Resources List
 }
 .list-item a{
   color:#003459;
+  transition:.3s;
   font-weight:bold;
   text-decoration: none;
 }
 .list-item a:hover{
-  color:black;
+  color:#437C90;
 }

@@ -14,9 +14,18 @@
 
     <!--Avatar-->
     <div class="avatar">
-      <a (click)="previousColor()" href="javascript:void(0)" class="previous">&#8249;</a>
-      <i [ngStyle]="styles" class="fa fa-user fa-5x" id="icon" aria-hidden="true"></i>
-      <a (click)="nextColor()" href="javascript:void(0)" class="next">&#8250;</a>
+      <a  (click)="previousIcon()" href="javascript:void(0)" class="previous">&#8249;</a>
+      <div class="iconList" [ngSwitch]="currentIcon">
+        <img src="../../assets/avatars/avatar-1.png" *ngSwitchCase="'m1'">
+        <img src="../../assets/avatars/avatar-2.png" *ngSwitchCase="'m2'">
+        <img src="../../assets/avatars/avatar-3.png" *ngSwitchCase="'m3'">
+        <img src="../../assets/avatars/avatar-12.png" *ngSwitchCase="'m4'">
+        <img src="../../assets/avatars/avatar-13.png" *ngSwitchCase="'f1'">
+        <img src="../../assets/avatars/avatar-20.png" *ngSwitchCase="'f2'">
+        <img src="../../assets/avatars/avatar-26.png" *ngSwitchCase="'f3'">
+        <img src="../../assets/avatars/avatar-41.png" *ngSwitchCase="'f4'">
+      </div>
+      <a (click)="nextIcon()" href="javascript:void(0)" class="next">&#8250;</a>
     </div>
 
     <div id="prompt" *ngIf="!isValid">

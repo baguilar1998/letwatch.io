@@ -26,13 +26,13 @@ export class UserService {
    * Creates a new user as the user goes through
    * the landing-page
    * @param name the user's nickname
-   * @param color the user's avatar color
+   * @param icon the user's avatar
    */
-  createUser(name: string, color: string): void {
+  createUser(name: string, icon: string): void {
     this.user = {
       _id: '',
       nickname: name,
-      avatarColor: color,
+      iconName: icon,
       isHost: false
     };
   }
@@ -41,11 +41,11 @@ export class UserService {
    * Updates the user if they decide to make
    * any changes along the way
    * @param name the user's nickname
-   * @param color the user's avatar color
+   * @param icon the user's avatar
    */
-  updateUser(name: string, color: string): void {
+  updateUser(name: string, icon: string): void {
     this.user.nickname = name;
-    this.user.avatarColor = color;
+    this.user.iconName = icon;
   }
 
   /**

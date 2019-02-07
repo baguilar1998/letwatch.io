@@ -10,24 +10,6 @@ import { RoomService } from '../../services/room.service';
 })
 export class CurrentUsersComponent implements OnInit {
 
-  /**
-   * Static test data
-   */
-  testUserList: User [] = [
-    {
-      _id: '',
-      nickname: 'Brian',
-      avatarColor: 'green',
-      isHost: false
-    },
-    {
-      _id: '',
-      nickname: 'Mike',
-      avatarColor: 'blue',
-      isHost: false
-    }
-  ];
-
   currentUsers: User[];
   constructor(private roomService: RoomService) { }
 
