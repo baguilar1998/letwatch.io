@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailService } from '../../services/email.service';
+import { Router } from '../../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-contact',
@@ -8,11 +9,15 @@ import { EmailService } from '../../services/email.service';
 })
 export class ContactComponent implements OnInit {
 
-  constructor(private emailService: EmailService) { }
+  constructor(private emailService: EmailService,
+  private router: Router) { }
 
   ngOnInit() {
   }
 
+  backToHome(): void {
+    this.router.navigate(['/']);
+  }
   send(): void {
     this.emailService.sendEmail().subscribe((res) => {
 
