@@ -96,6 +96,7 @@ export class CreateRoomFormComponent implements OnInit {
           .subscribe(
               (res) => {
                 this.loadingService.stopLoading();
+                this.loadingService.isHome = false;
                 this.success = res;
                 this._createRoomForm.getRoom()._id = res._id;
                 console.log(this._createRoomForm.getRoom());

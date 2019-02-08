@@ -29,6 +29,7 @@
     "mongodb": "^3.1.10",
     "mongoose": "^5.4.3",
     "morgan": "^1.9.1",
+    "ngx-youtube-player": "^6.0.0",
     "random-key": "^0.3.2",
     "rxjs": "^6.0.0",
     "sendmail": "^1.4.1",

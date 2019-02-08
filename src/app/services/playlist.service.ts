@@ -12,7 +12,7 @@ export class PlaylistService {
   currentPlaylist: Video [];
   constructor(private http: HttpClient,
   private roomService: RoomService) {
-    this.getPlaylist();
+    // this.getPlaylist();
    }
 
   /**

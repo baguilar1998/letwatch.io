@@ -1,9 +1,18 @@
+<app-loading></app-loading>
 <youtube-player
+id="videoPlayer"
 (ready)="savePlayer($event)"
-[videoId]="this.embeddedCode" width="700" height="500"></youtube-player>
+(change)="onStateChange($event)"
+[videoId]="this.embeddedCode" width="800" height="600"></youtube-player>
 <div class="video-controls">
-  <button (click)="playVideo()" id="play-button">
+  <button *ngIf="!isVideoPlaying" (click)="playVideo()" class="video-buttons">
       <i class="fas fa-play fa-2x"></i>
+  </button>
+  <button *ngIf="isVideoPlaying" (click)="pauseVideo()" class="video-buttons">
+    <i class="fas fa-pause fa-2x"></i>
+  </button>
+  <button (click)="nextVideo()" class="video-buttons">
+    <i class="fas fa-forward fa-2x"></i>
   </button>
 </div>
 

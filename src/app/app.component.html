@@ -1,4 +1,4 @@
 <div class="main-app">
   <router-outlet></router-outlet>
-  <app-loading></app-loading>
+  <app-loading *ngIf="isHome"></app-loading>
 </div>
