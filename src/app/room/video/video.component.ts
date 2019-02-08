@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingService } from '../../services/loading.service';
+import { PlaylistService } from '../../services/playlist.service';
 
 @Component({
   selector: 'app-video',
@@ -13,7 +14,8 @@ export class VideoComponent implements OnInit {
   private player;
   private ytEvent: YT.Player;
 
-  constructor(private loadingService: LoadingService) { }
+  constructor(private loadingService: LoadingService,
+  private playlistService: PlaylistService) { }
 
   ngOnInit() {
     this.embeddedCode = '8HL8VVjiOC8';
