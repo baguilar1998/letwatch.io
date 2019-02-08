@@ -1,0 +1,9 @@
+<youtube-player
+(ready)="savePlayer($event)"
+[videoId]="this.embeddedCode" width="700" height="500"></youtube-player>
+<div class="video-controls">
+  <button (click)="playVideo()" id="play-button">
+      <i class="fas fa-play fa-2x"></i>
+  </button>
+</div>
+
