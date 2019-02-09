@@ -48,10 +48,10 @@ export class VideoComponent implements OnInit {
     currentPlayer.style.display = 'none';
     this.loadingService.startLoading();
     setTimeout(() => {
-      this.loadingService.stopLoading();
-      currentPlayer.style.display = 'block';
       this.embeddedCode = 'TYeul8ZaLrU';
       this.player.cueVideoById(this.embeddedCode);
+      this.loadingService.stopLoading();
+      currentPlayer.style.display = 'block';
     }, 2000);
   }
 

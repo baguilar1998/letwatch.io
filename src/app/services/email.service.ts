@@ -9,7 +9,7 @@ export class EmailService {
 
   constructor(private http: HttpClient) { }
 
-  sendEmail(): Observable<any> {
-    return this.http.post<any>('//localhost:3000/api/email/send', {email: 'SUBJECT TO CHANGE'});
+  sendEmail(message): Observable<any> {
+    return this.http.post<any>('//localhost:3000/api/email/send', message);
   }
 }

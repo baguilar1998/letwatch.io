@@ -5,17 +5,17 @@
   </div>
   <div class="body">
     <div class="name">
-      <input type="text" placeholder="Name">
+      <input [(ngModel)]="userMessage.name" type="text" placeholder="Name">
     </div>
     <div class="email">
-      <input type="text" placeholder="Email">
+      <input [(ngModel)]="userMessage.email" type="text" placeholder="Email">
     </div>
     <div class="message">
-      <textarea id="message" placeholder="Message"></textarea>
+      <textarea [(ngModel)]="userMessage.message" id="message" placeholder="Message"></textarea>
     </div>
     <div class="buttons">
       <button id="home" (click)="backToHome()">Back</button>
-      <button>Send Message</button>
+      <button (click)="send()">Send Message</button>
     </div>
   </div>
 </div>
