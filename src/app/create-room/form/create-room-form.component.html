@@ -36,7 +36,7 @@
 
             <!--Invitation Code-->
             <label>Invitation Key </label><br>
-            <input type="text" placeholder="Room Name" [value]="invitationCode"/><br>
+            <input type="text" placeholder="Room Name" [value]="invitationCode"  readonly="readonly"/><br>
 
             <button (click)="goBack()" type="button">Back</button>
             <button [disabled]="createRoomForm.invalid" type="submit">Submit </button>
