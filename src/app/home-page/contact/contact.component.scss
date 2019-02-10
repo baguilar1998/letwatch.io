@@ -9,7 +9,10 @@ The contact page container
 .container{
   opacity: 1;
   width: 650px;
-  position: relative;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   max-width: 800px;
   margin: auto;
   background: #fff;

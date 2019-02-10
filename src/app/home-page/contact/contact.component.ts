@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailService } from '../../services/email.service';
 import { Router } from '../../../../node_modules/@angular/router';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-contact',
@@ -11,7 +12,8 @@ export class ContactComponent implements OnInit {
 
   private userMessage;
   constructor(private emailService: EmailService,
-  private router: Router) { }
+  private router: Router,
+  private loadingService: LoadingService) { }
 
   ngOnInit() {
     this.userMessage = {
@@ -33,11 +35,15 @@ export class ContactComponent implements OnInit {
    * the user and an email to us to look at the user message
    */
   send(): void {
-    this.emailService.sendEmail(this.userMessage).subscribe((res) => {
-
-    }, (err) => {
-      console.log('email error');
-    });
+    this.loadingService.startLoading();
+    setTimeout(() => {
+      this.emailService.sendEmail(this.userMessage).subscribe((res) => {
+        this.loadingService.stopLoading();
+      }, (err) => {
+        this.loadingService.stopLoading();
+        console.log('email error');
+      });
+    }, 1000);
   }
 
 }

@@ -10,7 +10,7 @@
 
 
             <!--Room Name-->
-            <label>Room Name </label>
+            <label>Room Name </label><br>
             <input type="text" placeholder="Room Name" formControlName="roomName">
 
                 <small *ngIf="roomName.touched && roomNameErrors!=null" >
@@ -21,11 +21,11 @@
 
             <br>
             <!--Password-->
-            <label>Password </label>
+            <label>Password </label><br>
             <input type="password" placeholder="Password" formControlName="password">
             <br>
 
-            <label>Confirm Password </label>
+            <label>Confirm Password </label><br>
             <input type="password" placeholder="Confirm Password" formControlName="confirmPassword"><br>
 
             <!--Max Capacity-->
@@ -35,7 +35,7 @@
             </select><br>
 
             <!--Invitation Code-->
-            <label>Invitation Key </label>
+            <label>Invitation Key </label><br>
             <input type="text" placeholder="Room Name" [value]="invitationCode"/><br>
 
             <button (click)="goBack()" type="button">Back</button>
