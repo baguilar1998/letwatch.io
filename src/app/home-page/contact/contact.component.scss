@@ -41,11 +41,15 @@ Buttons
 -------------------------
 */
 .buttons{
-  width: 650px;
+  width: 300px;
+  position: relative;
+  margin: 0 auto;
 }
 .container .buttons button{
   border: 2px solid #003d69;
   background-color: white;
+  margin-right:10px;
+  margin-left:5px;
   color: #003d69;
   transition: .3s;
   padding: 9px 9px;

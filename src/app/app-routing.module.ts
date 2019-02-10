@@ -6,6 +6,7 @@ import { RoomComponent } from './room/room.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ContactComponent } from './home-page/contact/contact.component';
 import { HelpComponent } from './home-page/help/help.component';
+import { CreditsComponent } from './home-page/credits/credits.component';
 const routes: Routes = [
   {
     path: '',
@@ -26,6 +27,10 @@ const routes: Routes = [
   {
     path: 'help',
     component: HelpComponent
+  },
+  {
+    path: 'credits',
+    component: CreditsComponent
   },
   {
     path: '**',
