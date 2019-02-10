@@ -9,6 +9,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '../../../node_modules/@angular/common/http';
 import { User } from '../tsmodels/user';
+import { Observable } from '../../../node_modules/rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -60,14 +61,8 @@ export class UserService {
    * Stores the user inside the database
    * once they create or enter a room
    */
-  addUser(): void {
-    this.http.post<any>('//localhost:3000/api/user', this.user).subscribe((res) => {
-      // console.log(res);
-      if (res.hasOwnProperty('_id')) {
-        this.user._id = res._id;
-      }
-      console.log(res);
-    });
+  addUser(): Observable<any> {
+    return this.http.post<any>('//localhost:3000/api/user', this.user);
   }
 
   /**
