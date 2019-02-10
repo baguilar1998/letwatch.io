@@ -26,23 +26,23 @@ export class VideoComponent implements OnInit {
     this.ytEvent = event.data;
   }
 
-  savePlayer(player): void {
+  public savePlayer(player): void {
     this.player = player;
     console.log(player);
     // console.log(player.getDuration());
   }
 
-  playVideo(): void {
+  public playVideo(): void {
     this.player.playVideo();
     this.isVideoPlaying = true;
   }
 
-  pauseVideo(): void {
+  public pauseVideo(): void {
     this.player.pauseVideo();
     this.isVideoPlaying = false;
   }
 
-  nextVideo(): void {
+  public nextVideo(): void {
     this.pauseVideo();
     const currentPlayer = document.getElementById('videoPlayer');
     currentPlayer.style.display = 'none';
