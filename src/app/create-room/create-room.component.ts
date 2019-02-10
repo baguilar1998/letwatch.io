@@ -29,7 +29,6 @@ export class CreateRoomComponent implements OnInit {
   ngOnInit() {
     this.roomService.generateInvitationCode().subscribe((data) => {
       this.invitationCode = data.invitation;
-      console.log(this.invitationCode);
     });
   }
 

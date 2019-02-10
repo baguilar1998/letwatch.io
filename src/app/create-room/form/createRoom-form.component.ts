@@ -77,7 +77,6 @@ export class CreateRoomFormComponent implements OnInit {
               if (res.hasOwnProperty('_id')) {
                 this.userService.getCurrentUser()._id = res._id;
               }
-              console.log(res);
                         // Creating a room object to store in the database
               const newRoom: Room = {
                 _id: '',
@@ -99,7 +98,6 @@ export class CreateRoomFormComponent implements OnInit {
                     this.loadingService.isHome = false;
                     this.success = res;
                     this._createRoomForm.getRoom()._id = res._id;
-                    console.log(this._createRoomForm.getRoom());
                     this.router.navigate(['/room', this.invitationCode]);
                   },
                   (error) => {

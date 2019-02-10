@@ -15,7 +15,6 @@ export class HomePageComponent implements OnInit {
   icons: string [];
   index: number;
   isValid: boolean;
-  // styles;
 
   constructor(private userService: UserService,
   private loadingService: LoadingService) {
@@ -23,13 +22,10 @@ export class HomePageComponent implements OnInit {
     this.icons = ['m1', 'f1', 'm2', 'f2', 'm3', 'f3', 'm4', 'f4'];
     this.index = 0;
     this.currentIcon = this.icons[this.index];
-    // this.styles = { color: this.colors[this.index] };
     this.isValid = true;
   }
 
-  ngOnInit() {
-    console.log(this.currentIcon);
-  }
+  ngOnInit() {}
 
   /**
    * Keeps track of what component that is currently

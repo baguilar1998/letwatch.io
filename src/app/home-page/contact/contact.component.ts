@@ -16,6 +16,8 @@ export class ContactComponent implements OnInit {
   private loadingService: LoadingService) { }
 
   ngOnInit() {
+    // Javascript object for the information that is needed
+    // to send a message.
     this.userMessage = {
       email: '',
       name: '',
