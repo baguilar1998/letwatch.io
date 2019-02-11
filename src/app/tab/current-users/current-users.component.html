@@ -1,8 +1,14 @@
 <div class="container" *ngFor="let users of currentUsers">
   <!--Current Users-->
-  <div id="user-icon">
-    <i  [style.color] = "users.avatarColor" class="fa fa-user fa-2x"
-    id="icon" aria-hidden="true"></i>
+  <div id="user-icon" [ngSwitch]="users.iconName">
+    <img src="../../assets/avatars/avatar-1.png" *ngSwitchCase="'m1'">
+    <img src="../../assets/avatars/avatar-2.png" *ngSwitchCase="'m2'">
+    <img src="../../assets/avatars/avatar-3.png" *ngSwitchCase="'m3'">
+    <img src="../../assets/avatars/avatar-12.png" *ngSwitchCase="'m4'">
+    <img src="../../assets/avatars/avatar-13.png" *ngSwitchCase="'f1'">
+    <img src="../../assets/avatars/avatar-20.png" *ngSwitchCase="'f2'">
+    <img src="../../assets/avatars/avatar-26.png" *ngSwitchCase="'f3'">
+    <img src="../../assets/avatars/avatar-41.png" *ngSwitchCase="'f4'">
   </div>
   <div id="user-nickname">
     <strong>

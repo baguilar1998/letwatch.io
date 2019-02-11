@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailService } from '../../services/email.service';
+import { Router } from '../../../../node_modules/@angular/router';
+import { LoadingService } from '../../services/loading.service';
 
 @Component({
   selector: 'app-contact',
@@ -8,17 +10,42 @@ import { EmailService } from '../../services/email.service';
 })
 export class ContactComponent implements OnInit {
 
-  constructor(private emailService: EmailService) { }
+  private userMessage;
+  constructor(private emailService: EmailService,
+  private router: Router,
+  private loadingService: LoadingService) { }
 
   ngOnInit() {
+    // Javascript object for the information that is needed
+    // to send a message.
+    this.userMessage = {
+      email: '',
+      name: '',
+      message: '',
+    };
   }
 
-  send(): void {
-    this.emailService.sendEmail().subscribe((res) => {
+  /**
+   * Navigates back to the home component
+   */
+  backToHome(): void {
+    this.router.navigate(['/']);
+  }
 
-    }, (err) => {
-      console.log(err);
-    });
+  /**
+   * Sends the message to the backend and sends a no-reply email to
+   * the user and an email to us to look at the user message
+   */
+  send(): void {
+    this.loadingService.startLoading();
+    setTimeout(() => {
+      this.emailService.sendEmail(this.userMessage).subscribe((res) => {
+        this.loadingService.stopLoading();
+      }, (err) => {
+        this.loadingService.stopLoading();
+        console.log('email error');
+      });
+    }, 1000);
   }
 
 }

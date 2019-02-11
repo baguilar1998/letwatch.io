@@ -6,7 +6,7 @@ var UserSchema = new mongoose.Schema({
     default:String,
     required: true
   },
-  avatarColor: {
+  iconName: {
     type:String,
     default:String,
     required:true

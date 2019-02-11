@@ -43,7 +43,7 @@ router.post("/user", (req, res) => {
      */
     let newUser = new User();
     newUser.nickname = req.body.nickname;
-    newUser.avatarColor = req.body.avatarColor;
+    newUser.iconName = req.body.iconName;
 
     // Storing user into the database
     newUser.save((err, addedUser) => {
@@ -65,7 +65,7 @@ router.put("/user/:id", (req,res) => {
     User.findByIdAndUpdate(req.params.id, {
         $set: {
             nickName: req.body.nickName,
-            avatarColor: req.body.avatarColor
+            iconName: req.body.iconName
         }
     },{new: true},
         (err, updatedUser) => {

@@ -6,10 +6,12 @@ import { Subject } from 'rxjs';
 export class LoadingService {
 
   isLoading: boolean;
+  isHome: boolean;
   loadingStatus: Subject<any>;
 
   constructor() {
     this.isLoading = false;
+    this.isHome = false;
     this.loadingStatus = new Subject();
    }
 

@@ -3,7 +3,7 @@
   <!--Displays List of Messages-->
   <div class="messages" *ngFor="let m of messages">
     <div class="message-item">
-      <i [style.color] = "m.user.avatarColor" class="fa fa-user" id="icon" aria-hidden="true"></i>
+      <!--IMAGE ICON GETS DISPLAYED-->
       <label>{{m.user.nickname}}: </label>
       <label>{{m.message}}</label>
     </div>

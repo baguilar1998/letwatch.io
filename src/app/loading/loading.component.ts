@@ -22,8 +22,8 @@ export class LoadingComponent implements OnInit, OnDestroy {
       debounceTime(200)
     )
     .subscribe((value) => {
-      this.loading = value;
-    });
+        this.loading = value;
+      });
   }
 
   ngOnDestroy() {

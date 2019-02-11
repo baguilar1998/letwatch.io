@@ -1,29 +1,52 @@
 .container{
-  width:400px;
+  width:300px;
   height:400px;
 }
-
-.container input{
-  margin-top: 7px;
+h2{
+  height:20px;
+  font-weight: normal;
   text-align: center;
-  width:225px;
-  font-size: 10pt;
-  padding:5px;
+  color:#003d69;
+}
+label{
+  color:#003d69;
+}
+.container input{
+  text-align: center;
+  width:250px;
+  height:20px;
+  border-radius: 5px;
+  background: #fff;
+  border: 1px solid #ccc;
+  outline:none;
+  padding: 6px;
+  color: black;
+  font: inherit;
+  transition: .3s;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0 , .1);
+  -webkit-background-clip: padding-box; /* for Safari */
+  background-clip: padding-box;
+  outline: 0;
+  &:focus{
+    border:1px solid #437C90;
+    box-shadow: 0px 0px 3px 1px #c8def0;
+  }
 }
 
 .container button {
-  margin-top: 7px;
-  margin-right: 20px;
-  padding: 8px 8px;
-  background-color: red;
-  color:white;
-  border: none;
-  text-align: center;
-  font-weight: bold;
-  text-decoration: none;
+  width:90px;
+  border: 2px solid #003d69;
+  background-color: white;
+  color: #003d69;
+  transition: .3s;
+  padding: 7px 10px;
+  font-size: 16px;
+  cursor: pointer;
+  &:hover{
+    background:#003d69;
+    color:white;
+  }
+  margin-top:15px;
+  margin-right:30px;
 }
 
-.container button:hover{
-  background-color: rgb(180, 179, 179);
-  cursor: pointer;
-}

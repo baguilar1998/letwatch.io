@@ -71,42 +71,42 @@ export class CreateRoomFormComponent implements OnInit {
       onSubmit({value, valid}: {value: Room, valid: boolean}) {
         this.loadingService.startLoading();
         setTimeout(() => {
-          // If this is a new user, add them to the database
-          if (this.userService.getCurrentUser()._id === '') {
-            this.userService.addUser();
             this.userService.getCurrentUser().isHost = true;
-          }
-
-
-          // Creating a room object to store in the database
-          const newRoom: Room = {
-            _id: '',
-            roomName: value.roomName,
-            host: this.userService.getCurrentUser(),
-            currentUsers: [],
-            invitationCode: this.invitationCode,
-            password: value.password,
-            maxCapacity: 2
-          };
-
-          this._createRoomForm.setRoom(newRoom);
-
-          // Storing the room object in the database
-          this._createRoomForm.createRoom(newRoom)
-          .subscribe(
-              (res) => {
-                this.loadingService.stopLoading();
-                this.success = res;
-                this._createRoomForm.getRoom()._id = res._id;
-                console.log(this._createRoomForm.getRoom());
-                this.router.navigate(['/room', this.invitationCode]);
-              },
-              (err) => {
-                console.log(err);
-                this.error = err;
-                this.loadingService.stopLoading();
+            this.userService.addUser().subscribe((res) => {
+              // console.log(res);
+              if (res.hasOwnProperty('_id')) {
+                this.userService.getCurrentUser()._id = res._id;
               }
-          );
+                        // Creating a room object to store in the database
+              const newRoom: Room = {
+                _id: '',
+                roomName: value.roomName,
+                host: this.userService.getCurrentUser(),
+                currentUsers: [],
+                invitationCode: this.invitationCode,
+                password: value.password,
+                maxCapacity: 2
+              };
+
+              this._createRoomForm.setRoom(newRoom);
+
+              // Storing the room object in the database
+              this._createRoomForm.createRoom(newRoom)
+              .subscribe(
+                  (results) => {
+                    this.loadingService.stopLoading();
+                    this.loadingService.isHome = false;
+                    this.success = res;
+                    this._createRoomForm.getRoom()._id = res._id;
+                    this.router.navigate(['/room', this.invitationCode]);
+                  },
+                  (error) => {
+                    console.log(error);
+                    this.error = error;
+                    this.loadingService.stopLoading();
+                  }
+              );
+            });
         }, 1000);
 
     }

@@ -5,6 +5,7 @@ import { CommonModule } from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { YoutubePlayerModule } from 'ngx-youtube-player';
 import { SafePipe } from './room/SafePipe';
 
 import { AppComponent } from './app.component';
@@ -28,6 +29,8 @@ import { LoadingComponent } from './loading/loading.component';
 
 import { ContactComponent } from './home-page/contact/contact.component';
 import { HelpComponent } from './home-page/help/help.component';
+import { CreditsComponent } from './home-page/credits/credits.component';
+import { VideoComponent } from './room/video/video.component';
 
 
 
@@ -48,7 +51,9 @@ import { HelpComponent } from './home-page/help/help.component';
     NotFoundComponent,
     LoadingComponent,
     ContactComponent,
-    HelpComponent
+    HelpComponent,
+    CreditsComponent,
+    VideoComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +62,7 @@ import { HelpComponent } from './home-page/help/help.component';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
+    YoutubePlayerModule
   ],
   providers: [
     RoomService,

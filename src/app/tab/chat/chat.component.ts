@@ -16,7 +16,7 @@ export class ChatComponent implements OnInit {
       user: {
         _id: '',
         nickname: 'Brian',
-        avatarColor: 'green',
+        iconName: 'm1',
         isHost: false
       },
       message: 'Hello there !'
@@ -25,7 +25,7 @@ export class ChatComponent implements OnInit {
       user: {
         _id: '',
         nickname: 'Mike',
-        avatarColor: 'blue',
+        iconName: 'm2',
         isHost: false
       },
       message: 'What\'s up?'
@@ -52,7 +52,7 @@ export class ChatComponent implements OnInit {
      user: {
        _id: '',
         nickname: 'Brian',
-        avatarColor: 'green',
+        iconName: 'm1',
         isHost: false
       },
       message: response.target.value

@@ -11,17 +11,17 @@ export class HomePageComponent implements OnInit {
 
   nickname: string;
   componentState: string;
-  colors: string [];
+  currentIcon: string;
+  icons: string [];
   index: number;
   isValid: boolean;
-  styles;
 
   constructor(private userService: UserService,
   private loadingService: LoadingService) {
     this.componentState = 'home';
-    this.colors = ['black', 'blue', 'red', 'yellow', 'green', 'orange', 'purple'];
+    this.icons = ['m1', 'f1', 'm2', 'f2', 'm3', 'f3', 'm4', 'f4'];
     this.index = 0;
-    this.styles = { color: this.colors[this.index] };
+    this.currentIcon = this.icons[this.index];
     this.isValid = true;
   }
 
@@ -48,36 +48,32 @@ export class HomePageComponent implements OnInit {
      * Creates/Updates User
      */
     if (!this.userService.isUserCreated) {
-      this.userService.createUser(this.nickname, this.colors[this.index]);
+      this.userService.createUser(this.nickname, this.icons[this.index]);
       this.userService.isUserCreated = true;
     } else if (this.componentState ===  'home') {
-      this.userService.updateUser(this.nickname, this.colors[this.index]);
+      this.userService.updateUser(this.nickname, this.icons[this.index]);
     }
 
     // Changes the component state
     this.componentState = state;
   }
 
-  /**
-   * Changes the avatar's color to its previous color
-   */
-  previousColor() {
+
+  previousIcon() {
     this.index--;
     if (this.index === -1) {
-      this.index = 6;
+      this.index = 7;
     }
-    this.styles['color'] = this.colors[this.index];
+    this.currentIcon = this.icons[this.index];
   }
 
-  /**
-   * Changes the avatar's color to the next available color
-   */
-  nextColor() {
+
+  nextIcon() {
     this.index++;
-    if (this.index === 7) {
+    if (this.index === 8) {
       this.index = 0;
     }
-    this.styles['color'] = this.colors[this.index];
+    this.currentIcon = this.icons[this.index];
   }
 
 }

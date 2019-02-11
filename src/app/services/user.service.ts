@@ -9,6 +9,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '../../../node_modules/@angular/common/http';
 import { User } from '../tsmodels/user';
+import { Observable } from '../../../node_modules/rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -26,13 +27,13 @@ export class UserService {
    * Creates a new user as the user goes through
    * the landing-page
    * @param name the user's nickname
-   * @param color the user's avatar color
+   * @param icon the user's avatar
    */
-  createUser(name: string, color: string): void {
+  createUser(name: string, icon: string): void {
     this.user = {
       _id: '',
       nickname: name,
-      avatarColor: color,
+      iconName: icon,
       isHost: false
     };
   }
@@ -41,11 +42,11 @@ export class UserService {
    * Updates the user if they decide to make
    * any changes along the way
    * @param name the user's nickname
-   * @param color the user's avatar color
+   * @param icon the user's avatar
    */
-  updateUser(name: string, color: string): void {
+  updateUser(name: string, icon: string): void {
     this.user.nickname = name;
-    this.user.avatarColor = color;
+    this.user.iconName = icon;
   }
 
   /**
@@ -60,14 +61,8 @@ export class UserService {
    * Stores the user inside the database
    * once they create or enter a room
    */
-  addUser(): void {
-    this.http.post<any>('//localhost:3000/api/user', this.user).subscribe((res) => {
-      // console.log(res);
-      if (res.hasOwnProperty('_id')) {
-        this.user._id = res._id;
-      }
-      console.log(res);
-    });
+  addUser(): Observable<any> {
+    return this.http.post<any>('//localhost:3000/api/user', this.user);
   }
 
   /**
