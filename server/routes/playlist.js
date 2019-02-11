@@ -47,24 +47,23 @@ router.post('/addVideo', (req,res,next)=>{
 });
 
 /**
- * Retrives playlist data from a room
+ * Retrieves playlist data from a room
  */
-router.post('/getVideos', (req,res,next)=>{
-  Playlist.findOne({"roomId":req.body.roomId}).then(playlist=>{
+router.get('/getVideos/:roomId', (req,res,next)=>{
+  Playlist.findOne({"roomId":req.params.roomId}).then(playlist=>{
     if(!playlist){
-      res.status(201).json({
+      res.send({
         booleanValue:false,
         currentPlaylist:[]
       });
     }
-    res.status(201).json({
+    res.send({
       booleanValue:true,
       currentPlaylist:playlist
     });
   }).catch(err=>{
     console.log("An error occured gathering all the videos");
     console.log(err);
-    res.status(400).send("Error has occured");
   });
 });
 
@@ -77,34 +76,36 @@ router.post('/getVideos', (req,res,next)=>{
  * Currently working by a manual id, requires a playlist ID to change
  * 
  */
-router.put('/removeVideo', (req,res,next)=>{
+router.put('/removeVideo', (req,res)=>{
   const roomId = req.body.roomId;
   const vidToRemove = req.body.video;
 
-  Playlist.findById("5c57a30bccd261e3a4b89336").then(playlist=>{
+
+  Playlist.find({roomId: roomId}).then(playlist=>{
     if(!playlist){
-      res.status(201).json({
+      res.send({
         booleanValue:false,
         currentPlaylist:[]
       });
     }
-
     const videos = playlist.videos.filter((video) => video.videoId != vidToRemove.videoId);
 
-
     Playlist.findByIdAndUpdate(
-      {_id: "5c57a30bccd261e3a4b89336"},
-      {videos: videos},
+      {_id: playlist._id},
+      {videos: [videos]},
       {returnNewDocument: true}
-    ).then((res) => {
-      res.send(res);
+    ).then((updatedList) => {
+
+      console.log(updatedList);
+      // res.send(updatedList);
+
+
+
     }).catch((err) => {
-      res.status(400).send("Error updating the playlist")
+      res.send("Error updating the playlist")
     });
-
-
   }).catch(err=>{
-    res.status(400).send("Error occured finding the playlist");
+    res.send("Error occured finding the playlist");
   });
 });
 

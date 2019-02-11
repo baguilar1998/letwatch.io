@@ -20,11 +20,11 @@ export class VideoQueueComponent implements OnInit, OnChanges {
 
 
   ngOnInit() {
-
+    // this.playlistService.getPlaylist();
   }
 
   ngOnChanges() {
-    this.playlistService.getPlaylist();
+    // this.playlistService.getPlaylist();
   }
 
 

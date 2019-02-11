@@ -71,10 +71,10 @@ export class TabComponent implements OnInit {
     vid.videoId is the key associated to the video object down below
     incomingVideo.id.videoId is the key/value associated to Youtube's API
     */
-    const temp = [] = this.videosForQueue.filter((vid) => (vid.videoId == incomingVideo.id.videoId));
+    const filteredVideos = [] = this.videosForQueue.filter((vid) => (vid.videoId == incomingVideo.id.videoId));
 
     // If the temp size is 0 it means no video match the id, therefore add it
-   if (temp.length === 0) {
+   if (filteredVideos.length === 0) {
       const video: Video = {
         title: incomingVideo.snippet.title,
         creator: incomingVideo.snippet.channelTitle,
@@ -84,10 +84,11 @@ export class TabComponent implements OnInit {
       };
       this.playlistService.addVideo(video).subscribe(
         (res) => {
-          this.playlistService.currentPlaylist.push(video);
+          this.playlistService.addCurrentPlaylist(video);
           this.displayVideoStatus(true, false);
         },
         (err) => {
+          // Will change to display across the screen
           window.alert('Error adding in a video');
           console.log(err);
         });

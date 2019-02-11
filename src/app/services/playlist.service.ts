@@ -9,11 +9,17 @@ import { Observable } from '../../../node_modules/rxjs';
 })
 export class PlaylistService {
 
-  currentPlaylist: Video [];
+  currentPlaylist: Video [] = [];
   constructor(private http: HttpClient,
   private roomService: RoomService) {
     this.getPlaylist();
    }
+
+
+   public addCurrentPlaylist(video){
+      this.currentPlaylist.push(video);
+   }
+
 
   /**
    * Adds a video to the playlist and stores it
@@ -25,6 +31,7 @@ export class PlaylistService {
       video: v,
       roomId: this.roomService.getRoom()._id
     };
+
     return this.http.post<any>('//localhost:3000/api/playlist/addVideo', requiredInfo);
   }
 
@@ -34,11 +41,13 @@ export class PlaylistService {
    * from the queue
    */
   removeVideo(v: Video): Observable<any> {
-    const requiredInfo = {
+   const roomId = this.roomService.getRoom()._id
+   const requiredInfo = {
       video: v,
-      roomId: this.roomService.getRoom()._id
+      roomId: roomId,
     };
-    return this.http.put<any>('//localhost:3000/api/playlist/removeVideo', requiredInfo);
+
+    return this.http.put<any>(`//localhost:3000/api/playlist/removeVideo/`, requiredInfo,);
   }
   /**
    * Gets the current state of the playlist in the current room
@@ -47,17 +56,16 @@ export class PlaylistService {
    * the service
    */
   getPlaylist(): void {
-    const requiredInfo = {
-      roomId: this.roomService.getRoom()._id
-    };
-    this.http.post<any>('//localhost:3000/api/playlist/getVideos', requiredInfo).subscribe((res) => {
+    const roomId = this.roomService.getRoom()._id;
+    this.http.get<any>(`//localhost:3000/api/playlist/getVideos/${roomId}`).subscribe((res) => {
       // If there is a playlist available, set the current playlist to the playlist in the database
+
+      console.log(res);
       if (res.booleanValue) {
         this.currentPlaylist = res.currentPlaylist.videos;
       } else {
         this.currentPlaylist = [];
       }
     });
-  }
-
+  };
 }
