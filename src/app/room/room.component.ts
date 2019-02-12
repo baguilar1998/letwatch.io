@@ -21,6 +21,9 @@ export class RoomComponent implements OnInit, OnDestroy {
   @Input()
   videosFound = [];
 
+  //Test for socket io
+
+
 
   constructor(private youtube: RoomService) {}
 

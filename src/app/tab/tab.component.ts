@@ -19,9 +19,6 @@ export class TabComponent implements OnInit {
   // Sends to the search component
   @Input() videosFound;
 
-  // These videos are added in a queue like fashion - FIFO
-  videosForQueue = [];
-
   // Changes the status when the user adds/removes a video
   videoAdded: boolean;
   videoRemoved: boolean;
@@ -57,7 +54,6 @@ export class TabComponent implements OnInit {
   videoToQueue(event) {
 
     const incomingVideo = event.video;
-    console.log(incomingVideo);
 
     // Temporary fix for videos that render in and are channels
     if (incomingVideo.id.channelId) {
@@ -71,10 +67,13 @@ export class TabComponent implements OnInit {
     vid.videoId is the key associated to the video object down below
     incomingVideo.id.videoId is the key/value associated to Youtube's API
     */
-    const filteredVideos = [] = this.videosForQueue.filter((vid) => (vid.videoId == incomingVideo.id.videoId));
 
-    // If the temp size is 0 it means no video match the id, therefore add it
-   if (filteredVideos.length === 0) {
+   const videoFound = this.playlistService.currentPlaylist.filter((playlist) => {
+     return playlist.videoId === incomingVideo.id.videoId;
+   });
+
+    // If no video found, add it
+   if (videoFound.length === 0) {
       const video: Video = {
         title: incomingVideo.snippet.title,
         creator: incomingVideo.snippet.channelTitle,
@@ -98,7 +97,11 @@ export class TabComponent implements OnInit {
 
   // Once user clicks on garbage can icon, updates the current videos
   removeVideoInQueue(vidToRemove) {
-    this.videosForQueue = this.videosForQueue.filter((vid) => vid.videoId != vidToRemove.id);
+    this.playlistService.removeVideo(vidToRemove).subscribe((updatedList) => {
+      // this.playlistService.currentPlaylist = updatedList;
+      console.log(JSON.parse(updatedList));
+    })
+    // this.playlistService.currentPlaylist = this.playlistService.currentPlaylist.filter((vid) => vid.videoId != vidToRemove.id);
     this.displayVideoStatus(false, true);
   }
 

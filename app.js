@@ -6,6 +6,10 @@ const mongoose = require('mongoose');
 const path = require('path');
 const router = express.Router();
 
+//Package required for socket.io
+const http = require('http').Server(express);
+const io = require('socket.io')(http);
+
 
 var app = express();
 app.use(bodyParser.json());
@@ -31,6 +35,14 @@ app.use('/api/room',roomRoute);
 app.use('/api', userRoutes);
 app.use('/api/playlist',playlistRoute);
 app.use('/api/email',emailRoute);
+
+
+
+//Listening on connection event for incoming sockets
+io.on("connection", (socket) => {
+  console.log("A user is connected");
+});
+
 
 
 /**

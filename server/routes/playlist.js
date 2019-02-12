@@ -13,7 +13,7 @@ router.post('/addVideo', (req,res,next)=>{
   let video = req.body.video;
 
 
-  Playlist.findOne({"roomId":req.body.roomId}).then(playlist =>{
+  Playlist.findOne({"roomId":req.body.roomId}, (err, playlist) => {
     /**
      * Creates a new playlist and adds tge first video
      * into the playlist if one exist.
@@ -29,17 +29,17 @@ router.post('/addVideo', (req,res,next)=>{
       // Adds the new playlist to the database
       newPlaylist.save().then(results=>{
         console.log("video added");
-        res.status(201).send(newPlaylist);
+        res.send(newPlaylist);
       }).catch(err=>{
         console.log(err);
-        res.status(500).send("Error in creating playlist");
+        res.send("Error in creating playlist");
       });
     }else {
       //Updates the current playlist
       Playlist.updateOne({"roomId": playlist.roomId},{$push:{videos:video}}).then(results=>{
-        res.status(201).send(results);
+        res.send(results);
       }).catch(err=>{
-        res.status(400).send("Error in updated the playlist")
+        res.send("Error in updated the playlist")
       });
     }
 
@@ -49,7 +49,7 @@ router.post('/addVideo', (req,res,next)=>{
 /**
  * Retrieves playlist data from a room
  */
-router.get('/getVideos/:roomId', (req,res,next)=>{
+router.get('/getVideos/:roomId', (req,res )=>{
   Playlist.findOne({"roomId":req.params.roomId}).then(playlist=>{
     if(!playlist){
       res.send({
@@ -81,32 +81,32 @@ router.put('/removeVideo', (req,res)=>{
   const vidToRemove = req.body.video;
 
 
-  Playlist.find({roomId: roomId}).then(playlist=>{
-    if(!playlist){
+  Playlist.findOne({roomId: roomId}, (err, playlist) => {
+    console.log(playlist);
+    if(playlist.length === 0){
       res.send({
         booleanValue:false,
         currentPlaylist:[]
       });
-    }
-    const videos = playlist.videos.filter((video) => video.videoId != vidToRemove.videoId);
+    } else {
 
-    Playlist.findByIdAndUpdate(
-      {_id: playlist._id},
-      {videos: [videos]},
-      {returnNewDocument: true}
-    ).then((updatedList) => {
-
-      console.log(updatedList);
-      // res.send(updatedList);
+      const videos = playlist.videos.filter((vid) => vid.videoId != vidToRemove.videoId);
 
 
-
-    }).catch((err) => {
-      res.send("Error updating the playlist")
+  Playlist.findByIdAndUpdate(playlist._id,{
+        $set: {
+        videos: videos,
+        returnNewDocument: true
+      }
+    }).then((updatedList) => {
+        res.send(updatedList);
+      }).catch((err) => {
+        res.send("Error updating the playlist")
+      });
+    }}).catch(err=>{
+      res.send("Error occured finding the playlist");
     });
-  }).catch(err=>{
-    res.send("Error occured finding the playlist");
-  });
 });
+
 
 module.exports = router;

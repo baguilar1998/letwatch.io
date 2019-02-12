@@ -9,9 +9,6 @@ import { EventEmitter } from '@angular/core';
 })
 export class VideoQueueComponent implements OnInit, OnChanges {
 
-  @Input() videosForQueue = [];
-
-
   //Toggles the list item to display additional buttons
   public isMouseInSearchItem: boolean = false;
   public listItemId: number  = -1;
@@ -24,14 +21,17 @@ export class VideoQueueComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges() {
-    // this.playlistService.getPlaylist();
+    this.playlistService.getPlaylist().subscribe((res) => {
+    //  this.playlistService.currentPlaylist = res;
+     console.log(res)
+    })
   }
 
 
-  // removes video from the playlist
-  // needs to dynamically change
+  
   removeVideo(video){
     this.playlistService.removeVideo(video).subscribe((res) => {
+      this.playlistService.currentPlaylist = res.videos;
       console.log(res);
     })
   }
