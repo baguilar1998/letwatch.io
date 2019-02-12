@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { LoadingService } from '../../services/loading.service';
 import { PlaylistService } from '../../services/playlist.service';
 
@@ -7,7 +7,7 @@ import { PlaylistService } from '../../services/playlist.service';
   templateUrl: './video.component.html',
   styleUrls: ['./video.component.scss']
 })
-export class VideoComponent implements OnInit {
+export class VideoComponent implements OnInit, OnChanges{
 
   embeddedCode: string;
   isVideoPlaying: boolean;
@@ -20,6 +20,12 @@ export class VideoComponent implements OnInit {
   ngOnInit() {
     this.embeddedCode = '8HL8VVjiOC8';
     this.isVideoPlaying = false;
+  }
+
+  ngOnChanges() {
+    /*if (this.playlistService.currentPlaylist.length !== 0) {
+      console.log('a change has been made');
+    }*/
   }
 
   onStateChange(event): void {
