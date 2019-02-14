@@ -68,12 +68,12 @@ export class TabComponent implements OnInit {
     incomingVideo.id.videoId is the key/value associated to Youtube's API
     */
 
-   const videoFound = this.playlistService.currentPlaylist.filter((playlist) => {
+   /*const videoFound = this.playlistService.currentPlaylist.filter((playlist) => {
      return playlist.videoId === incomingVideo.id.videoId;
-   });
+   });*/
 
     // If no video found, add it
-   if (videoFound.length === 0) {
+   // if (videoFound.length === 0) {
       const video: Video = {
         title: incomingVideo.snippet.title,
         creator: incomingVideo.snippet.channelTitle,
@@ -83,7 +83,7 @@ export class TabComponent implements OnInit {
       };
       this.playlistService.addVideo(video).subscribe(
         (res) => {
-          this.playlistService.addCurrentPlaylist(video);
+          this.playlistService.currentPlaylist.push(video);
           this.displayVideoStatus(true, false);
         },
         (err) => {
@@ -91,7 +91,7 @@ export class TabComponent implements OnInit {
           window.alert('Error adding in a video');
           console.log(err);
         });
-    }
+    // }
   }
 
 
