@@ -49,17 +49,16 @@ router.post('/addVideo', (req,res,next)=>{
 /**
  * Retrieves playlist data from a room
  */
-router.get('/getVideos/:roomId', (req,res )=>{
+router.get('/getVideos/:roomId', (req,res,next)=>{
   Playlist.findOne({"roomId":req.params.roomId}).then(playlist=>{
+    let tempPlaylist;
     if(!playlist){
-      res.send({
-        booleanValue:false,
-        currentPlaylist:[]
-      });
+      tempPlaylist = [];
+    }else{
+      tempPlaylist = playlist;
     }
-    res.send({
-      booleanValue:true,
-      currentPlaylist:playlist
+    res.status(201).send({
+      currentPlaylist:tempPlaylist
     });
   }).catch(err=>{
     console.log("An error occured gathering all the videos");
@@ -70,11 +69,11 @@ router.get('/getVideos/:roomId', (req,res )=>{
 
 /**
  * Removes a video from the playlist in the DB
- * 
- * 
+ *
+ *
  * ----WORK NEEDED-----
  * Currently working by a manual id, requires a playlist ID to change
- * 
+ *
  */
 router.put('/removeVideo', (req,res)=>{
   const roomId = req.body.roomId;

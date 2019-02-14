@@ -97,7 +97,7 @@ export class CreateRoomFormComponent implements OnInit {
                     this.loadingService.stopLoading();
                     this.loadingService.isHome = false;
                     this.success = res;
-                    this._createRoomForm.getRoom()._id = res._id;
+                    this._createRoomForm.getRoom()._id = results._id;
                     this.router.navigate(['/room', this.invitationCode]);
                   },
                   (error) => {

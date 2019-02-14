@@ -16,11 +16,11 @@ export class PlaylistService {
   currentPlaylist: Video [] = [];
   constructor(private http: HttpClient,
   private roomService: RoomService) {
-    // this.getPlaylist();
+    this.getPlaylist();
    }
 
 
-   public addCurrentPlaylist(video){
+   public addCurrentPlaylist(video) {
       this.currentPlaylist.push(video);
    }
 
@@ -47,7 +47,7 @@ export class PlaylistService {
    * from the queue
    */
   removeVideo(v: Video): Observable<any> {
-   const roomId = this.roomService.getRoom()._id
+   const roomId = this.roomService.getRoom()._id;
    const requiredInfo = {
       video: v,
       roomId: roomId,
@@ -61,8 +61,8 @@ export class PlaylistService {
    * initialized as an empty array. Code is executed at the beginning of
    * the service
    */
-  getPlaylist(){
+  getPlaylist() {
     const roomId = this.roomService.getRoom()._id;
-    return this.http.get<any>(`//localhost:3000/api/playlist/getVideos/${roomId}`);
-  };
+    return this.http.get<any>(`//localhost:3000/api/playlist/getVideos/` + roomId);
+  }
 }

@@ -44,7 +44,7 @@ export class JoinRoomComponent implements OnInit {
           this.loadingService.isHome = false;
           this.roomService.setRoom(res);
           this.userService.addUser();
-          this.router.navigate(['/room', 'test']);
+          this.router.navigate(['/room', this.roomService.getRoom().invitationCode]);
         },
         (err) => {
           console.log('Room does not exist');
