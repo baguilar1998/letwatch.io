@@ -16,12 +16,7 @@ export class VideoQueueComponent implements OnInit, OnChanges {
   constructor(private playlistService: PlaylistService) {}
 
 
-  ngOnInit() {
-    this.playlistService.getPlaylist().subscribe((res) => {
-      this.playlistService.currentPlaylist = res.currentPlaylist.videos;
-      console.log(res);
-     });
-  }
+  ngOnInit() {}
 
   ngOnChanges() {
     /*this.playlistService.getPlaylist().subscribe((res) => {

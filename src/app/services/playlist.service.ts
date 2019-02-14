@@ -15,7 +15,12 @@ export class PlaylistService {
 
   currentPlaylist: Video [] = [];
   constructor(private http: HttpClient,
-  private roomService: RoomService) {}
+  private roomService: RoomService) {
+    this.getPlaylist().subscribe((res) => {
+      this.currentPlaylist = res.currentPlaylist.videos;
+      console.log(res);
+     });
+  }
 
 
    public addCurrentPlaylist(video) {

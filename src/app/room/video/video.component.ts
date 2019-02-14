@@ -18,6 +18,9 @@ export class VideoComponent implements OnInit, OnChanges{
   private playlistService: PlaylistService) { }
 
   ngOnInit() {
+    /*if (this.playlistService.currentPlaylist.length !== 0) {
+      this.embeddedCode = this.playlistService.currentPlaylist[0].videoId;
+    }*/
     this.embeddedCode = '8HL8VVjiOC8';
     this.isVideoPlaying = false;
   }
