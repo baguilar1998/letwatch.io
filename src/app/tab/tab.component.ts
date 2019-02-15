@@ -84,6 +84,7 @@ export class TabComponent implements OnInit {
       this.playlistService.addVideo(video).subscribe(
         (res) => {
           this.playlistService.currentPlaylist.push(video);
+          this.playlistService.videosInPlaylist = true;
           this.displayVideoStatus(true, false);
         },
         (err) => {

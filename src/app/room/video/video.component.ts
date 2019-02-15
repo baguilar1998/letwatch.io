@@ -7,7 +7,7 @@ import { PlaylistService } from '../../services/playlist.service';
   templateUrl: './video.component.html',
   styleUrls: ['./video.component.scss']
 })
-export class VideoComponent implements OnInit, OnChanges{
+export class VideoComponent implements OnInit, OnChanges {
 
   embeddedCode: string;
   isVideoPlaying: boolean;
@@ -18,16 +18,15 @@ export class VideoComponent implements OnInit, OnChanges{
   private playlistService: PlaylistService) { }
 
   ngOnInit() {
-    /*if (this.playlistService.currentPlaylist.length !== 0) {
-      this.embeddedCode = this.playlistService.currentPlaylist[0].videoId;
-    }*/
     this.embeddedCode = '8HL8VVjiOC8';
     this.isVideoPlaying = false;
   }
 
   ngOnChanges() {
-    /*if (this.playlistService.currentPlaylist.length !== 0) {
-      console.log('a change has been made');
+    /*if (this.playlistService.videosInPlaylist) {
+      console.log(this.playlistService.currentPlaylist);
+      this.embeddedCode = this.playlistService.currentPlaylist[0].videoId;
+      console.log(this.embeddedCode);
     }*/
   }
 

@@ -12,12 +12,18 @@ export class PlaylistService {
 
   headers: Headers;
   options: RequestOptions;
+  videosInPlaylist:boolean;
 
   currentPlaylist: Video [] = [];
   constructor(private http: HttpClient,
   private roomService: RoomService) {
     this.getPlaylist().subscribe((res) => {
-      this.currentPlaylist = res.currentPlaylist.videos;
+      this.currentPlaylist = res.currentPlaylist;
+      if (this.currentPlaylist.length === 0) {
+        this.videosInPlaylist = false;
+      } else {
+         this.videosInPlaylist = true;
+      }
       console.log(res);
      });
   }

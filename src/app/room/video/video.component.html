@@ -1,9 +1,14 @@
-<app-loading style="height:10vh"></app-loading>
-<youtube-player
-id="videoPlayer"
-(ready)="savePlayer($event)"
-(change)="onStateChange($event)"
-[videoId]="this.embeddedCode" width="800" height="600"></youtube-player>
+<div class="video-container" *ngIf="this.playlistService.videosInPlaylist">
+  <app-loading style="height:10vh"></app-loading>
+  <youtube-player
+  id="videoPlayer"
+  (ready)="savePlayer($event)"
+  (change)="onStateChange($event)"
+  [videoId]="this.embeddedCode" width="800" height="600"></youtube-player>
+</div>
+<div class="select-video" *ngIf="!this.playlistService.videosInPlaylist">
+  Choose a video !
+</div>
 <div class="video-controls">
   <button *ngIf="!isVideoPlaying" (click)="playVideo()" class="video-buttons">
       <i class="fas fa-play fa-2x"></i>

@@ -10,6 +10,11 @@ var PlaylistSchema = new mongoose.Schema({
   videos: {
     type:Array,
     default: []
+  },
+  createdAt: {
+    type: Date,
+    expires: '8h',
+    default: Date.now
   }
 });
 

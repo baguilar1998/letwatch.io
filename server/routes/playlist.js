@@ -58,7 +58,7 @@ router.get('/getVideos/:roomId', (req,res,next)=>{
       tempPlaylist = playlist;
     }
     res.status(201).send({
-      currentPlaylist:tempPlaylist
+      currentPlaylist:tempPlaylist.videos
     });
   }).catch(err=>{
     console.log("An error occured gathering all the videos");
