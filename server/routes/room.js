@@ -75,6 +75,12 @@ router.get("/:invitationCode", (req, res) => {
         }else {
           console.log(room);
           // IMPLEMENT CODE TO PUSH THE USER TO THE ROOM
+            /*Room.updateOne({"_id":room._id },{$push:{users:req.body.user}}).then(finalResult=>{
+            res.status(200).send(room);
+          }).catch(err=>{
+            console.log("There was an error adding the user to the room");
+            console.log(err);
+          });*/
           res.status(200).send(room);
         }
     });
