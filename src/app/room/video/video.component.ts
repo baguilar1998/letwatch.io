@@ -15,7 +15,12 @@ export class VideoComponent implements OnInit, OnChanges {
   private ytEvent: YT.Player;
 
   constructor(private loadingService: LoadingService,
-  private playlistService: PlaylistService) { }
+  private playlistService: PlaylistService) {
+    this.playlistService.videoStatus.subscribe((data) => {
+      this.playlistService.videosInPlaylist = data ;
+      this.nextVideo();
+    });
+  }
 
   ngOnInit() {
     this.embeddedCode = '8HL8VVjiOC8';
@@ -51,15 +56,30 @@ export class VideoComponent implements OnInit, OnChanges {
   }
 
   public nextVideo(): void {
-    this.pauseVideo();
+    if (this.playlistService.currentPlaylist.length === 0) {
+      return;
+    }
+    if (this.isVideoPlaying) {
+      this.pauseVideo();
+    }
     const currentPlayer = document.getElementById('videoPlayer');
     currentPlayer.style.display = 'none';
     this.loadingService.startLoading();
     setTimeout(() => {
-      this.embeddedCode = 'TYeul8ZaLrU';
-      this.player.cueVideoById(this.embeddedCode);
-      this.loadingService.stopLoading();
-      currentPlayer.style.display = 'block';
+      const video = this.playlistService.currentPlaylist[0];
+      this.playlistService.removeVideo(video).subscribe((results) => {
+        this.embeddedCode = this.playlistService.currentPlaylist[0].videoId;
+        this.playlistService.currentPlaylist.shift();
+        this.player.cueVideoById(this.embeddedCode);
+        this.loadingService.stopLoading();
+        currentPlayer.style.display = 'block';
+      },
+      (err) => {
+        console.log('an error has occured');
+        this.loadingService.stopLoading();
+        currentPlayer.style.display = 'block';
+        console.log(err);
+      });
     }, 2000);
   }
 

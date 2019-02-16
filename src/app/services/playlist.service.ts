@@ -3,7 +3,7 @@ import { Video } from '../tsmodels/video';
 import { HttpClient, HttpErrorResponse} from '../../../node_modules/@angular/common/http';
 import {Http, Response, Headers, RequestOptions, URLSearchParams} from '@angular/http';
 import { RoomService } from './room.service';
-import { Observable } from '../../../node_modules/rxjs';
+import { Observable, Subject } from '../../../node_modules/rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -12,21 +12,25 @@ export class PlaylistService {
 
   headers: Headers;
   options: RequestOptions;
-  videosInPlaylist:boolean;
+  videosInPlaylist: boolean;
+  videoStatus = new Subject<boolean>();
 
   currentPlaylist: Video [] = [];
   constructor(private http: HttpClient,
   private roomService: RoomService) {
     // Comment out the getPlaylist function to have access to the room component
-    /*this.getPlaylist().subscribe((res) => {
+    this.getPlaylist().subscribe((res) => {
       this.currentPlaylist = res.currentPlaylist;
+      if(!this.currentPlaylist) {
+        this.currentPlaylist = [];
+      }
       if (this.currentPlaylist.length === 0) {
         this.videosInPlaylist = false;
       } else {
          this.videosInPlaylist = true;
       }
       console.log(res);
-     });*/
+     });
   }
 
 

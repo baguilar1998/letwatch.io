@@ -81,10 +81,12 @@ export class TabComponent implements OnInit {
         videoId: incomingVideo.id.videoId,
         imageUrl: incomingVideo.snippet.thumbnails.default.url
       };
+      console.log(this.playlistService.currentPlaylist);
       this.playlistService.addVideo(video).subscribe(
         (res) => {
           this.playlistService.currentPlaylist.push(video);
-          this.playlistService.videosInPlaylist = true;
+          // this.playlistService.videosInPlaylist = true;
+          this.playlistService.videoStatus.next(true);
           this.displayVideoStatus(true, false);
         },
         (err) => {
