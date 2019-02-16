@@ -37,20 +37,32 @@ export class JoinRoomComponent implements OnInit {
   join(): void {
     this.loadingService.startLoading();
     setTimeout(() => {
-      this.roomService.joinRoom(this.invitationCode).subscribe(
-        (res) => {
-          console.log('Successful! Joining room');
-          this.loadingService.stopLoading();
-          this.loadingService.isHome = false;
-          this.roomService.setRoom(res);
-          this.userService.addUser();
-          this.router.navigate(['/room', this.roomService.getRoom().invitationCode]);
-        },
-        (err) => {
-          console.log('Room does not exist');
-          this.loadingService.stopLoading();
+      this.userService.addUser().subscribe(
+        (user) => {
+        // Add the user to the database
+        console.log(user);
+        if (user.hasOwnProperty('_id')) {
+          this.userService.getCurrentUser()._id = user._id;
         }
-      );
+        this.roomService.joinRoom(this.invitationCode).subscribe(
+          (results) => {
+            console.log('Successful! Joining room');
+            this.loadingService.stopLoading();
+            this.loadingService.isHome = false;
+            this.roomService.setRoom(results);
+            this.router.navigate(['/room', this.roomService.getRoom().invitationCode]);
+          },
+          (err) => {
+            console.log('Room does not exist');
+            this.loadingService.stopLoading();
+          }
+        );
+      },
+      (error) =>  {
+        console.log(error);
+        window.alert('An error occured joining the room');
+      });
+
     }, 1000);
   }
 

@@ -73,6 +73,8 @@ router.get("/:invitationCode", (req, res) => {
           console.log("room was not found");
           res.send("Error room was not found");
         }else {
+          console.log(room);
+          // IMPLEMENT CODE TO PUSH THE USER TO THE ROOM
           res.status(200).send(room);
         }
     });
