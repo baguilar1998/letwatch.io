@@ -19,16 +19,16 @@
       <!--List Of Buttons-->
       <ul class="button-list">
         <li class="list-item">
-          <button (click)="changeContent('chat')">Chat</button>
+          <button [class.active]="currentContent === 'chat'" (click)="changeContent('chat')">Chat</button>
         </li>
         <li class="list-item">
-          <button (click)="changeContent('queue')">Video Queue</button>
+          <button [class.active]="currentContent === 'queue'" (click)="changeContent('queue')">Video Queue</button>
         </li>
         <li class="list-item">
-          <button (click)="changeContent('users')">Users</button>
+          <button [class.active]="currentContent === 'users'" (click)="changeContent('users')">Users</button>
         </li>
         <li class="list-item">
-          <button (click)="changeContent('search')">Search</button>
+          <button [class.active]="currentContent === 'search'" (click)="changeContent('search')">Search</button>
         </li>
       </ul>
     </div>
