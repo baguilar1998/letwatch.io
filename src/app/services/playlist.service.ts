@@ -19,7 +19,7 @@ export class PlaylistService {
   constructor(private http: HttpClient,
   private roomService: RoomService) {
     // Comment out the getPlaylist function to have access to the room component
-    this.getPlaylist().subscribe((res) => {
+    /*this.getPlaylist().subscribe((res) => {
       this.currentPlaylist = res.currentPlaylist;
       if(!this.currentPlaylist) {
         this.currentPlaylist = [];
@@ -30,7 +30,7 @@ export class PlaylistService {
          this.videosInPlaylist = true;
       }
       console.log(res);
-     });
+     });*/
   }
 
 

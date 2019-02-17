@@ -1,14 +1,19 @@
+<!--Video Player-->
 <div class="video-container" *ngIf="this.playlistService.videosInPlaylist">
-  <app-loading style="height:10vh"></app-loading>
+  <app-loading></app-loading>
   <youtube-player
   id="videoPlayer"
   (ready)="savePlayer($event)"
   (change)="onStateChange($event)"
   [videoId]="this.embeddedCode" width="800" height="600"></youtube-player>
 </div>
+<!--Prompt-->
 <div class="select-video" *ngIf="!this.playlistService.videosInPlaylist">
-  Choose a video !
+  <div class="prompt">
+      <h2>Add videos to the playlist and click next to begin!</h2>
+  </div>
 </div>
+<!--Video Controls-->
 <div class="video-controls">
   <button *ngIf="!isVideoPlaying" (click)="playVideo()" class="video-buttons">
       <i class="fas fa-play fa-2x"></i>
@@ -19,6 +24,6 @@
   <button (click)="nextVideo()" class="video-buttons">
     <i class="fas fa-forward fa-2x"></i>
   </button>
-  <!--<input type="range" min="1" max="100" value = "0" class="slider" id="videoBar">-->
+  <input type="range" min="1" max="100" value = "0" class="slider" id="videoBar">
 </div>
 

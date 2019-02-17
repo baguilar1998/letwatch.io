@@ -74,6 +74,8 @@ export class TabComponent implements OnInit {
 
     // If no video found, add it
    // if (videoFound.length === 0) {
+
+     // Create a video object that matches the database model and typescript model
       const video: Video = {
         title: incomingVideo.snippet.title,
         creator: incomingVideo.snippet.channelTitle,
@@ -81,12 +83,12 @@ export class TabComponent implements OnInit {
         videoId: incomingVideo.id.videoId,
         imageUrl: incomingVideo.snippet.thumbnails.default.url
       };
-      console.log(this.playlistService.currentPlaylist);
+
       this.playlistService.addVideo(video).subscribe(
         (res) => {
           this.playlistService.currentPlaylist.push(video);
           // this.playlistService.videosInPlaylist = true;
-          this.playlistService.videoStatus.next(true);
+          // this.playlistService.videoStatus.next(true);
           this.displayVideoStatus(true, false);
         },
         (err) => {
@@ -94,6 +96,7 @@ export class TabComponent implements OnInit {
           window.alert('Error adding in a video');
           console.log(err);
         });
+
     // }
   }
 
@@ -103,18 +106,18 @@ export class TabComponent implements OnInit {
     this.playlistService.removeVideo(vidToRemove).subscribe((updatedList) => {
       // this.playlistService.currentPlaylist = updatedList;
       console.log(JSON.parse(updatedList));
-    })
+    });
     // this.playlistService.currentPlaylist = this.playlistService.currentPlaylist.filter((vid) => vid.videoId != vidToRemove.id);
     this.displayVideoStatus(false, true);
   }
 
 
-  //Changes the display message of the added text
-  displayVideoStatus(isAdded: boolean, isRemoved: boolean, ){
+  // Changes the display message of the added text
+  displayVideoStatus(isAdded: boolean, isRemoved: boolean) {
     this.videoRemoved = isRemoved;
     this.videoAdded = isAdded;
 
-    if(isAdded){
+    if (isAdded) {
       setTimeout(() => {
         this.videoAdded = false;
       }, 700);
