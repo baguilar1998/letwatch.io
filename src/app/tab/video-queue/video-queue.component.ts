@@ -9,9 +9,9 @@ import { EventEmitter } from '@angular/core';
 })
 export class VideoQueueComponent implements OnInit, OnChanges {
 
-  //Toggles the list item to display additional buttons
-  public isMouseInSearchItem: boolean = false;
-  public listItemId: number  = -1;
+  // Toggles the list item to display additional buttons
+  public isMouseInSearchItem = false;
+  public listItemId = -1;
 
   constructor(private playlistService: PlaylistService) {}
 
@@ -38,14 +38,14 @@ export class VideoQueueComponent implements OnInit, OnChanges {
   }
 
 
-  mouseEnterDisplayButtons(val: string, id: number){
-    if(val == "enteringSearchItem"){
+  mouseEnterDisplayButtons(val: string, id: number) {
+    if (val === 'enteringSearchItem') {
       this.listItemId = id;
     }
   }
 
-  mouseLeaveHideButtons(val : string) {
-    if(val == "leavingSearchItem"){
+  mouseLeaveHideButtons(val: string) {
+    if (val === 'leavingSearchItem') {
       this.listItemId = -1;
     }
   }

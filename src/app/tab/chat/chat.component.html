@@ -4,8 +4,18 @@
   <div class="messages" *ngFor="let m of messages">
     <div class="message-item">
       <!--IMAGE ICON GETS DISPLAYED-->
-      <label>{{m.user.nickname}}: </label>
-      <label>{{m.message}}</label>
+      <div class="message-box" [ngSwitch]="m.user.iconName">
+        <img src="../../assets/avatars/avatar-1.png" *ngSwitchCase="'m1'">
+        <img src="../../assets/avatars/avatar-2.png" *ngSwitchCase="'m2'">
+        <img src="../../assets/avatars/avatar-3.png" *ngSwitchCase="'m3'">
+        <img src="../../assets/avatars/avatar-12.png" *ngSwitchCase="'m4'">
+        <img src="../../assets/avatars/avatar-13.png" *ngSwitchCase="'f1'">
+        <img src="../../assets/avatars/avatar-20.png" *ngSwitchCase="'f2'">
+        <img src="../../assets/avatars/avatar-26.png" *ngSwitchCase="'f3'">
+        <img src="../../assets/avatars/avatar-41.png" *ngSwitchCase="'f4'">
+        <label>{{m.user.nickname}}: </label>
+        <label>{{m.message}}</label>
+      </div>
     </div>
   </div>
 </div>

@@ -7,9 +7,8 @@
 
 .message-item{
   padding:5px;
-  border-color: grey;
   /*border-top: 2px solid;*/
-  border-bottom: 2px solid;
+  border-bottom: 2px solid rgb(228, 228, 228);
 }
 
 .user-input input{
@@ -32,4 +31,9 @@
     box-shadow: 0px 0px 3px 1px #c8def0;
 
   }
+}
+
+.message-box img{
+  height:35px;
+  width:35px;
 }
