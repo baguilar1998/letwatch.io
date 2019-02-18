@@ -7,6 +7,7 @@ import { LoadingComponent } from './loading/loading.component';
 import { ContactComponent } from './home-page/contact/contact.component';
 import { HelpComponent } from './home-page/help/help.component';
 import { CreditsComponent } from './home-page/credits/credits.component';
+import { AuthGuard } from './auth.guard';
 const routes: Routes = [
   {
     path: '',
@@ -14,7 +15,8 @@ const routes: Routes = [
   },
   {
     path: 'room/:id',
-    component: RoomComponent
+    component: RoomComponent/*,
+    canActivate: [AuthGuard]*/
   },
   {
     path: 'loading',
@@ -43,7 +45,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
   ],
   exports: [RouterModule],
-  providers: [],
+  providers: [/*AuthGuard*/],
 })
 
 export class AppRoutingModule {}

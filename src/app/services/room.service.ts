@@ -15,7 +15,9 @@ export class RoomService {
   private YOUTUBEURL = 'https://www.googleapis.com/youtube/v3/videos?id=7lCDEYXw3mM&key=AIzaSyAZORwaeof7pQ07NRVo3tEnejFQTuuwqGY';
 
 
-  constructor(private http: HttpClient, private userService: UserService) { }
+  constructor(private http: HttpClient, private userService: UserService) {
+    this.roomData = null;
+  }
 
   /**
    * @returns the current room
