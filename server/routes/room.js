@@ -74,6 +74,7 @@ router.get("/:invitationCode", (req, res) => {
           res.send("Error room was not found");
         }else {
           console.log(room);
+          // If the room is full, the user can not join the room
           if(room.users.length == room.maxCapacity) {
             console.log("The Room is full");
             res.status(401).json({
