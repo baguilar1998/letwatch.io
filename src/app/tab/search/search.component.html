@@ -1,12 +1,12 @@
 <div class="search__wrapper" >
   <div class="search-form__wrapper">
       <input
-      placeholder="Let's start searching..." 
+      placeholder="Let's start searching..."
       class="search-form__input"
       type="text" #searchTag>
-      <button 
+      <button
       class="search-form__button"
-      (click)="searchHandler.emit({search:searchTag.value})" 
+      (click)="searchHandler.emit({search:searchTag.value})"
       type="submit">Search</button>
   </div>
 
@@ -19,7 +19,7 @@
     *ngFor="let video of videosFound; let i = index"
     [attr.data-index]="i"
     (mouseenter)="mouseEnterDisplayButtons('enteringSearchItem', i)"
-    (mouseleave)="mouseLeaveHideButtons('leavingSearchItem')"  
+    (mouseleave)="mouseLeaveHideButtons('leavingSearchItem')"
     >
 
       <div
@@ -41,19 +41,19 @@
         class="video-search__btn-container">
           <img
           src="../../../assets/room/video-search/playlist.svg"
-          class="video-search__btn" 
+          class="video-search__btn"
           (click)="addVideoToQueue.emit({video: video})" />
         </div>
-        <div
+        <!--<div
         class="video-search__btn-container">
           <img
           (click)="removeVideoInQueue.emit({id: video.id.videoId})"
           class="video-search__btn"
           src="../../../assets/room/video-search/bin.svg" />
-        </div>
+        </div>-->
         <div
         class="video-search__btn-container">
-          <img 
+          <img
           class="video-search__btn"
           src="../../../assets/room/video-search/more.svg" />
         </div>
