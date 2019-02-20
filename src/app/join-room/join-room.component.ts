@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { RoomService } from '../services/room.service';
 import { LoadingService } from '../services/loading.service';
+import { Subject } from '../../../node_modules/rxjs';
 
 @Component({
   selector: 'app-join-room',
@@ -13,11 +14,15 @@ export class JoinRoomComponent implements OnInit {
 
   @Output() currentState = new EventEmitter<string>();
   invitationCode: string;
+  notAvailable: boolean;
+  availableSubject: Subject<boolean>;
 
   constructor(private userService: UserService,
     private roomService: RoomService,
     private router: Router,
-    private loadingService: LoadingService ) { }
+    private loadingService: LoadingService) {
+      this.notAvailable = false;
+    }
 
   ngOnInit() {}
 
@@ -53,7 +58,13 @@ export class JoinRoomComponent implements OnInit {
             this.router.navigate(['/room', this.roomService.getRoom().invitationCode]);
           },
           (err) => {
-            console.log('Room does not exist');
+            if (!err.error.isAvailable) {
+              this.notAvailable = true;
+              console.log('Room is full');
+              console.log(this.notAvailable);
+            } else {
+              console.log('Room does not exist');
+            }
             this.loadingService.stopLoading();
           }
         );

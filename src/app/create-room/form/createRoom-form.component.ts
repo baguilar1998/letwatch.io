@@ -37,16 +37,17 @@ export class CreateRoomFormComponent implements OnInit {
         id: ['1'],
         playlistId: ['1'],
         nickName: ['Displays previous user'],
-        roomName: ['test', [
+        roomName: ['', [
                         Validators.minLength(3),
                         Validators.maxLength(15),
                         ValidateRoomName]],
-        password: ['hellot', [
+        password: ['', [
                         Validators.minLength(5),
                         Validators.maxLength(15),
                         ValidateRoomPassword]],
-        confirmPassword: ['hellot'],
-        userId: ['1']
+        confirmPassword: [''],
+        userId: ['1'],
+        maxUsers: ['2']
        });
       this.numberOfUsers = [2, 3, 4, 5, 6, 7, 8];
     }
@@ -68,7 +69,7 @@ export class CreateRoomFormComponent implements OnInit {
 
     /* Uses object destructering to grab values
        Same as saying this.createRoomForm*/
-      onSubmit({value, valid}: {value: Room, valid: boolean}) {
+      onSubmit({value, valid}: {value, valid: boolean}) {
         this.loadingService.startLoading();
         setTimeout(() => {
             this.userService.getCurrentUser().isHost = true;
@@ -85,7 +86,7 @@ export class CreateRoomFormComponent implements OnInit {
                 currentUsers: [],
                 invitationCode: this.invitationCode,
                 password: value.password,
-                maxCapacity: 2
+                maxCapacity: value.maxUsers
               };
 
               this._createRoomForm.setRoom(newRoom);

@@ -3,11 +3,16 @@
   <!-- Header -->
   <div id="header">
     <h2>Enter An Invitation Code</h2>
+
+    <div class="prompt">
+      <div class="notAvailable" *ngIf="notAvailable">
+        <h2>Room is not available</h2>
+      </div>
+    </div>
   </div>
 
   <!--Enter an Invitation Code-->
   <div id="body">
-
     <!--User Input-->
     <input [(ngModel)]="invitationCode" type="text"/>
 

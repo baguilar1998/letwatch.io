@@ -11,7 +11,7 @@
 
             <!--Room Name-->
             <label>Room Name </label><br>
-            <input type="text" placeholder="Room Name" formControlName="roomName">
+            <input type="text" formControlName="roomName">
 
                 <small *ngIf="roomName.touched && roomNameErrors!=null" >
                     {{roomNameErrors.message}}
@@ -22,15 +22,15 @@
             <br>
             <!--Password-->
             <label>Password </label><br>
-            <input type="password" placeholder="Password" formControlName="password">
+            <input type="password" formControlName="password">
             <br>
 
             <label>Confirm Password </label><br>
-            <input type="password" placeholder="Confirm Password" formControlName="confirmPassword"><br>
+            <input type="password" formControlName="confirmPassword"><br>
 
             <!--Max Capacity-->
             <label>Max Capacity</label>
-            <select id="maxUsers">
+            <select id="maxUsers" formControlName = "maxUsers">
               <option *ngFor = "let number of numberOfUsers" [value]="number">{{number}}</option>
             </select><br>
 

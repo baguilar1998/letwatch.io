@@ -74,6 +74,13 @@ router.get("/:invitationCode", (req, res) => {
           res.send("Error room was not found");
         }else {
           console.log(room);
+          if(room.users.length == room.maxCapacity) {
+            console.log("The Room is full");
+            res.status(401).json({
+              isAvailable:false
+            });
+          }
+          //FIRST CHECK IF THERE ARE TOO MANY USERS
           // IMPLEMENT CODE TO PUSH THE USER TO THE ROOM
             /*Room.updateOne({"_id":room._id },{$push:{users:req.body.user}}).then(finalResult=>{
             res.status(200).send(room);
@@ -81,8 +88,8 @@ router.get("/:invitationCode", (req, res) => {
             console.log("There was an error adding the user to the room");
             console.log(err);
           });*/
-          res.status(200).send(room);
         }
+        res.status(200).send(room);
     });
 });
 
