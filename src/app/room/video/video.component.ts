@@ -12,6 +12,7 @@ export class VideoComponent implements OnInit, OnDestroy {
   embeddedCode: string;
   isVideoPlaying: boolean;
   private player;
+  private videoDuration;
   private ytEvent: YT.Player;
 
   constructor(private loadingService: LoadingService,
@@ -20,6 +21,7 @@ export class VideoComponent implements OnInit, OnDestroy {
       this.playlistService.videosInPlaylist = data ;
       this.nextVideo();
     });*/
+    this.embeddedCode = '8HWjjiRsFWg';
   }
 
   ngOnInit() {
@@ -41,7 +43,7 @@ export class VideoComponent implements OnInit, OnDestroy {
   public savePlayer(player): void {
     this.player = player;
     console.log(player);
-    // console.log(player.getDuration());
+    this.videoDuration = player.getDuration();
   }
 
   /**
@@ -61,6 +63,13 @@ export class VideoComponent implements OnInit, OnDestroy {
     this.isVideoPlaying = false;
   }
 
+  public seekTo(event): void {
+    const updatedTime = this.videoDuration * (event.target.value / 100);
+    this.player.seekTo(updatedTime);
+    if (!this.isVideoPlaying) {
+      this.pauseVideo();
+    }
+  }
   /**
    * Moves on the next video in the playist if there
    * is any
@@ -89,6 +98,7 @@ export class VideoComponent implements OnInit, OnDestroy {
         this.embeddedCode = this.playlistService.currentPlaylist[0].videoId;
         this.playlistService.currentPlaylist.shift();
         this.player.cueVideoById(this.embeddedCode);
+        this.videoDuration = this.player.getDuration();
         this.loadingService.stopLoading();
         currentPlayer.style.display = 'block';
       },
