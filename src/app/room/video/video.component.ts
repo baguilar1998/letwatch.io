@@ -13,6 +13,7 @@ export class VideoComponent implements OnInit, OnDestroy {
   isVideoPlaying: boolean;
   private player;
   private videoDuration;
+  private currentDuration;
   private ytEvent: YT.Player;
 
   constructor(private loadingService: LoadingService,
@@ -40,10 +41,15 @@ export class VideoComponent implements OnInit, OnDestroy {
     this.ytEvent = event.data;
   }
 
+  /**
+   * Sets up the video player
+   * @param player the video player
+   */
   public savePlayer(player): void {
     this.player = player;
     console.log(player);
     this.videoDuration = player.getDuration();
+    this.currentDuration = (player.getCurrentTime() / player.getDuration()) * 100;
   }
 
   /**
@@ -53,6 +59,7 @@ export class VideoComponent implements OnInit, OnDestroy {
   public playVideo(): void {
     this.player.playVideo();
     this.isVideoPlaying = true;
+    this.updateVideoTime();
   }
 
   /**
@@ -63,6 +70,21 @@ export class VideoComponent implements OnInit, OnDestroy {
     this.isVideoPlaying = false;
   }
 
+  public updateVideoTime() {
+    setInterval(() => {
+      this.currentDuration = (this.player.getCurrentTime() / this.player.getDuration()) * 100;
+      if (this.currentDuration === 100) {
+        this.pauseVideo();
+        return;
+      }
+    }, 1000);
+  }
+
+  /**
+   * Seeks the video to corresponding time on the slider
+   * @param event the value that the user seeked to
+   * on the slider element
+   */
   public seekTo(event): void {
     const updatedTime = this.videoDuration * (event.target.value / 100);
     this.player.seekTo(updatedTime);
