@@ -14,7 +14,7 @@ export class VideoComponent implements OnInit, OnDestroy {
   private player;
   private videoDuration;
   private currentDuration;
-  private ytEvent: YT.Player;
+  private ytEvent: number;
 
   constructor(private loadingService: LoadingService,
   private playlistService: PlaylistService) {
@@ -39,6 +39,7 @@ export class VideoComponent implements OnInit, OnDestroy {
    */
   onStateChange(event): void {
     this.ytEvent = event.data;
+    // console.log(this.ytEvent);
   }
 
   /**
@@ -58,6 +59,7 @@ export class VideoComponent implements OnInit, OnDestroy {
    */
   public playVideo(): void {
     this.player.playVideo();
+    this.player.hideVideoInfo();
     this.isVideoPlaying = true;
     this.updateVideoTime();
   }
