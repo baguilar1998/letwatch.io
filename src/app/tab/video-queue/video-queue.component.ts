@@ -29,11 +29,11 @@ export class VideoQueueComponent implements OnInit, OnChanges {
 
   removeVideo(video) {
     this.playlistService.removeVideo(video).subscribe((res) => {
-      this.playlistService.currentPlaylist = res.videos;
+      this.playlistService.currentPlaylist = this.playlistService.currentPlaylist
+      .filter(v => v !== video);
       if (this.playlistService.currentPlaylist.length === 0) {
         this.playlistService.videosInPlaylist = false;
       }
-      console.log(res);
     });
   }
 
