@@ -41,6 +41,16 @@ app.use('/api/email',emailRoute);
 //Listening on connection event for incoming sockets
 io.on("connection", (socket) => {
   console.log("A user is connected");
+
+
+  socket.on("disconnect", () => {
+    console.log("user has left");
+  })
+
+  socket.on("message", (msg) => {
+    console.log("message received" + msg);
+    io.emit('message', {type: 'new-message', text: msg});
+  })
 });
 
 

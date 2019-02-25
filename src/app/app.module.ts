@@ -31,6 +31,8 @@ import { ContactComponent } from './home-page/contact/contact.component';
 import { HelpComponent } from './home-page/help/help.component';
 import { CreditsComponent } from './home-page/credits/credits.component';
 import { VideoComponent } from './room/video/video.component';
+import { ChatService } from './services/chat.service';
+import { WebsocketService } from './services/websocket.service';
 
 
 
@@ -68,6 +70,8 @@ import { VideoComponent } from './room/video/video.component';
     RoomService,
     UserService,
     LoadingService,
+    ChatService,
+    WebsocketService
   ],
   bootstrap: [AppComponent]
 })

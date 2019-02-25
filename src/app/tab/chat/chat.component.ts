@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Message } from '../../tsmodels/message';
+import { ChatService } from '../../services/chat.service';
 
 @Component({
   selector: 'app-chat',
@@ -32,9 +33,17 @@ export class ChatComponent implements OnInit {
     }
   ];
 
-  constructor() { }
+  constructor(private chat: ChatService) { }
 
   ngOnInit() {
+    this.chat.messages.subscribe(msg => {
+      console.log(msg);
+    })
+  }
+
+  //Connected to ChatService
+  sendMsg(){
+    this.chat.sendMessage("It's working");
   }
 
   /**

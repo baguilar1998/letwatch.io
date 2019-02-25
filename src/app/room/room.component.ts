@@ -1,5 +1,6 @@
 import { Component, OnInit, OnDestroy, Input, EventEmitter, Output } from '@angular/core';
 import { RoomService } from '../services/room.service';
+import { ChatService } from '../services/chat.service';
 
 
 @Component({
@@ -25,7 +26,9 @@ export class RoomComponent implements OnInit, OnDestroy {
 
 
 
-  constructor(private youtube: RoomService) {}
+  constructor(private youtube: RoomService) {
+
+  }
 
   /*
   After the component loads, use data service to pass data
