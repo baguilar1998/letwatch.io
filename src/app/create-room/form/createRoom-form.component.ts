@@ -70,15 +70,15 @@ export class CreateRoomFormComponent implements OnInit {
     /* Uses object destructering to grab values
        Same as saying this.createRoomForm*/
       onSubmit({value, valid}: {value, valid: boolean}) {
+        console.log(valid);
         this.loadingService.startLoading();
         setTimeout(() => {
             this.userService.getCurrentUser().isHost = true;
             this.userService.addUser().subscribe((res) => {
-              // console.log(res);
               if (res.hasOwnProperty('_id')) {
                 this.userService.getCurrentUser()._id = res._id;
               }
-                        // Creating a room object to store in the database
+              // Creating a room object to store in the database
               const newRoom: Room = {
                 _id: '',
                 roomName: value.roomName,

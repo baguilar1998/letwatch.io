@@ -94,6 +94,14 @@ router.get("/:invitationCode", (req, res) => {
     });
 });
 
+router.post("/pushToRoom", (req,res,next)=>{
+  Room.updateOne({"_id":req.body.roomId},{$push:{users:req.body.user}}).then(room=>{
+    res.status(200).send(room);
+  }).catch(err=>{
+    console.log("There was an error adding the user to the room");
+    console.log(err);
+  })
+});
 /**
  * Gets all the current users that are in the room
  */

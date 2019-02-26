@@ -33,6 +33,7 @@ import { CreditsComponent } from './home-page/credits/credits.component';
 import { VideoComponent } from './room/video/video.component';
 import { ChatService } from './services/chat.service';
 import { WebsocketService } from './services/websocket.service';
+import { TermsConditionsComponent } from './home-page/terms-conditions/terms-conditions.component';
 
 
 
@@ -55,7 +56,8 @@ import { WebsocketService } from './services/websocket.service';
     ContactComponent,
     HelpComponent,
     CreditsComponent,
-    VideoComponent
+    VideoComponent,
+    TermsConditionsComponent
   ],
   imports: [
     BrowserModule,

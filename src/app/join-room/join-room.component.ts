@@ -51,11 +51,18 @@ export class JoinRoomComponent implements OnInit {
         }
         this.roomService.joinRoom(this.invitationCode).subscribe(
           (results) => {
-            console.log('Successful! Joining room');
-            this.loadingService.stopLoading();
-            this.loadingService.isHome = false;
-            this.roomService.setRoom(results);
-            this.router.navigate(['/room', this.roomService.getRoom().invitationCode]);
+            this.roomService.pushToRoom(this.userService.getCurrentUser(), results._id)
+            .subscribe((pushedUser) => {
+              console.log('Successful! Joining room');
+              this.loadingService.stopLoading();
+              this.loadingService.isHome = false;
+              this.roomService.setRoom(results);
+              this.router.navigate(['/room', this.roomService.getRoom().invitationCode]);
+            }
+            , (finalError) => {
+              console.log('User was not pushed into the room');
+              console.log(finalError);
+            });
           },
           (err) => {
             if (!err.error.isAvailable) {

@@ -57,6 +57,14 @@ export class RoomService {
     return this.http.get<any>('//localhost:3000/api/room/' + key);
   }
 
+  pushToRoom(currentUser: User, id: string ): Observable<any> {
+    const requiredInformation = {
+      user: currentUser,
+      roomId: id
+    };
+    return this.http.post<any>('//localhost:3000/api/room/pushToRoom', requiredInformation);
+  }
+
   getUsers(): Observable<any> {
     return this.http.post<{invitationCode: any}>('//localhost:3000/api/room/currentUsers', {invitationCode: this.roomData.invitationCode});
   }
