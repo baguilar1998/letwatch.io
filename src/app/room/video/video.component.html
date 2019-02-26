@@ -24,7 +24,7 @@
   <button (click)="nextVideo()" class="video-buttons">
     <i class="fas fa-forward fa-2x"></i>
   </button>
-  <input (mouseup)="seekTo($event)" type="range" min="0" max="videoDuration"
+  <input (mouseup)="seekTo($event)" align="right" type="range" min="0" max="videoDuration"
   [value] = "currentDuration" class="slider" id="videoBar">
 </div>
 
