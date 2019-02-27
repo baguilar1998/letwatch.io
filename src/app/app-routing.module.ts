@@ -6,6 +6,7 @@ import { RoomComponent } from './room/room.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ContactComponent } from './home-page/contact/contact.component';
 import { HelpComponent } from './home-page/help/help.component';
+import { TermsConditionsComponent } from './home-page/terms-conditions/terms-conditions.component';
 import { CreditsComponent } from './home-page/credits/credits.component';
 import { AuthGuard } from './auth.guard';
 const routes: Routes = [
@@ -33,6 +34,10 @@ const routes: Routes = [
   {
     path: 'credits',
     component: CreditsComponent
+  },
+  {
+    path: 'terms&services',
+    component: TermsConditionsComponent
   },
   {
     path: '**',

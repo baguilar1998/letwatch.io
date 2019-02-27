@@ -1,25 +1,26 @@
-<div id="container">
-    <!--Header-->
-    <!--<div class="logo">
-      <img id="logo" src="../../assets/logo_2.png"/>
-    </div>-->
+<div class="container">
+  <!--Header-->
+  <div class="header">
 
-    <!-- The Video Player -->
+  </div>
+  <!--Body-->
+  <div class="body">
     <div class="player">
-        <!--<iframe width="700" height="500" [src]="currentVideo | safe"
-        frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-        </iframe>-->
-        <app-video></app-video>
-      </div>
-
-    <!-- Tab Section (Chat/Users/Queue)-->
-    <div class="tab-section">
-      <app-tab
-      (searchResult)="getSearchResult($event)"
-      [videosFound]="videosFound"
-      ></app-tab>
+      <!-- The Video Player -->
+      <app-video></app-video>
     </div>
+      <!-- Tab Section (Chat/Users/Queue)-->
+      <div class="tab-section">
+        <app-tab
+          (searchResult)="getSearchResult($event)"
+          [videosFound]="videosFound"
+        ></app-tab>
+      </div>
+  </div>
+  <!--Footer-->
+  <div class="footer">
 
+  </div>
 
 </div>
 

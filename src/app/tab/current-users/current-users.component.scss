@@ -1,18 +1,26 @@
-.container{
+.color1{
+  background-color:#fff;
   width:400px;
-  height:50px;
+  height:60px;
   display:flex;
 }
-
-.container #user-icon{
-  margin-left:20px;
+.color2{
+  background-color:rgb(238, 238, 238);
+  width:400px;
+  height:60px;
+  display:flex;
 }
-.container #user-nickname{
-  margin-top:4px;
+.user-icon{
+  margin-left:5px;
+  margin-top:3px;
+}
+.user-nickname{
+  margin-top:15px;
   margin-left:3px;
+  font-size:13pt;
 }
 
-#user-icon img{
-  height:40px;
-  width:40px;
+.user-icon img{
+  height:50px;
+  width:50px;
 }
