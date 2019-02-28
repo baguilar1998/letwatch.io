@@ -17,7 +17,7 @@
   appearance: none;
   width: 25px;
   height: 25px;
-  background: #002266;
+  background: white;
   cursor: pointer;
 }
 
@@ -29,7 +29,7 @@
 }
 .video-controls{
   width:800px;
-  height:80px;
+  height:40px;
 }
 .video-controls .video-buttons{
   color:white;
@@ -61,4 +61,26 @@
   position:relative;
   top:40%;
   left:23%;
+}
+
+.video-header {
+  width:800px;
+  height:40px;
+  background-color:#002266;
+  z-index: 15;
+  color:white;
+}
+
+.video-footer{
+  background-color:#002266;
+}
+
+
+.loading-prompt{
+  width:800px;
+  height:600px;
+  display:flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }

@@ -1,30 +1,51 @@
-<!--Video Player-->
-<div class="video-container" *ngIf="this.playlistService.videosInPlaylist">
-  <app-loading></app-loading>
-  <youtube-player
-  id="videoPlayer"
-  (ready)="savePlayer($event)"
-  (change)="onStateChange($event)"
-  [videoId]="this.embeddedCode" width="800" height="600"></youtube-player>
-</div>
-<!--Prompt-->
-<div class="select-video" *ngIf="!this.playlistService.videosInPlaylist">
-  <div class="prompt">
-      <h2>Add videos to the playlist and click next to begin!</h2>
+<!--Video Player Container-->
+<div class="video-container">
+  <!--Video Header-->
+  <div class="video-header">
+    {{currentVideo.title}}
+  </div>
+  <div class="video-body">
+
+    <!--VIDEO PLAYER-->
+    <youtube-player
+    id="videoPlayer"
+    (ready)="savePlayer($event)"
+    (change)="onStateChange($event)"
+    [videoId]="this.embeddedCode" width="800" height="600"></youtube-player>
+
+    <!--Loading Prompt-->
+    <div class="loading-prompt" *ngIf="isLoading">
+      <img src="../../../assets/loaderimage.gif"/>
+    </div>
+    <!--Video Prompt if there are no videos in the list-->
+
+    <!--<div class="select-video" *ngIf="this.playlistService.videosInPlaylist">
+        <div class="prompt">
+            <h2>Add videos to the playlist and click next to begin!</h2>
+        </div>
+      </div>-->
+
+  </div>
+  <!--Video Footer-->
+  <div class="video-footer">
+    <!--Video Controls-->
+    <div class="video-controls">
+
+      <button *ngIf="!isVideoPlaying" (click)="playVideo()" class="video-buttons">
+          <i class="fas fa-play fa-2x"></i>
+      </button>
+
+      <button *ngIf="isVideoPlaying" (click)="pauseVideo()" class="video-buttons">
+        <i class="fas fa-pause fa-2x"></i>
+      </button>
+
+      <button (click)="nextVideo()" class="video-buttons">
+        <i class="fas fa-forward fa-2x"></i>
+      </button>
+
+      <input (mouseup)="seekTo($event)" align="right" type="range" min="0" max="videoDuration"
+      [value] = "currentDuration" class="slider" id="videoBar">
+
+    </div>
   </div>
 </div>
-<!--Video Controls-->
-<div class="video-controls">
-  <button *ngIf="!isVideoPlaying" (click)="playVideo()" class="video-buttons">
-      <i class="fas fa-play fa-2x"></i>
-  </button>
-  <button *ngIf="isVideoPlaying" (click)="pauseVideo()" class="video-buttons">
-    <i class="fas fa-pause fa-2x"></i>
-  </button>
-  <button (click)="nextVideo()" class="video-buttons">
-    <i class="fas fa-forward fa-2x"></i>
-  </button>
-  <input (mouseup)="seekTo($event)" align="right" type="range" min="0" max="videoDuration"
-  [value] = "currentDuration" class="slider" id="videoBar">
-</div>
-

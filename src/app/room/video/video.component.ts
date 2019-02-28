@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LoadingService } from '../../services/loading.service';
 import { PlaylistService } from '../../services/playlist.service';
+import { Video } from '../../tsmodels/video';
 
 @Component({
   selector: 'app-video',
@@ -9,11 +10,13 @@ import { PlaylistService } from '../../services/playlist.service';
 })
 export class VideoComponent implements OnInit, OnDestroy {
 
-  embeddedCode: string;
-  isVideoPlaying: boolean;
+  private embeddedCode: string;
+  private isVideoPlaying: boolean;
+  private isLoading: boolean;
   private player;
-  private videoDuration;
-  private currentDuration;
+  private videoDuration: number;
+  private currentDuration: number;
+  private currentVideo: Video;
   private ytEvent: number;
 
   constructor(private loadingService: LoadingService,
@@ -23,6 +26,14 @@ export class VideoComponent implements OnInit, OnDestroy {
       this.nextVideo();
     });*/
     this.embeddedCode = '8HWjjiRsFWg';
+    this.currentVideo = {
+      title: '',
+      creator: '',
+      description: '',
+      videoId: '',
+      imageUrl: ''
+    };
+    this.isLoading = false;
   }
 
   ngOnInit() {
@@ -115,20 +126,20 @@ export class VideoComponent implements OnInit, OnDestroy {
     }
     const currentPlayer = document.getElementById('videoPlayer');
     currentPlayer.style.display = 'none';
-    this.loadingService.startLoading();
+    this.isLoading = true;
     setTimeout(() => {
-      const video = this.playlistService.currentPlaylist[0];
-      this.playlistService.removeVideo(video).subscribe((results) => {
-        this.embeddedCode = this.playlistService.currentPlaylist[0].videoId;
+      this.currentVideo = this.playlistService.currentPlaylist[0];
+      this.playlistService.removeVideo(this.currentVideo).subscribe((results) => {
+        this.embeddedCode = this.currentVideo.videoId;
         this.playlistService.currentPlaylist.shift();
         this.player.cueVideoById(this.embeddedCode);
         this.videoDuration = this.player.getDuration();
-        this.loadingService.stopLoading();
+        this.isLoading = false;
         currentPlayer.style.display = 'block';
       },
       (err) => {
         console.log('an error has occured');
-        this.loadingService.stopLoading();
+        this.isLoading = false;
         currentPlayer.style.display = 'block';
         console.log(err);
       });
