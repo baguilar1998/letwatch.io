@@ -2,16 +2,19 @@
 <div class="video-container">
   <!--Video Header-->
   <div class="video-header">
-    {{currentVideo.title}}
+    <!--{{currentVideo.title}}-->
+    <h2>SOME SORT OF TEST TITLE</h2>
   </div>
   <div class="video-body">
 
     <!--VIDEO PLAYER-->
-    <youtube-player
-    id="videoPlayer"
-    (ready)="savePlayer($event)"
-    (change)="onStateChange($event)"
-    [videoId]="this.embeddedCode" width="800" height="600"></youtube-player>
+    <div class="player">
+      <youtube-player
+      id="videoPlayer"
+      (ready)="savePlayer($event)"
+      (change)="onStateChange($event)"
+      [videoId]="this.embeddedCode" width="800" height="600"></youtube-player>
+    </div>
 
     <!--Loading Prompt-->
     <div class="loading-prompt" *ngIf="isLoading">
