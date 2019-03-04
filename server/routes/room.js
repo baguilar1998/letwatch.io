@@ -81,19 +81,14 @@ router.get("/:invitationCode", (req, res) => {
               isAvailable:false
             });
           }
-          //FIRST CHECK IF THERE ARE TOO MANY USERS
-          // IMPLEMENT CODE TO PUSH THE USER TO THE ROOM
-            /*Room.updateOne({"_id":room._id },{$push:{users:req.body.user}}).then(finalResult=>{
-            res.status(200).send(room);
-          }).catch(err=>{
-            console.log("There was an error adding the user to the room");
-            console.log(err);
-          });*/
         }
         res.status(200).send(room);
     });
 });
 
+/**
+ * Pushes the user to a room that they joined
+ */
 router.post("/pushToRoom", (req,res,next)=>{
   Room.updateOne({"_id":req.body.roomId},{$push:{users:req.body.user}}).then(room=>{
     res.status(200).send(room);
@@ -102,6 +97,20 @@ router.post("/pushToRoom", (req,res,next)=>{
     console.log(err);
   })
 });
+
+/**
+ * Removes a user from the room
+ */
+router.post("/leaveRoom", (req,res,next)=>{
+  Room.updateOne({"id":req.body.roomId}, {$pull:{users:req.body.user}}, {safe:true, multi:true})
+  .then(room=>{
+    res.status(200).send(room);
+  }).catch(err=>{
+    console.log("There was an error leaving the room");
+    console.log(err);
+  });
+});
+
 /**
  * Gets all the current users that are in the room
  */

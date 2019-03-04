@@ -57,6 +57,19 @@ export class RoomService {
     return this.http.get<any>('//localhost:3000/api/room/' + key);
   }
 
+  /**
+   * User leaves the room and removes the user from
+   * the room
+   * @param user the user that is leaving the room
+   */
+  leaveRoom(currentUser: User): Observable<any> {
+    const requiredInformation = {
+      user: currentUser,
+      roomId: this.roomData._id
+    };
+    return this.http.post<any>('//localhost:3000/api/room/leaveRoom', requiredInformation);
+  }
+
   pushToRoom(currentUser: User, id: string ): Observable<any> {
     const requiredInformation = {
       user: currentUser,
@@ -68,6 +81,7 @@ export class RoomService {
   getUsers(): Observable<any> {
     return this.http.post<{invitationCode: any}>('//localhost:3000/api/room/currentUsers', {invitationCode: this.roomData.invitationCode});
   }
+
   // Sends error back to onSubmit
   errorHandler(error: HttpErrorResponse) {
     return throwError(error);

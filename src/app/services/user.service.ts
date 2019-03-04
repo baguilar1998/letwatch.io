@@ -66,6 +66,15 @@ export class UserService {
   }
 
   /**
+   * Removes the user from the database
+   */
+  removeUser(): Observable<any> {
+    const id = {
+      id: this.user._id
+    };
+    return this.http.post<any>('//localhost:3000/api/removeUser', id);
+  }
+  /**
    * Debugging Function for database
    */
   getAllUsers(): void {

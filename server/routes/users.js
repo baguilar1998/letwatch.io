@@ -56,6 +56,17 @@ router.post("/user", (req, res) => {
     });
 });
 
+/**
+ * Removes a user from the database
+ */
+router.post("/removeUser", (req,res,next)=>{
+  User.remove({"_id": req.body.id}).then(success=>{
+    console.log("User left and has been removed");
+    res.status(200).send(success);
+  }).catch(err=>{
+    console.log("There was an error in removing a user");
+  })
+});
 
 //Update your nickname by id
 //If new is true, you get the new modified user back
