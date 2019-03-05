@@ -5,12 +5,18 @@
   overflow-y: scroll;
 }
 
-.message-item{
-  padding:5px;
-  /*border-top: 2px solid;*/
-  border-bottom: 2px solid rgb(228, 228, 228);
+.message-item1{
+  background-color:#fff;
+  width:385px;
+  height:60px;
+  display:flex;
 }
-
+.message-item2{
+  background-color:rgb(238, 238, 238);
+  width:380px;
+  height:60px;
+  display:flex;
+}
 .user-input input{
   width:380px;
   height:10px;
@@ -34,6 +40,7 @@
 }
 
 .message-box img{
-  height:35px;
-  width:35px;
+  margin-top:5px;
+  height:40px;
+  width:40px;
 }

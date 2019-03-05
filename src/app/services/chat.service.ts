@@ -12,22 +12,22 @@ export class ChatService {
 
   messages: Subject<any>;
 
-  constructor(private wsService: WebsocketService) { 
-    this.messages = <Subject<any>>wsService
+  constructor(private wsService: WebsocketService) {
+    /*this.messages = <Subject<any>>wsService
     .connect().pipe((res: any): any => {
       return res;
     })
-    
-    
+
+
     // .map((res: any): any => {
     //   return res;
     // })
-    
-  
+
+  */
   }
 
 
-  sendMessage(msg){
-    this.messages.next(msg);
+  sendMessage(msg) {
+    // this.messages.next(msg);
   }
 }

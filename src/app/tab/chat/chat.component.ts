@@ -36,15 +36,15 @@ export class ChatComponent implements OnInit {
   constructor(private chat: ChatService) { }
 
   ngOnInit() {
-    this.chat.messages.subscribe(msg => {
+    /*this.chat.messages.subscribe(msg => {
       console.log(msg);
-    })
+    });*/
   }
 
-  //Connected to ChatService
-  sendMsg(){
+  // Connected to ChatService
+ /* sendMsg() {
     this.chat.sendMessage("It's working");
-  }
+  }*/
 
   /**
    * Sends a message to the chat and displays it

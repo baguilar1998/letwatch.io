@@ -1,8 +1,8 @@
 <div class="message-container">
 
   <!--Displays List of Messages-->
-  <div class="messages" *ngFor="let m of messages">
-    <div class="message-item">
+  <div class="messages" *ngFor="let m of messages; index as i">
+    <div [class.message-item2]="i%2===0" [class.message-item1]="i%2===1">
       <!--IMAGE ICON GETS DISPLAYED-->
       <div class="message-box" [ngSwitch]="m.user.iconName">
         <img src="../../assets/avatars/avatar-1.png" *ngSwitchCase="'m1'">
