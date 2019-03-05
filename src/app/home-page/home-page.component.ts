@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../services/user.service';
 import { LoadingService } from '../services/loading.service';
+import { WebsocketService } from '../services/websocket.service';
 
 @Component({
   selector: 'app-home-page',
@@ -17,7 +18,8 @@ export class HomePageComponent implements OnInit {
   isValid: boolean;
 
   constructor(private userService: UserService,
-  private loadingService: LoadingService) {
+  private loadingService: LoadingService,
+  private socketService: WebsocketService) {
     this.componentState = 'home';
     this.icons = ['m1', 'f1', 'm2', 'f2', 'm3', 'f3', 'm4', 'f4'];
     this.index = 0;

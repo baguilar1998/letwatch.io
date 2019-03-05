@@ -42,7 +42,6 @@ app.use('/api/email',emailRoute);
 io.on("connection", (socket) => {
   console.log("A user is connected");
 
-
   socket.on("disconnect", () => {
     console.log("user has left");
   })
@@ -53,7 +52,9 @@ io.on("connection", (socket) => {
   })
 });
 
-
+http.listen(4444, ()=>{
+  console.log("opening connection");
+});
 
 /**
  * Database setup

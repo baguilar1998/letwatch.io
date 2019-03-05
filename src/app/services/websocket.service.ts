@@ -3,9 +3,10 @@ import * as io from 'socket.io-client';
 import { Observable } from 'rxjs';
 import * as Rx from 'rxjs';
 import { Subject } from 'rxjs/internal/Subject';
+import { Socket } from 'ngx-socket-io';
 
 
-//import environments to have access to socket key
+// import environments to have access to socket key
 // import environment from '/path/to/env/folder'
 
 @Injectable({
@@ -13,12 +14,12 @@ import { Subject } from 'rxjs/internal/Subject';
 })
 export class WebsocketService {
 
-  //connects to our socket io server
-  private socket;
+  // connects to our socket io server
+  // private socket;
 
-  constructor() { }
+  constructor(private socket: Socket) { }
 
-  connect(): Subject<MessageEvent> {
+  /*connect(): Subject<MessageEvent> {
 
     //Define the varaible in a separate environment file
 
@@ -43,5 +44,6 @@ this.socket = io('http://localhost:3000');
     }
 
     return Subject.create(observer,observable);
-  }
+  }*/
+
 }

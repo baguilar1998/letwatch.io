@@ -1,3 +1,11 @@
+/**
+ * CONSTANTS
+ */
+const config: SocketIoConfig = { url: 'http://localhost:4444', options: {} };
+
+ /**
+  * MODULES
+  */
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
@@ -6,8 +14,12 @@ import {FormsModule} from '@angular/forms';
 import {ReactiveFormsModule} from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { YoutubePlayerModule } from 'ngx-youtube-player';
+import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
 import { SafePipe } from './room/SafePipe';
 
+/**
+ * COMPONENTS
+ */
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { JoinRoomComponent } from './join-room/join-room.component';
@@ -66,7 +78,8 @@ import { TermsConditionsComponent } from './home-page/terms-conditions/terms-con
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    YoutubePlayerModule
+    YoutubePlayerModule,
+    SocketIoModule.forRoot(config)
   ],
   providers: [
     RoomService,
