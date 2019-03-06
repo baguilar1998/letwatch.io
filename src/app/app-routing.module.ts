@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { RoomComponent } from './room/room.component';
 import { LoadingComponent } from './loading/loading.component';
 import { ContactComponent } from './home-page/contact/contact.component';
 import { HelpComponent } from './home-page/help/help.component';
@@ -16,7 +15,7 @@ const routes: Routes = [
   },
   {
     path: 'room/:id',
-    component: RoomComponent/*,
+    loadChildren: './lazy-modules/room.module#RoomModule'/*,
     canActivate: [AuthGuard]*/
   },
   {
