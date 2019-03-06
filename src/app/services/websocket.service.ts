@@ -14,6 +14,7 @@ import { Socket } from 'ngx-socket-io';
 })
 export class WebsocketService {
 
+  testId = this.socket.fromEvent<any>('test');
   // connects to our socket io server
   // private socket;
 
@@ -45,5 +46,10 @@ this.socket = io('http://localhost:3000');
 
     return Subject.create(observer,observable);
   }*/
-
+  testFunction() {
+    this.socket.emit('test', 'Hello');
+    this.testId.subscribe(data => {
+      console.log(data.id);
+    });
+  }
 }

@@ -12,6 +12,8 @@ const io = require('socket.io')(http);
 
 
 var app = express();
+// Allows us to use the web socket in any route
+app.set("io",io);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
 
@@ -45,6 +47,11 @@ io.on("connection", (socket) => {
   socket.on("disconnect", () => {
     console.log("user has left");
   })
+
+  socket.on("test", (test)=>{
+    console.log(test+ " Brian");
+    io.emit("test","Brian");
+  });
 
   socket.on("message", (msg) => {
     console.log("message received" + msg);

@@ -25,6 +25,7 @@ export class HomePageComponent implements OnInit {
     this.index = 0;
     this.currentIcon = this.icons[this.index];
     this.isValid = true;
+    this.socketService.testFunction();
   }
 
   ngOnInit() {}
