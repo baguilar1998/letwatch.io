@@ -39,26 +39,44 @@ app.use('/api/playlist',playlistRoute);
 app.use('/api/email',emailRoute);
 
 
-
+const randomCode = require('random-key');
 //Listening on connection event for incoming sockets
 io.on("connection", (socket) => {
   console.log("A user is connected");
 
-  socket.on("disconnect", () => {
-    console.log("user has left");
-  })
+  /**
+   * -----------------------------
+   * Room Sockets
+   * -----------------------------
+   */
 
-  socket.on("test", (test)=>{
-    console.log(test+ " Brian");
-    io.emit("test","Brian");
+   // Joining a room
+  socket.on("joinRoom", (user)=>{
+    console.log(user);
+    io.emit("joinRoom",user);
   });
 
+  // Leaving a room
+  socket.on("disconnect", () => {
+    console.log("user has left");
+  });
+
+  /**
+   * ----------------------------
+   * Chat Sockets
+   * ----------------------------
+   */
   socket.on("message", (msg) => {
     console.log("message received" + msg);
     io.emit('message', {type: 'new-message', text: msg});
   })
 });
 
+/**
+ * ------------------------------
+ * Video Sockets
+ * ------------------------------
+ */
 http.listen(4444, ()=>{
   console.log("opening connection");
 });

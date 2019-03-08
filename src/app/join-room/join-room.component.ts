@@ -4,6 +4,7 @@ import { UserService } from '../services/user.service';
 import { RoomService } from '../services/room.service';
 import { LoadingService } from '../services/loading.service';
 import { Subject } from '../../../node_modules/rxjs';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-join-room',
@@ -19,6 +20,7 @@ export class JoinRoomComponent implements OnInit {
 
   constructor(private userService: UserService,
     private roomService: RoomService,
+    private socket: Socket,
     private router: Router,
     private loadingService: LoadingService) {
       this.notAvailable = false;
@@ -57,6 +59,7 @@ export class JoinRoomComponent implements OnInit {
               this.loadingService.stopLoading();
               this.loadingService.isHome = false;
               this.roomService.setRoom(results);
+              this.socket.emit('joinRoom', this.userService.getCurrentUser());
               this.router.navigate(['/room', this.roomService.getRoom().invitationCode]);
             }
             , (finalError) => {
