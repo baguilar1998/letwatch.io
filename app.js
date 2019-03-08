@@ -38,8 +38,6 @@ app.use('/api', userRoutes);
 app.use('/api/playlist',playlistRoute);
 app.use('/api/email',emailRoute);
 
-
-const randomCode = require('random-key');
 //Listening on connection event for incoming sockets
 io.on("connection", (socket) => {
   console.log("A user is connected");
@@ -69,14 +67,46 @@ io.on("connection", (socket) => {
   socket.on("message", (msg) => {
     console.log("message received" + msg);
     io.emit('message', {type: 'new-message', text: msg});
-  })
+  });
+
+
+  /**
+   * -----------------------------
+   * Video Queue Sockets
+   * -----------------------------
+   */
+  socket.on("addVideo", (video)=>{
+
+  });
+
+  socket.on("removeVideo", (video)=>{
+
+  });
+
+  /**
+   * ------------------------------
+   * Video Player Sockets
+   * ------------------------------
+   */
+  socket.on("playVideo", (play)=>{
+
+  });
+
+  socket.on("pauseVideo", (pause)=>{
+
+  });
+
+  socket.on("nextVideo",(video)=>{
+
+  });
+
+  socket.on("currentDuration", (time)=>{
+
+  });
+
 });
 
-/**
- * ------------------------------
- * Video Sockets
- * ------------------------------
- */
+
 http.listen(4444, ()=>{
   console.log("opening connection");
 });
