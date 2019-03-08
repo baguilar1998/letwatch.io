@@ -1,14 +1,15 @@
-import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
+import { Component, OnInit, EventEmitter, Input, Output, OnDestroy } from '@angular/core';
 import { Video } from '../tsmodels/video';
 import { CommonModule } from '@angular/common';
 import { PlaylistService } from '../services/playlist.service';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-tab',
   templateUrl: './tab.component.html',
   styleUrls: ['./tab.component.scss'],
 })
-export class TabComponent implements OnInit {
+export class TabComponent implements OnInit, OnDestroy {
 
   currentContent: string;
 
@@ -23,14 +24,19 @@ export class TabComponent implements OnInit {
   videoAdded: boolean;
   videoRemoved: boolean;
 
-  constructor(private playlistService: PlaylistService) {
-  }
+  constructor(private playlistService: PlaylistService,
+  private socket: Socket) {}
 
   ngOnInit() {
     this.currentContent = 'users';
-
+    this.socket.on('addVideo', (video) => {
+      this.playlistService.currentPlaylist.push(video);
+    });
   }
 
+  ngOnDestroy() {
+    this.socket.removeListener('addVideo');
+  }
 
   /**
    * Changes the tab content depending on what
@@ -86,7 +92,8 @@ export class TabComponent implements OnInit {
 
       this.playlistService.addVideo(video).subscribe(
         (res) => {
-          this.playlistService.currentPlaylist.push(video);
+          // this.playlistService.currentPlaylist.push(video);
+          this.socket.emit('addVideo', video);
           // this.playlistService.videosInPlaylist = true;
           // this.playlistService.videoStatus.next(true);
           this.displayVideoStatus(true, false);

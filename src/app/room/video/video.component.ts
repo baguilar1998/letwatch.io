@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LoadingService } from '../../services/loading.service';
 import { PlaylistService } from '../../services/playlist.service';
 import { Video } from '../../tsmodels/video';
+import { Socket } from 'ngx-socket-io';
 
 @Component({
   selector: 'app-video',
@@ -20,7 +21,8 @@ export class VideoComponent implements OnInit, OnDestroy {
   private ytEvent: number;
 
   constructor(private loadingService: LoadingService,
-  private playlistService: PlaylistService) {
+  private playlistService: PlaylistService,
+  private socket: Socket) {
     /*this.playlistService.videoStatus.subscribe((data) => {
       this.playlistService.videosInPlaylist = data ;
       this.nextVideo();
@@ -38,10 +40,20 @@ export class VideoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isVideoPlaying = false;
+    this.socket.on('videoState', (videoState) => {
+      this.isVideoPlaying = videoState;
+      if (this.isVideoPlaying) {
+        this.player.playVideo();
+      } else {
+        this.player.pauseVideo();
+      }
+    });
   }
 
   ngOnDestroy() {
     this.playlistService.videoStatus.unsubscribe();
+    this.socket.removeListener('playVideo');
+    this.socket.removeListener('pauseVideo');
   }
 
   /**
@@ -69,9 +81,8 @@ export class VideoComponent implements OnInit, OnDestroy {
    * is loaded
    */
   public playVideo(): void {
+    this.socket.emit('videoState', true);
     this.player.playVideo();
-    this.player.hideVideoInfo();
-    this.isVideoPlaying = true;
     this.updateVideoTime();
   }
 
@@ -79,8 +90,8 @@ export class VideoComponent implements OnInit, OnDestroy {
    * Pauses the video player
    */
   public pauseVideo(): void {
+    this.socket.emit('videoState', false);
     this.player.pauseVideo();
-    this.isVideoPlaying = false;
   }
 
   public updateVideoTime() {

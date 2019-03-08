@@ -48,7 +48,10 @@ io.on("connection", (socket) => {
    * -----------------------------
    */
 
-   // Joining a room
+   /**
+    * Users see other users joining the room
+    * @emits the user that joined the room
+    */
   socket.on("joinRoom", (user)=>{
     console.log(user);
     io.emit("joinRoom",user);
@@ -75,12 +78,24 @@ io.on("connection", (socket) => {
    * Video Queue Sockets
    * -----------------------------
    */
-  socket.on("addVideo", (video)=>{
 
+   /**
+    * Allows the users to see the added video in
+    * the video queue
+    * @emits the video that been added
+    */
+  socket.on("addVideo", (video)=>{
+    console.log("adding video to the playlist");
+    io.emit("addVideo", video);
   });
 
-  socket.on("removeVideo", (video)=>{
-
+  /**
+   * Removes a certain video from the playlist
+   * @emits the playlist with the video removed
+   */
+  socket.on("removeVideo", (playlist)=>{
+    console.log('removing a video');
+    io.emit("removeVideo", playlist);
   });
 
   /**
@@ -88,12 +103,9 @@ io.on("connection", (socket) => {
    * Video Player Sockets
    * ------------------------------
    */
-  socket.on("playVideo", (play)=>{
-
-  });
-
-  socket.on("pauseVideo", (pause)=>{
-
+  socket.on("videoState", (isPlaying)=>{
+    console.log('is video playing? ' + isPlaying);
+    io.emit('videoState',isPlaying);
   });
 
   socket.on("nextVideo",(video)=>{
