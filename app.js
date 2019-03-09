@@ -109,11 +109,18 @@ io.on("connection", (socket) => {
   });
 
   socket.on("nextVideo",(video)=>{
-
+    console.log("next video code: " + video);
+    io.emit('nextVideo', video);
   });
 
   socket.on("currentDuration", (time)=>{
+    console.log("current time: " + time);
+    io.emit('currentDuration', time);
+  });
 
+  socket.on("videoLoading", (loading)=>{
+    console.log("is the video loading? " + loading);
+    io.emit('videoLoading', loading);
   });
 
 });

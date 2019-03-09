@@ -48,6 +48,27 @@ export class VideoComponent implements OnInit, OnDestroy {
         this.player.pauseVideo();
       }
     });
+    this.socket.on('currentDuration', (length) => {
+      if (this.currentDuration === length) {
+        this.socket.removeListener('currentDuration');
+      }
+      this.currentDuration = length;
+    });
+    this.socket.on('nextVideo', (video) => {
+      const currentPlayer = document.getElementById('videoPlayer');
+      this.currentVideo = video;
+      this.embeddedCode = video.videoId;
+      this.playlistService.currentPlaylist.shift();
+      this.player.cueVideoById(this.embeddedCode);
+      this.videoDuration = this.player.getDuration();
+      this.isLoading = false;
+      currentPlayer.style.display = 'block';
+    });
+    this.socket.on('videoLoading', (loading) => {
+      const currentPlayer = document.getElementById('videoPlayer');
+      this.isLoading = loading.state;
+      currentPlayer.style.display = loading.style;
+    });
   }
 
   ngOnDestroy() {
@@ -97,7 +118,9 @@ export class VideoComponent implements OnInit, OnDestroy {
   public updateVideoTime() {
     setInterval(() => {
       this.currentDuration = (this.player.getCurrentTime() / this.player.getDuration()) * 100;
+     // this.socket.emit('currentDuration', this.currentDuration);
       if (this.currentDuration === 100) {
+        this.socket.emit('videoState', false);
         this.pauseVideo();
         return;
       }
@@ -135,23 +158,16 @@ export class VideoComponent implements OnInit, OnDestroy {
     if (this.isVideoPlaying) {
       this.pauseVideo();
     }
-    const currentPlayer = document.getElementById('videoPlayer');
-    currentPlayer.style.display = 'none';
-    this.isLoading = true;
+    this.socket.emit('videoLoading', {state: true, style: 'none'});
     setTimeout(() => {
       this.currentVideo = this.playlistService.currentPlaylist[0];
       this.playlistService.removeVideo(this.currentVideo).subscribe((results) => {
-        this.embeddedCode = this.currentVideo.videoId;
-        this.playlistService.currentPlaylist.shift();
-        this.player.cueVideoById(this.embeddedCode);
-        this.videoDuration = this.player.getDuration();
-        this.isLoading = false;
-        currentPlayer.style.display = 'block';
+        this.socket.emit('nextVideo', this.currentVideo);
+        this.socket.emit('videoLoading', {state: false, style: 'block'});
       },
       (err) => {
         console.log('an error has occured');
-        this.isLoading = false;
-        currentPlayer.style.display = 'block';
+        this.socket.emit('videoLoading', {state: false, style: 'block'});
         console.log(err);
       });
     }, 2000);
