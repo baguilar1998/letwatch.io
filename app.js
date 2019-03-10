@@ -39,6 +39,7 @@ app.use('/api/playlist',playlistRoute);
 app.use('/api/email',emailRoute);
 
 //Listening on connection event for incoming sockets
+let currentUser;
 io.on("connection", (socket) => {
   console.log("A user is connected");
 
@@ -53,8 +54,15 @@ io.on("connection", (socket) => {
     * @emits the user that joined the room
     */
   socket.on("joinRoom", (user)=>{
-    console.log(user);
+    currentUser=user;
+    // console.log(currentUser);
     io.emit("joinRoom",user);
+  });
+
+  socket.on("leaveRoom", (objData)=>{
+    console.log("User that is leaveing: " + objData.user);
+    console.log("Room Id: " + objData.roomId);
+    io.emit("leaveRoom", objData.user);
   });
 
   // Leaving a room

@@ -1,14 +1,15 @@
-import { Component, OnInit, OnDestroy, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, EventEmitter, Output, HostListener } from '@angular/core';
 import { RoomService } from '../services/room.service';
 import { ChatService } from '../services/chat.service';
-
+import { Socket } from 'ngx-socket-io';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-room',
   templateUrl: './room.component.html',
   styleUrls: ['./room.component.scss']
 })
-export class RoomComponent implements OnInit, OnDestroy {
+export class RoomComponent implements OnInit {
 
   searchDataFromTab;
 
@@ -26,22 +27,17 @@ export class RoomComponent implements OnInit, OnDestroy {
 
 
 
-  constructor(private youtube: RoomService) {
-
-  }
+  constructor(private youtube: RoomService,
+  private userService: UserService,
+  private roomService: RoomService,
+  private socket: Socket) {}
 
   /*
   After the component loads, use data service to pass data
   *from grandchild component (search-comp) to Room Comp
   *Room component will now have the result from the form that was submitted in search comp
   */
-  ngOnInit() {
-
-  }
-
-
-  ngOnDestroy() {
-  }
+  ngOnInit() {}
 
   // Method on room.html -> gets fired once the tab component receives data from the search component
   // Receives back the youtube result to display the video on the room
@@ -60,6 +56,13 @@ export class RoomComponent implements OnInit, OnDestroy {
   // }
 
 
-
+  @HostListener('window:beforeunload', ['$event'])
+  leaveRoom(event) {
+    const objData = {
+      roomId: this.roomService.getRoom()._id,
+      user: this.userService.getCurrentUser()
+    };
+    this.socket.emit('leaveRoom', objData);
+  }
 
 }

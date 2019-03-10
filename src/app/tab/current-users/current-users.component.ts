@@ -19,21 +19,24 @@ export class CurrentUsersComponent implements OnInit {
   ngOnInit() {
     // Keeps track whenever users join rooms
     this.socket.on('joinRoom', (user) => {
-      this.currentUsers.push(user);
+      // this.currentUsers.push(user);
       this.roomService.getRoom().currentUsers.push(user);
       console.log(this.roomService.getRoom().currentUsers);
     });
 
-    this.socket.on('disconnect', (user) => {
+    this.socket.on('leaveRoom', (user) => {
       console.log('A user has left the room');
+      this.roomService.getRoom().currentUsers = this.roomService.getRoom().currentUsers.filter(
+        u => u._id !== user._id
+      );
+      this.currentUsers = this.roomService.getRoom().currentUsers;
+      console.log(this.currentUsers);
     });
 
     this.roomService.getUsers().subscribe((data) => {
       console.log(data);
-      if (data.length === 1 && this.userService.getCurrentUser().isHost) {
-        this.roomService.getRoom().currentUsers.push(this.userService.getCurrentUser());
-      }
       this.currentUsers = data;
+      this.roomService.getRoom().currentUsers = data;
      });
     /* this.currentUsers = [
        {
