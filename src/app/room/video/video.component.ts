@@ -73,8 +73,9 @@ export class VideoComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.playlistService.videoStatus.unsubscribe();
-    this.socket.removeListener('playVideo');
-    this.socket.removeListener('pauseVideo');
+    this.socket.removeListener('videoState');
+    this.socket.removeListener('currentDuration');
+    this.socket.removeListener('nextVideo');
   }
 
   /**
@@ -135,6 +136,7 @@ export class VideoComponent implements OnInit, OnDestroy {
   public seekTo(event): void {
     const updatedTime = this.videoDuration * (event.target.value / 100);
     this.player.seekTo(updatedTime);
+    // this.socket.emit('currentDuration', this.currentDuration);
     if (!this.isVideoPlaying) {
       this.pauseVideo();
     }
