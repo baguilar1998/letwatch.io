@@ -44,14 +44,12 @@ export class VideoComponent implements OnInit, OnDestroy {
       this.isVideoPlaying = videoState;
       if (this.isVideoPlaying) {
         this.player.playVideo();
+        this.updateVideoTime();
       } else {
         this.player.pauseVideo();
       }
     });
     this.socket.on('currentDuration', (length) => {
-      if (this.currentDuration === length) {
-        this.socket.removeListener('currentDuration');
-      }
       this.currentDuration = length;
     });
     this.socket.on('nextVideo', (video) => {
@@ -69,6 +67,10 @@ export class VideoComponent implements OnInit, OnDestroy {
       this.isLoading = loading.state;
       currentPlayer.style.display = loading.style;
     });
+    this.socket.on('seekTo', (seekValue) => {
+      this.currentDuration = seekValue;
+      this.player.seekTo(seekValue);
+    });
   }
 
   ngOnDestroy() {
@@ -76,6 +78,7 @@ export class VideoComponent implements OnInit, OnDestroy {
     this.socket.removeListener('videoState');
     this.socket.removeListener('currentDuration');
     this.socket.removeListener('nextVideo');
+    this.socket.removeListener('seekTo');
   }
 
   /**
@@ -105,7 +108,6 @@ export class VideoComponent implements OnInit, OnDestroy {
   public playVideo(): void {
     this.socket.emit('videoState', true);
     this.player.playVideo();
-    this.updateVideoTime();
   }
 
   /**
@@ -135,8 +137,7 @@ export class VideoComponent implements OnInit, OnDestroy {
    */
   public seekTo(event): void {
     const updatedTime = this.videoDuration * (event.target.value / 100);
-    this.player.seekTo(updatedTime);
-    // this.socket.emit('currentDuration', this.currentDuration);
+    this.socket.emit('seekTo', updatedTime);
     if (!this.isVideoPlaying) {
       this.pauseVideo();
     }

@@ -126,6 +126,11 @@ io.on("connection", (socket) => {
     io.emit('currentDuration', time);
   });
 
+  socket.on("seekTo", (seekValue)=>{
+    console.log("Seeking To: " + seekValue);
+    io.emit("seekTo", seekValue);
+  })
+
   socket.on("videoLoading", (loading)=>{
     console.log("is the video loading? " + loading);
     io.emit('videoLoading', loading);
