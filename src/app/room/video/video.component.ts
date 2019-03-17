@@ -18,6 +18,8 @@ export class VideoComponent implements OnInit, OnDestroy {
   private videoDuration: number;
   private currentDuration: number;
   private currentVideo: Video;
+  private currentTime: string;
+  private fullTime: string;
   private ytEvent: number;
 
   constructor(private loadingService: LoadingService,
@@ -40,6 +42,7 @@ export class VideoComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isVideoPlaying = false;
+    // Controls whether the video is playing or not
     this.socket.on('videoState', (videoState) => {
       this.isVideoPlaying = videoState;
       if (this.isVideoPlaying) {
@@ -49,9 +52,11 @@ export class VideoComponent implements OnInit, OnDestroy {
         this.player.pauseVideo();
       }
     });
+    // Controls the current duration of the video
     this.socket.on('currentDuration', (length) => {
       this.currentDuration = length;
     });
+    // Moves on to the next video
     this.socket.on('nextVideo', (video) => {
       const currentPlayer = document.getElementById('videoPlayer');
       this.currentVideo = video;
@@ -62,15 +67,19 @@ export class VideoComponent implements OnInit, OnDestroy {
       this.isLoading = false;
       currentPlayer.style.display = 'block';
     });
+    // Controls when a new video is loading
     this.socket.on('videoLoading', (loading) => {
       const currentPlayer = document.getElementById('videoPlayer');
       this.isLoading = loading.state;
       currentPlayer.style.display = loading.style;
     });
+    // Controls the seek value of the video
     this.socket.on('seekTo', (seekValue) => {
-      this.currentDuration = seekValue;
       this.player.seekTo(seekValue);
     });
+
+    this.fullTime = '00:00';
+    this.currentTime = '00:00';
   }
 
   ngOnDestroy() {
@@ -118,10 +127,15 @@ export class VideoComponent implements OnInit, OnDestroy {
     this.player.pauseVideo();
   }
 
+  /**
+   * Updates the video slider
+   */
   public updateVideoTime() {
+    this.fullTime = this.formatTime(this.player.getDuration());
     setInterval(() => {
-      this.currentDuration = (this.player.getCurrentTime() / this.player.getDuration()) * 100;
+      this.currentDuration = (this.player.getCurrentTime() / this.player.getDuration() * 100) ;
      // this.socket.emit('currentDuration', this.currentDuration);
+      this.currentTime = this.formatTime(this.player.getCurrentTime());
       if (this.currentDuration === 100) {
         this.socket.emit('videoState', false);
         this.pauseVideo();
@@ -176,4 +190,11 @@ export class VideoComponent implements OnInit, OnDestroy {
     }, 2000);
   }
 
+  public formatTime(time) {
+    const currentTime = Math.round(time);
+    const minutes = Math.floor(currentTime / 60);
+    const seconds = currentTime - (minutes * 60);
+    const stringSeconds = seconds < 10 ? '0' + seconds : seconds;
+    return minutes + ':' + stringSeconds;
+  }
 }

@@ -1,7 +1,7 @@
 .slider{
   -webkit-appearance: none;
-  width: 700px;
-  height: 25px;
+  width: 795px;
+  height: 15px;
   background: #d3d3d3;
   outline: none;
   opacity: 0.7;
@@ -17,7 +17,7 @@
   -webkit-appearance: none;
   appearance: none;
   width: 25px;
-  height: 25px;
+  height: 15px;
   background: white;
   cursor: pointer;
 }
@@ -35,7 +35,7 @@
 .video-controls .video-buttons{
   color:white;
   background-color:#002266;
-  height:40px;
+  height:30px;
   width:40px;
   background-repeat:no-repeat;
   transition:.3s;
@@ -71,7 +71,8 @@
 .video-footer{
   background-color:#002266;
   position: absolute;
-  margin-top:560px;
+  margin-top:550px;
+  height:55px;
   z-index:15;
 }
 
@@ -82,4 +83,8 @@
   justify-content: center;
   align-content: center;
   align-items: center;
+}
+
+.currentDuration {
+  color:white;
 }
