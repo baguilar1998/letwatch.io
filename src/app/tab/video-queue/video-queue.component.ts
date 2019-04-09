@@ -19,6 +19,18 @@ export class VideoQueueComponent implements OnInit, OnChanges, OnDestroy {
 
 
   ngOnInit() {
+    this.playlistService.getPlaylist().subscribe((res) => {
+      this.playlistService.currentPlaylist = res.currentPlaylist;
+      if (!this.playlistService.currentPlaylist) {
+        this.playlistService.currentPlaylist = [];
+      }
+      if (this.playlistService.currentPlaylist.length === 0) {
+        this.playlistService.videosInPlaylist = false;
+      } else {
+        this.playlistService.videosInPlaylist = true;
+      }
+      console.log(res);
+     });
     this.socket.on('removeVideo', (playlist) => {
       this.playlistService.currentPlaylist = playlist;
     });

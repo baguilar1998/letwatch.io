@@ -33,37 +33,12 @@ export class CurrentUsersComponent implements OnInit {
       console.log(this.currentUsers);
     });
 
+    // Causes a problem!!
     this.roomService.getUsers().subscribe((data) => {
       console.log(data);
       this.currentUsers = data;
       this.roomService.getRoom().currentUsers = data;
      });
-    /* this.currentUsers = [
-       {
-        _id: '',
-        nickname: 'test1',
-        iconName: 'm3',
-        isHost: true
-       },
-       {
-        _id: '',
-        nickname: 'test2',
-        iconName: 'f3',
-        isHost: false
-       },
-       {
-        _id: '',
-        nickname: 'test3',
-        iconName: 'm2',
-        isHost: false
-       },
-       {
-        _id: '',
-        nickname: 'test1',
-        iconName: 'f1',
-        isHost: false
-       }
-     ];*/
   }
 
 }
