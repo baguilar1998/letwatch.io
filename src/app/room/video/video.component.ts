@@ -64,6 +64,7 @@ export class VideoComponent implements OnInit, OnDestroy {
       this.playlistService.currentPlaylist.shift();
       this.player.cueVideoById(this.embeddedCode);
       this.videoDuration = this.player.getDuration();
+      // this.fullTime = this.formatTime(this.player.getDuration());
       this.isLoading = false;
       currentPlayer.style.display = 'block';
     });
