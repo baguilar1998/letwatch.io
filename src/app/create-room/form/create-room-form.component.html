@@ -1,26 +1,93 @@
-<div class="container">
-    <div *ngIf="!success">
-        <h2> Create A Room </h2>
+<div *ngIf="!success">
+  <div class="row">
+    <div class="col">
+      <h3> Create A Room </h3>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col">
         <form (ngSubmit)="onSubmit(createRoomForm)" [formGroup]="createRoomForm">
+          <div class="row">
+            <div class="col-sm-6 d-flex align-items-center">
+                <div class="form-group">
+                  <label>Nickname</label>
+                  <input type="text" class="form-control" aria-label="Nickname" aria-describedby="basic-addon1">
+                </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Avatar</label><br/>
+                <div class="row avatar">
+                  <div class="col-sm-3 d-flex align-items-center">
+                    <label (click)="previousIcon()" href="javascript:void(0)" class="previous">&#8249;</label>
+                  </div>
+                  <div class="col-sm-6">
+                      <div class="iconList" [ngSwitch]="currentIcon">
+                          <img src="../../../../../assets/avatars/avatar-1.png" *ngSwitchCase="'m1'">
+                          <img src="../../../../../assets/avatars/avatar-2.png" *ngSwitchCase="'m2'">
+                          <img src="../../../../../assets/avatars/avatar-3.png" *ngSwitchCase="'m3'">
+                          <img src="../../../../../assets/avatars/avatar-12.png" *ngSwitchCase="'m4'">
+                          <img src="../../../../../assets/avatars/avatar-13.png" *ngSwitchCase="'f1'">
+                          <img src="../../../../../assets/avatars/avatar-20.png" *ngSwitchCase="'f2'">
+                          <img src="../../../../../assets/avatars/avatar-26.png" *ngSwitchCase="'f3'">
+                          <img src="../../../../../assets/avatars/avatar-41.png" *ngSwitchCase="'f4'">
+                        </div>
+                  </div>
+                  <div class="col-sm-3 d-flex align-items-center">
+                      <label (click)="nextIcon()" href="javascript:void(0)" class="next">&#8250;</label>
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
 
-            <!--<input type="hidden" formControlName="id">
-            <input type="hidden" formControlName="playlistId">
-            <input type="hidden" formControlName="userId">-->
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <!--Max Capacity-->
+                <label>Max Capacity</label>
+                <select class="custom-select" formControlName = "maxUsers">
+                  <option *ngFor = "let number of numberOfUsers" [value]="number">{{number}}</option>
+                </select><br>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                  <!--Invitation Code-->
+                <label>Invitation Key </label><br>
+                <input class="form-control" type="text" placeholder="Room Name" [value]="invitationCode"  readonly="readonly"/><br>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <button type="button" class="btn btn-primary w-100" [disabled]="createRoomForm.invalid" type="submit">Submit </button>
+              </div>
+            </div>
+          </div>
+        </form>
+    </div>
+  </div>
+</div>
 
+    <!---<div *ngIf="success">
+        <h2>Successfully Created Room</h2>
+    </div>
 
-
-            <!--Room Name-->
-            <label>Room Name </label><br>
-            <input type="text" formControlName="roomName">
-
-                <small *ngIf="roomName.touched && roomNameErrors!=null" >
+    <div *ngIf="error">
+        Error creating room. Please try again
+    </div>
+          <small *ngIf="roomName.touched && roomNameErrors!=null" >
                     {{roomNameErrors.message}}
                 </small>
 
                 <small *ngIf="!roomName">{{roomNameErrors.message}}</small>
 
             <br>
-            <!--Password-->
+
             <label>Password </label><br>
             <input type="password" formControlName="password">
             <br>
@@ -28,28 +95,13 @@
             <label>Confirm Password </label><br>
             <input type="password" formControlName="confirmPassword"><br>
 
-            <!--Max Capacity-->
-            <label>Max Capacity</label>
-            <select id="maxUsers" formControlName = "maxUsers">
-              <option *ngFor = "let number of numberOfUsers" [value]="number">{{number}}</option>
-            </select><br>
 
-            <!--Invitation Code-->
+
+
             <label>Invitation Key </label><br>
             <input type="text" placeholder="Room Name" [value]="invitationCode"  readonly="readonly"/><br>
 
             <button (click)="goBack()" type="button">Back</button>
             <button [disabled]="createRoomForm.invalid" type="submit">Submit </button>
+  -->
 
-        </form>
-    </div>
-
-    <div *ngIf="success">
-        <h2>Successfully Created Room</h2>
-    </div>
-
-    <div *ngIf="error">
-        Error creating room. Please try again
-    </div>
-
-</div>

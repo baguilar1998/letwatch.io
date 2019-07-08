@@ -1,7 +1,7 @@
 .card{
   opacity: 1;
-  width: 600px;
-  height: 500px;
+  width: 550px;
+  height: 680px;
   margin:auto !important;
   max-width: 800px;
   background: #fff;
@@ -69,7 +69,7 @@ Message when user does not enter a nickname
 Buttons
 ---------------------
 */
-.avatar, #createroom, #joinroom{
+.avatar{
   margin-top:20px;
   display:flex;
   align-items: center;
@@ -171,7 +171,7 @@ Home Content
   background-color:#003459;
 }
 .home-content h1{
-  font-size:70pt;
+  font-size:80pt;
   color:white;
   text-align: center;
 }

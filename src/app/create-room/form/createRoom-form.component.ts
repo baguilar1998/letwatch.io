@@ -22,6 +22,9 @@ export class CreateRoomFormComponent implements OnInit {
     success = '';
     error = '';
     submitted = false;
+    currentIcon: string;
+    icons: string [];
+    index: number;
 
     constructor(private fb: FormBuilder,
       private userService: UserService,
@@ -30,6 +33,9 @@ export class CreateRoomFormComponent implements OnInit {
       private router: Router) {}
 
     ngOnInit() {
+      this.icons = ['m1', 'f1', 'm2', 'f2', 'm3', 'f3', 'm4', 'f4'];
+      this.index = 0;
+      this.currentIcon = this.icons[this.index];
       // Uses reactive forms and groups all the form controllers into one
       // Custom form validation with ValidateCreateForm
       // First index is default data, 2nd is for validations
@@ -119,6 +125,24 @@ export class CreateRoomFormComponent implements OnInit {
      */
     goBack(): void {
       this.currentState.next('home');
+    }
+
+
+    previousIcon() {
+      this.index--;
+      if (this.index === -1) {
+        this.index = 7;
+      }
+      this.currentIcon = this.icons[this.index];
+    }
+
+
+    nextIcon() {
+      this.index++;
+      if (this.index === 8) {
+        this.index = 0;
+      }
+      this.currentIcon = this.icons[this.index];
     }
 
 }

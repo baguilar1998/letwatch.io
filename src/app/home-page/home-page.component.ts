@@ -18,7 +18,7 @@ export class HomePageComponent implements OnInit {
 
   constructor(private userService: UserService,
   private loadingService: LoadingService) {
-    this.componentState = 'home';
+    this.componentState = 'createroom';
     this.icons = ['m1', 'f1', 'm2', 'f2', 'm3', 'f3', 'm4', 'f4'];
     this.index = 0;
     this.currentIcon = this.icons[this.index];
@@ -36,13 +36,13 @@ export class HomePageComponent implements OnInit {
     /**
      * Doesn't allow the user to bypass to
      * the next state without a nickname
-     */
+     *
     if (this.nickname === undefined || this.nickname === '') {
       this.isValid = false;
       return;
     } else {
       this.isValid = true;
-    }
+    }*/
 
     /**
      * Creates/Updates User

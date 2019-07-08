@@ -19,10 +19,10 @@
       </div>
       <div class="col-md-6 d-flex align-items-center">
         <div class="card"  *ngIf="!this.loadingService.isLoading">
-            <div class="row">
-              <div class="col">
+            <div class="row h-100">
+              <div class="col-md-12 h-100">
 
-                <div id="banner">
+                <!--<div id="banner">
                   <h1 id="logo">letswatch.io</h1>
                 </div>
               </div>
@@ -52,15 +52,6 @@
                     </div>
 
                     <div class="row">
-                      <div class="col">
-                        <div id="prompt" *ngIf="!isValid">
-                            Nickname is required!
-                          </div>
-                      </div>
-                    </div>
-
-
-                    <div class="row">
                       <div class="col text-center">
                         <div id="nickname">
                           <input [(ngModel)]="nickname" class="nickname-field" required type="text" placeholder="Nickname"/><br>
@@ -69,7 +60,7 @@
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </div>-->
                   <div id="joinroom" *ngIf="componentState=='joinroom'">
                     <app-join-room (currentState)="changeState($event)"></app-join-room>
                   </div>
@@ -78,7 +69,7 @@
                     <app-create-room (currentState)="changeState($event)"></app-create-room>
                   </div>
 
-                  <div id="resources" *ngIf="componentState=='home'">
+                  <!--<div id="resources" *ngIf="componentState=='home'">
                     <div class="links">
                       <ul id="horizontal-list">
                         <li class="list-item">
@@ -95,7 +86,7 @@
                         </li>
                       </ul>
                     </div>
-                  </div>
+                  </div>-->
               </div>
             </div>
 
