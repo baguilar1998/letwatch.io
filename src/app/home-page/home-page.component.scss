@@ -2,12 +2,7 @@
   opacity: 1;
   width: 600px;
   height: 500px;
-  position: fixed;
-  top: 40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   max-width: 800px;
-  margin: auto;
   background: #fff;
   box-shadow: 0px 9px 20px rgba(34, 35, 58, 0.2);
   padding: 25px;
@@ -163,4 +158,27 @@ Resources List
 }
 .list-item a:hover{
   color:#437C90;
+}
+
+/**
+---------------------
+Home Content
+---------------------
+**/
+.home {
+  height: 840px;
+  background-color:#003459;
+}
+.home-content h1{
+  font-size:65pt;
+  color:white;
+  text-align: center;
+}
+
+.vertical-center {
+  min-height: 80%;  /* Fallback for browsers do NOT support vh unit */
+  min-height: 80vh; /* These two lines are counted as one :-)       */
+
+  display: flex;
+  align-items: center;
 }
