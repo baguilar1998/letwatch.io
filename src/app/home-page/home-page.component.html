@@ -7,11 +7,10 @@
               <div class="col-sm-12">
                 <div class="home-content">
                     <h1>letswatch.io</h1>
-                    <p>Some caption we have to think of later</p>
                   </div>
                 <div class="buttons d-flex justify-content-center">
-                  <button type="button" class="btn btn-primary">Create A Room</button>
-                  <button type="button" class="btn btn-primary">Join A Room</button>
+                  <button (click)="changeState('createroom')" type="button" class="btn btn-primary">Create A Room</button>
+                  <button (click)="changeState('joinroom')" type="button" class="btn btn-primary">Join A Room</button>
                 </div>
               </div>
             </div>
@@ -21,8 +20,34 @@
         <div class="card"  *ngIf="!this.loadingService.isLoading">
             <div class="row h-100">
               <div class="col-md-12 h-100">
+                  <div id="joinroom" *ngIf="componentState=='joinroom'">
+                    <app-join-room (currentState)="changeState($event)"></app-join-room>
+                  </div>
+                  <div id="createroom" *ngIf="componentState=='createroom'">
+                    <app-create-room (currentState)="changeState($event)"></app-create-room>
+                  </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+  <!--<div class="about">
+    <div class="row">
+      <div class="col-md-12 d-flex align-items-center">
+        <div class="header">
+          <h1>About Us</h1>
+        </div>
+      </div>
+    </div>
+  </div>-->
+</div>
 
-                <!--<div id="banner">
+
+
+                <!--
+                  <app-loading *ngIf="this.loadingService.isLoading"></app-loading>
+                  <div id="banner">
                   <h1 id="logo">letswatch.io</h1>
                 </div>
               </div>
@@ -61,13 +86,6 @@
                       </div>
                     </div>
                   </div>-->
-                  <div id="joinroom" *ngIf="componentState=='joinroom'">
-                    <app-join-room (currentState)="changeState($event)"></app-join-room>
-                  </div>
-
-                  <div id="createroom" *ngIf="componentState=='createroom'">
-                    <app-create-room (currentState)="changeState($event)"></app-create-room>
-                  </div>
 
                   <!--<div id="resources" *ngIf="componentState=='home'">
                     <div class="links">
@@ -87,13 +105,3 @@
                       </ul>
                     </div>
                   </div>-->
-              </div>
-            </div>
-
-          </div>
-
-      </div>
-    </div>
-  </div>
-</div>
-<app-loading *ngIf="this.loadingService.isLoading"></app-loading>

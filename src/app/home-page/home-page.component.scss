@@ -1,7 +1,7 @@
 .card{
   opacity: 1;
   width: 550px;
-  height: 680px;
+  height: 550px;
   margin:auto !important;
   max-width: 800px;
   background: #fff;
@@ -194,4 +194,19 @@ Home Content
 .btn-primary:hover {
   background-color: rgb(231, 61, 61);
   border-color: rgb(231, 61, 61);
+}
+
+
+/*
+---------------------
+About Content
+---------------------
+*/
+.about {
+  height: 900px;
+}
+.about h1 {
+  font-size:30pt;
+  font-weight: bold;
+  text-align: center;
 }

@@ -13,16 +13,16 @@ label{
   width:80px;
   height:80px;
 }
-.avatar a{
-  border: 2px solid #003d69;
+.avatar label{
+  border: 2px solid rgb(250, 61, 61);
   background-color: white;
-  color: #003d69;
+  color: rgb(250, 61, 61);
   transition: .3s;
   padding: 9px 10px;
   font-size: 16px;
   cursor: pointer;
   &:hover{
-    background:#003d69;
+    background:rgb(250, 61, 61);
     color:white;
   }
 }
