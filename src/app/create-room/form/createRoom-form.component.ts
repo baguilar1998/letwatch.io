@@ -42,7 +42,7 @@ export class CreateRoomFormComponent implements OnInit {
       this.createRoomForm = this.fb.group({
         id: ['1'],
         playlistId: ['1'],
-        nickName: ['Displays previous user'],
+        nickname: '',
         roomName: ['', [
                         Validators.minLength(3),
                         Validators.maxLength(15),
@@ -77,6 +77,7 @@ export class CreateRoomFormComponent implements OnInit {
        Same as saying this.createRoomForm*/
       onSubmit({value, valid}: {value, valid: boolean}) {
         console.log(valid);
+        this.userService.createUser(value.nickname, this.icons[this.index]);
         this.loadingService.startLoading();
         setTimeout(() => {
             this.userService.getCurrentUser().isHost = true;
@@ -87,11 +88,9 @@ export class CreateRoomFormComponent implements OnInit {
               // Creating a room object to store in the database
               const newRoom: Room = {
                 _id: '',
-                roomName: value.roomName,
                 host: this.userService.getCurrentUser(),
                 currentUsers: [],
                 invitationCode: this.invitationCode,
-                password: value.password,
                 maxCapacity: value.maxUsers
               };
 

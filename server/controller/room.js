@@ -32,11 +32,9 @@ exports.createRoom = (req,res,next) => {
   console.log("Creating Room");
 
   let newRoom = new Room({
-    name : req.body.roomName,
     host : req.body.host,
     users : req.body.currentUsers,
     invitationCode : req.body.invitationCode,
-    password : req.body.password,
     maxCapacity : req.body.maxCapacity
   });
 

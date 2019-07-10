@@ -2,11 +2,6 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 var RoomSchema = new mongoose.Schema({
-  name: {
-    type: String,
-    default: String,
-    required: true
-  },
   host: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -26,11 +21,6 @@ var RoomSchema = new mongoose.Schema({
       expires: '4h',
       default: Date.now
     }
-  },
-  password: {
-    type: String,
-    default: String,
-    required: false,
   },
   maxCapacity: {
     type: Number,

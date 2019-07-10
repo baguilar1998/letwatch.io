@@ -1,31 +1,65 @@
-<div class="container">
+<div class="container w-100 h-100">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="row">
+        <div class="col">
+          <h3> Join A Room </h3>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+              <div class="row">
+                <div class="col-sm-6 d-flex align-items-center">
+                    <div class="form-group">
+                      <label>Nickname</label>
+                      <input [(ngModel)]="nickname" type="text" class="form-control" aria-label="Nickname" aria-describedby="basic-addon1">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Avatar</label><br/>
+                    <div class="row avatar">
+                      <div class="col-sm-3 d-flex align-items-center">
+                        <label (click)="previousIcon()" href="javascript:void(0)" class="previous">&#8249;</label>
+                      </div>
+                      <div class="col-sm-6">
+                          <div class="iconList" [ngSwitch]="currentIcon">
+                              <img src="../../../../../assets/avatars/avatar-1.png" *ngSwitchCase="'m1'">
+                              <img src="../../../../../assets/avatars/avatar-2.png" *ngSwitchCase="'m2'">
+                              <img src="../../../../../assets/avatars/avatar-3.png" *ngSwitchCase="'m3'">
+                              <img src="../../../../../assets/avatars/avatar-12.png" *ngSwitchCase="'m4'">
+                              <img src="../../../../../assets/avatars/avatar-13.png" *ngSwitchCase="'f1'">
+                              <img src="../../../../../assets/avatars/avatar-20.png" *ngSwitchCase="'f2'">
+                              <img src="../../../../../assets/avatars/avatar-26.png" *ngSwitchCase="'f3'">
+                              <img src="../../../../../assets/avatars/avatar-41.png" *ngSwitchCase="'f4'">
+                            </div>
+                      </div>
+                      <div class="col-sm-3 d-flex align-items-center">
+                          <label (click)="nextIcon()" href="javascript:void(0)" class="next">&#8250;</label>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
 
-  <!-- Header -->
-  <div id="header">
-    <h2>Enter An Invitation Code</h2>
-
-    <div class="prompt">
-      <div class="notAvailable" *ngIf="notAvailable">
-        <h2>Room is not available</h2>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                      <!--Invitation Code-->
+                    <label>Enter your invitation key </label><br>
+                    <input  [(ngModel)]="invitationCode" class="form-control" type="text" placeholder="" /><br>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <button (click)="join()" type="button" class="btn btn-primary w-100" type="submit">Submit </button>
+                  </div>
+                </div>
+              </div>
+        </div>
       </div>
     </div>
   </div>
-
-  <!--Enter an Invitation Code-->
-  <div id="body">
-
-    <div class="user-input">
-      <!--User Input-->
-      <input [(ngModel)]="invitationCode" type="text"/>
-    </div>
-
-    <!--Join/Back Buttons-->
-    <div id="buttons">
-      <button (click)="goBack('home')">Back</button>
-      <button (click)="join()">Join</button>
-    </div>
-
-  </div>
-
 </div>
-

@@ -17,6 +17,10 @@ export class JoinRoomComponent implements OnInit {
   invitationCode: string;
   notAvailable: boolean;
   availableSubject: Subject<boolean>;
+  currentIcon: string;
+  icons: string [];
+  index: number;
+  nickname: string;
 
   constructor(private userService: UserService,
     private roomService: RoomService,
@@ -24,6 +28,10 @@ export class JoinRoomComponent implements OnInit {
     private router: Router,
     private loadingService: LoadingService) {
       this.notAvailable = false;
+      this.icons = ['m1', 'f1', 'm2', 'f2', 'm3', 'f3', 'm4', 'f4'];
+      this.nickname = '';
+      this.index = 0;
+      this.currentIcon = this.icons[this.index];
     }
 
   ngOnInit() {}
@@ -42,6 +50,7 @@ export class JoinRoomComponent implements OnInit {
    * an available room
    */
   join(): void {
+    this.userService.createUser(this.nickname, this.icons[this.index]);
     this.loadingService.startLoading();
     setTimeout(() => {
       this.userService.addUser().subscribe(
@@ -85,6 +94,23 @@ export class JoinRoomComponent implements OnInit {
       });
 
     }, 1000);
+  }
+
+  previousIcon() {
+    this.index--;
+    if (this.index === -1) {
+      this.index = 7;
+    }
+    this.currentIcon = this.icons[this.index];
+  }
+
+
+  nextIcon() {
+    this.index++;
+    if (this.index === 8) {
+      this.index = 0;
+    }
+    this.currentIcon = this.icons[this.index];
   }
 
 }
