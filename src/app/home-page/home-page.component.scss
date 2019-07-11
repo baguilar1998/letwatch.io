@@ -1,7 +1,7 @@
 .card{
   opacity: 1;
   width: 550px;
-  height: 550px;
+  height: 450px;
   margin:auto !important;
   max-width: 800px;
   background: #fff;
@@ -167,7 +167,7 @@ Home Content
 ---------------------
 **/
 .home {
-  height: 900px;
+  height: 950px;
   background-color:#003459;
 }
 .home-content h1{
@@ -203,12 +203,12 @@ Home Content
   background-position: center center;
 }
 .overlay-itro {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(37, 37, 37, 0.6);
   position: absolute;
   top: 0;
   left: 0px;
   padding: 0;
-  height: 900px;
+  height: 950px;
   width: 100%;
   opacity: .9;
 }
@@ -219,10 +219,10 @@ About Content
 ---------------------
 */
 .about {
-  height: 900px;
+  height: 950px;
 }
 .about h1 {
-  font-size:30pt;
-  font-weight: bold;
+  font-size:45pt;
+  margin-top:15px;
   text-align: center;
 }
