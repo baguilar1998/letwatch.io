@@ -75,15 +75,15 @@ label{
   height:80px;
 }
 .avatar label{
-  border: 2px solid rgb(250, 61, 61);
+  border: 2px solid #003459;
   background-color: white;
-  color: rgb(250, 61, 61);
+  color: #003459;
   transition: .3s;
   padding: 9px 10px;
   font-size: 16px;
   cursor: pointer;
   &:hover{
-    background:rgb(250, 61, 61);
+    background:#003459;
     color:white;
   }
 }
@@ -98,12 +98,12 @@ label{
 .btn-primary:active,
 .btn-primary:visited,
 .btn-primary:focus {
-    background-color: rgb(250, 61, 61);
-    border-color: rgb(250, 61, 61);
+    background-color: #003459;
+    border-color: #003459;
     padding:9px;
 }
 
 .btn-primary:hover {
-  background-color: rgb(231, 61, 61);
-  border-color: rgb(231, 61, 61);
+  background-color: #00497e;
+  border-color: #00497e;
 }

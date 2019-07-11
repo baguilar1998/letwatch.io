@@ -186,16 +186,32 @@ Home Content
 .btn-primary:active,
 .btn-primary:visited,
 .btn-primary:focus {
-    background-color: rgb(250, 61, 61);
-    border-color: rgb(250, 61, 61);
+    background-color: #003459;
+    border-color: #003459;
     padding:9px;
 }
 
 .btn-primary:hover {
-  background-color: rgb(231, 61, 61);
-  border-color: rgb(231, 61, 61);
+  background-color: #00497e;
+  border-color: #00497e;
 }
 
+.bg-image {
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center center;
+}
+.overlay-itro {
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0px;
+  padding: 0;
+  height: 900px;
+  width: 100%;
+  opacity: .9;
+}
 
 /*
 ---------------------
