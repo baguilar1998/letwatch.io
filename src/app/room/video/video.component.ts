@@ -11,16 +11,16 @@ import { Socket } from 'ngx-socket-io';
 })
 export class VideoComponent implements OnInit, OnDestroy {
 
-  private embeddedCode: string;
-  private isVideoPlaying: boolean;
-  private isLoading: boolean;
-  private player;
-  private videoDuration: number;
-  private currentDuration: number;
-  private currentVideo: Video;
-  private currentTime: string;
-  private fullTime: string;
-  private ytEvent: number;
+  embeddedCode: string;
+  isVideoPlaying: boolean;
+  isLoading: boolean;
+  player;
+  videoDuration: number;
+  currentDuration: number;
+  currentVideo: Video;
+  currentTime: string;
+  fullTime: string;
+  ytEvent: number;
 
   constructor(private loadingService: LoadingService,
   private playlistService: PlaylistService,
@@ -29,7 +29,7 @@ export class VideoComponent implements OnInit, OnDestroy {
       this.playlistService.videosInPlaylist = data ;
       this.nextVideo();
     });*/
-    this.embeddedCode = '8HWjjiRsFWg';
+    this.embeddedCode = 'O4kGKSPCR-0';
     this.currentVideo = {
       title: '',
       creator: '',

@@ -4,30 +4,24 @@
   <div class="video-body">
 
     <!--VIDEO PLAYER-->
-    <div class="player">
+    <div class="player" style="width:1000px">
       <youtube-player
       id="videoPlayer"
       (ready)="savePlayer($event)"
       (change)="onStateChange($event)"
-      [videoId]="this.embeddedCode" width="800" height="600"></youtube-player>
+      [videoId]="this.embeddedCode" width="900" height="700"></youtube-player>
     </div>
 
-    <!--Loading Prompt-->
+    <!--Loading Prompt
     <div class="loading-prompt" *ngIf="isLoading">
       <img src="../../../assets/loaderimage.gif"/>
-    </div>
+    </div>-->
     <!--Video Prompt if there are no videos in the list-->
 
-    <!--<div class="select-video" *ngIf="this.playlistService.videosInPlaylist">
-        <div class="prompt">
-            <h2>Add videos to the playlist and click next to begin!</h2>
-        </div>
-      </div>-->
-
   </div>
-  <!--Video Footer-->
+  <!--Video Footer
   <div class="video-footer">
-    <!--Video Controls-->
+
     <div class="video-controls">
 
       <input (mouseup)="seekTo($event)" align="right" type="range" min="0" max="videoDuration"
@@ -50,5 +44,5 @@
       </label>
 
     </div>
-  </div>
+  </div>-->
 </div>
