@@ -1,32 +1,30 @@
-<div class="container-fluid w-100 h-100" style="overflow:hidden">
+<div class="container-fluid w-100 h-100">
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-8">
       <!-- Image and text -->
       <nav class="navbar navbar-light bg-light">
         <a class="navbar-brand" routerLink="">
-          <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-          letswatch.io
+          <img src="../../assets/video-icon.png" width="30" height="30" class="d-inline-block align-top" alt="">
         </a>
       </nav>
-    </div>
-  </div>
-  <div class="row h-100">
-    <div class="col-md-8">
-      <div class="player">
-        <!-- The Video Player -->
-        <app-video></app-video>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="player">
+            <!-- The Video Player -->
+            <app-video></app-video>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-md-4 h-100">
-      <!-- Tab Section (Chat/Users/Queue)-->
-      <div class="tab-section" style="height:93%">
-        <app-tab
-          (searchResult)="getSearchResult($event)"
-          [videosFound]="videosFound"
-        ></app-tab>
-      </div>
+        <div class="tab-section" style="height:93%; overflow-y:scroll;">
+            <app-tab
+              (searchResult)="getSearchResult($event)"
+              [videosFound]="videosFound"
+            ></app-tab>
+          </div>
     </div>
-  </div>
+
   <!--
   <div class="body">
     <div class="player">

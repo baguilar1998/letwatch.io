@@ -1,4 +1,4 @@
-<div class="container-fluid w-100 h-100" style="background-color:yellow">
+<div class="container-fluid card w-100 tab" style="background-color:rgb(165, 165, 165)">
 
 
   <div
@@ -13,54 +13,59 @@
     <span> Removed from the queue </span>
   </div>
 
-  <!--Tab Buttons-->
-  <div class="tab-buttons">
+  <div class="row">
+    <div class="col-md-12">
+      <!--Tab Buttons-->
+      <div class="tab-buttons">
 
-      <!--List Of Buttons-->
-      <ul class="button-list">
-        <li class="list-item">
-          <button [class.active]="currentContent === 'chat'" (click)="changeContent('chat')">Chat</button>
-        </li>
-        <li class="list-item">
-          <button [class.active]="currentContent === 'queue'" (click)="changeContent('queue')">Video Queue</button>
-        </li>
-        <li class="list-item">
-          <button [class.active]="currentContent === 'users'" (click)="changeContent('users')">Users</button>
-        </li>
-        <li class="list-item">
-          <button [class.active]="currentContent === 'search'" (click)="changeContent('search')">Search</button>
-        </li>
-      </ul>
+        <!--List Of Buttons-->
+        <ul class="button-list">
+          <li class="list-item">
+            <button [class.active]="currentContent === 'chat'" (click)="changeContent('chat')">Chat</button>
+          </li>
+          <li class="list-item">
+            <button [class.active]="currentContent === 'queue'" (click)="changeContent('queue')">Video Queue</button>
+          </li>
+          <li class="list-item">
+            <button [class.active]="currentContent === 'users'" (click)="changeContent('users')">Users</button>
+          </li>
+          <li class="list-item">
+            <button [class.active]="currentContent === 'search'" (click)="changeContent('search')">Search</button>
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
+  <div class="row h-100">
+    <div class="col-md-12">
 
-    <!--Tab Content-->
-    <div class="tab-content">
 
-      <!--- Search Component -->
-      <div id="search-wrapper" *ngIf="currentContent == 'search'">
-        <app-search
-        [videosFound]="videosFound"
-        [videosForQueue]="videosForQueue"
-        (removeVideoInQueue)="removeVideoInQueue($event)"
-        (addVideoToQueue)="videoToQueue($event)"
-        (searchHandler)="sendResultToRoom($event)"
-        > </app-search>
-      </div>
+        <!--- Search Component -->
+        <div id="search-wrapper" *ngIf="currentContent == 'search'">
+          <app-search
+          [videosFound]="videosFound"
+          [videosForQueue]="videosForQueue"
+          (removeVideoInQueue)="removeVideoInQueue($event)"
+          (addVideoToQueue)="videoToQueue($event)"
+          (searchHandler)="sendResultToRoom($event)"
+          > </app-search>
+        </div>
 
-      <!--Current Users Content-->
-      <div id="current-users" *ngIf="currentContent == 'users'">
-        <app-current-users></app-current-users>
-      </div>
+        <!--Current Users Content-->
+        <div id="current-users" *ngIf="currentContent == 'users'">
+          <app-current-users></app-current-users>
+        </div>
 
-      <!--Video Queue Content-->
-      <div id="video-queue" *ngIf="currentContent == 'queue'">
-        <app-video-queue></app-video-queue>
-      </div>
+        <!--Video Queue Content-->
+        <div id="video-queue" *ngIf="currentContent == 'queue'">
+          <app-video-queue></app-video-queue>
+        </div>
 
-      <!--Chat Content-->
-      <div id="chat" *ngIf="currentContent == 'chat'">
-        <app-chat></app-chat>
-      </div>
+        <!--Chat Content-->
+        <div id="chat" *ngIf="currentContent == 'chat'">
+          <app-chat></app-chat>
+        </div>
 
     </div>
+  </div>
 </div>
